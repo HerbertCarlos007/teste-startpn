@@ -15,6 +15,10 @@ export const HeaderTable = styled.div`
     border-radius: 10px;
     position: relative;
     right: 100px;
+
+    @media (max-width: 1366px) {
+        width: 890px;
+    }
 `
 
 export const ContentHeaderTable = styled.div`
@@ -25,6 +29,11 @@ export const ContentHeaderTable = styled.div`
     margin-top: 15px;
     position: relative;
     right: 140px;
+
+    @media (max-width: 1366px) {
+        position: relative;
+        right: 95px;
+    }
 `
 
 export const Checkbox = styled.input`
@@ -39,6 +48,10 @@ export const ContainerTable = styled.div`
     border-radius: 10px;
     margin-top: 18px;
     margin-right: 200px;
+
+    @media (max-width: 1366px) {
+        width: 890px;
+    }
 `
 
 export const ContentTable = styled.div`
@@ -49,6 +62,11 @@ export const ContentTable = styled.div`
     margin-top: 15px;
     position: relative;
     right: 20px;
+
+    @media (max-width: 1366px) {
+        position: relative;
+        right: 3px;
+    }
 `
 
 
