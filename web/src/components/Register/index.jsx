@@ -5,6 +5,8 @@ import steveJobsImage from '../../assets/stevejobs.png'
 import backgroundImage from '../../assets/background.png'
 import logo from '../../assets/logo.png'
 
+import { Login } from '../Login'
+
 export const Register = () => {
     return (
         <C.Container>
@@ -16,7 +18,7 @@ export const Register = () => {
 
                 <C.RightSideContainer>
 
-                    <C.Logo src={logo} />
+                    {/* <C.Logo src={logo} />
 
                     <C.ContainerForm>
                         <C.TextRegister>Cadastro</C.TextRegister>
@@ -62,7 +64,8 @@ export const Register = () => {
                             <C.TextHaveAccount>Já tem conta? </C.TextHaveAccount>
                             <C.TextLogin>Login</C.TextLogin>
                         </C.ContainerHaveAccount>
-                    </C.ContainerForm>
+                    </C.ContainerForm> */}
+                    <Login/>
                 </C.RightSideContainer>
             </C.ContainerRegister>
         </C.Container>
