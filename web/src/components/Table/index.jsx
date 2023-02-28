@@ -7,6 +7,7 @@ import { GrFormClose } from 'react-icons/gr'
 export const Table = () => {
 
     const [showCreationModal, setShowCreationModal] = useState(false)
+    const [showCreationModalDeleteOutsider, setShowCreationModalDeleteOutsider] = useState(false)
 
     const handleCreationModal = () => {
         setShowCreationModal(true)
@@ -14,6 +15,16 @@ export const Table = () => {
 
     const handleCloseCreationModal = () => {
         setShowCreationModal(false)
+    }
+
+    const handleCreationModalDeleteOutsider = () => {
+        setShowCreationModalDeleteOutsider(true)
+        setShowCreationModal(false)
+
+    }
+
+    const handleCloseModalDeleteOutsider = () => {
+        setShowCreationModalDeleteOutsider(false)
     }
 
     return (
@@ -48,12 +59,35 @@ export const Table = () => {
                     <C.Line />
 
                     <C.MidSectionModal>
-                        <C.TextEditOutsider>Editar Terceiro</C.TextEditOutsider>
+                        <C.TextEditOutsider onClick={handleCreationModalDeleteOutsider}>Editar Terceiro</C.TextEditOutsider>
                         <C.Line />
                         <C.TextDeleteOutsider>Excluir terceiro</C.TextDeleteOutsider>
                         <C.Line />
                     </C.MidSectionModal>
                 </C.ModalContainer>
+            </Modal>
+
+            <Modal show={showCreationModalDeleteOutsider} onClose={handleCloseModalDeleteOutsider}>
+                <C.ModalContainerDeleteOutsider>
+                    <C.TopSectionModalDeleteOutsider>
+                        <C.LeftSideModalDeleteOutsider>
+                            <C.IconClose style={{ marginBottom: '6px' }} onClick={handleCloseModalDeleteOutsider}><GrFormClose /></C.IconClose>
+                            <C.TextTitleModal>Excluir terceiro</C.TextTitleModal>
+                        </C.LeftSideModalDeleteOutsider>
+                        <C.TextModalDeleteOutsider>Excluir</C.TextModalDeleteOutsider>
+                    </C.TopSectionModalDeleteOutsider>
+                    <C.Line />
+
+                    <C.ContainerConfirmDelete>
+                        <C.TextConfirmDeleteOutsider>
+                            Tem certeza que deseja excluir o ?
+                        </C.TextConfirmDeleteOutsider>
+                        <C.TextIndent>cliente
+                            <C.TextBold> Mateus santos </C.TextBold>
+                        </C.TextIndent>
+                    </C.ContainerConfirmDelete>
+
+                </C.ModalContainerDeleteOutsider>
             </Modal>
         </C.Container>
     )

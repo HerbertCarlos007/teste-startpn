@@ -132,6 +132,7 @@ export const TextTitleModal = styled.span`
 
 export const IconClose = styled.div`
     font-size: 30px;
+    cursor: pointer;
 `
 
 export const Line = styled.div`
@@ -164,4 +165,58 @@ export const TextDeleteOutsider = styled.span`
     color: #EA0000;
     cursor: pointer;
     font-weight: 600;
+`
+
+export const ModalContainerDeleteOutsider = styled.div`
+    
+`
+
+export const TopSectionModalDeleteOutsider = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 375px;
+`
+
+export const LeftSideModalDeleteOutsider = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    gap: 15px;
+`
+
+export const TextModalDeleteOutsider = styled.div`
+    width: 82px;
+    font-size: 15px;
+    font-weight: 600;
+    height: 37px;
+    background-color: #FFE1E1;
+    border-radius: 50px;
+    cursor: pointer;
+    color: #EA0000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`
+
+export const ContainerConfirmDelete = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    padding-bottom: 30px;
+`
+
+export const TextConfirmDeleteOutsider = styled.span`
+
+`
+
+export const TextIndent = styled.span`
+    text-indent: 10px;
+`
+
+export const TextBold = styled.span`
+    font-weight: bold;
 `
