@@ -120,6 +120,7 @@ export const TextHaveAccount = styled.span`
 
 export const TextLogin = styled.span`
     margin-left: 10px;
-    color: #476EE6
+    color: #476EE6;
+    cursor: pointer;
 ;
 `

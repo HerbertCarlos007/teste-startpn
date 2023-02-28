@@ -7,7 +7,7 @@ import logo from '../../assets/logo.png'
 
 import { Login } from '../Login'
 
-export const Register = () => {
+export const Register = ({switchLogin}) => {
     return (
         <C.Container>
             <C.ContainerForm>
@@ -56,7 +56,7 @@ export const Register = () => {
 
                 <C.ContainerHaveAccount>
                     <C.TextHaveAccount>Já tem conta? </C.TextHaveAccount>
-                    <C.TextLogin>Login</C.TextLogin>
+                    <C.TextLogin onClick={switchLogin}>Login</C.TextLogin>
                 </C.ContainerHaveAccount>
             </C.ContainerForm>
 

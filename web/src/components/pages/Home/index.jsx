@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import * as C from './styles'
 
@@ -8,6 +8,13 @@ import { Login } from "../../Login";
 import { Register } from "../../Register";
 
 export const Home = () => {
+
+    const [isLoggin, setIsLoggin] = useState(false)
+
+    const switchLogin = () => {
+        setIsLoggin(!isLoggin)
+    }
+
     return(
         <C.Container>
             <C.ContainerRegister>
@@ -18,8 +25,9 @@ export const Home = () => {
 
                 <C.RightSideContainer>
 
-                  {/* <Login/> */}
-                  <Register/>
+                    {isLoggin ? <Login switchLogin={switchLogin}/> : <Register switchLogin={switchLogin}/>}
+
+                
                     
                 </C.RightSideContainer>
             </C.ContainerRegister>
