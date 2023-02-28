@@ -28,26 +28,26 @@ export const Home = () => {
                 </C.LeftSideContainer>
 
                 <C.RightSideContainer>
-                    
-                {formState === 'register' ? (
+
+                {formState === 'register' && (
                     <Register setFormState={setFormState}/>
-                ): ''}
+                )}
 
-                {formState === 'login' ? (
+                {formState === 'login' && (
                     <Login setFormState={setFormState}/>
-                ) : ''}
+                ) }
 
-                {formState === 'forgotPassword' ? (
+                {formState === 'forgotPassword' && (
                     <ForgotPassword setFormState={setFormState}/>
-                ): ''}
+                )}
 
-                {formState === 'resendEmail' ? (
+                {formState === 'resendEmail' && (
                     <ResendEmail setFormState={setFormState}/>
-                ) : ''}
+                )}
 
-                {formState === 'newPassword' ? (
+                {formState === 'newPassword' && (
                     <NewPassword setFormState={setFormState}/>
-                ) : ''}
+                )}
 
                 </C.RightSideContainer>
             </C.ContainerRegister>
