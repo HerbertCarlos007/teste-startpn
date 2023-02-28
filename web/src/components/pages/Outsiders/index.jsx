@@ -1,11 +1,13 @@
 import React from "react"
 import * as C from './styles'
+import { Table } from '../../Table'
 import { SideBar } from '../../Sidebar'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { RxGear } from 'react-icons/rx'
 import perfilImage from '../../../assets/perfil.png'
 
 import Dropdown from 'react-bootstrap/Dropdown';
+
 
 
 export const Outsiders = () => {
@@ -15,6 +17,7 @@ export const Outsiders = () => {
                 <SideBar />
             </C.SidebarContainer>
 
+            <C.ContainerAllContent>
             <C.TopContainer>
                 <C.TextOutsider>Terceiros</C.TextOutsider>
                 <C.DropDown>
@@ -38,7 +41,6 @@ export const Outsiders = () => {
                     </Dropdown>
                 </C.DropDown>
             </C.TopContainer>
-
             <C.ContainerOptions>
                 <C.LeftSection>
                     <C.ContainerCustomersAndSuppliers>
@@ -58,8 +60,11 @@ export const Outsiders = () => {
                 </C.RightSection>
             </C.ContainerOptions>
 
-
-            <C.ContentContainer></C.ContentContainer>
+            
+            <C.ContentContainer>
+                <Table/>
+            </C.ContentContainer>
+            </C.ContainerAllContent>
         </C.Container>
     )
 }

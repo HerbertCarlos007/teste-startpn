@@ -8,15 +8,20 @@ export const Container = styled.div`
     
 `
 
+export const ContainerAllContent = styled.div`
+    display: flex;
+    flex-direction: column;
+    
+`
+
 export const TopContainer = styled.div`
     display: flex;
     justify-content: space-around;
-    position: absolute;
-    width: 100%;
+    width: 100vw;
     height: 50px;
     margin-top: 40px;
-    margin-left: 120px;
-    
+    position: relative;
+    right: 100px;
 `
 
 export const TextOutsider = styled.span`
@@ -35,7 +40,9 @@ export const SidebarContainer = styled.div`
 `
 
 export const ContentContainer = styled.div`
-    
+   display: flex;
+   justify-content: center;
+   align-items: center;
 
 `
 
@@ -54,21 +61,22 @@ export const ContainerOptions = styled.div`
     justify-content: space-around;
     flex-direction: row;
     align-items: center;
-    width: 100%;
     height: 100px;
-    margin-top: 120px;
+    margin-top: 80px;
+    position: relative;
+    right: 150px;
 `
 
 export const LeftSection = styled.div`
     display: flex;
     position: relative;
-    left: 40px;
+    left: 150px;
 
 `
 
 export const RightSection = styled.div`
      position: relative;
-        right: 50px;
+     right: 65px;
 `
 export const ContainerCustomersAndSuppliers = styled.div`
     width: 250px;
@@ -76,11 +84,12 @@ export const ContainerCustomersAndSuppliers = styled.div`
     background-color: #FFF;
     border: 1px solid #D7D7D7;
     border-radius: 17px;
-    text-align: center;
     padding: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
+    align-items: center;
+    
     
 `
 
@@ -134,4 +143,5 @@ export const ButtonNewOutsider = styled.button`
     border: 1px solid #476EE6;
     cursor: pointer;
 `
+
 
