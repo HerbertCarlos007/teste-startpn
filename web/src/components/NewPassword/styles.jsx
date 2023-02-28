@@ -13,7 +13,7 @@ export const Container = styled.div`
 
 export const Logo = styled.img`
     position: relative;
-    right: 30px;
+    right: 38px;
 `
 
 export const ContainerNewPassword = styled.div`
