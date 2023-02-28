@@ -13,8 +13,8 @@ export const App = () => {
     <>
       <GlobalStyle />
       <ProSidebarProvider>
-        {/* <Home /> */}
-        <Outsiders />
+        <Home />
+        {/* <Outsiders /> */}
       </ProSidebarProvider>
     </>
   )

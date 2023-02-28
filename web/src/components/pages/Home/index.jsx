@@ -11,11 +11,13 @@ import { ResendEmail } from "../../ResendEmail";
 import { NewPassword } from "../../NewPassword";
 
 export const Home = () => {
-    const [isLoggin, setIsLoggin] = useState(false)
+    
+    const [formState, setFormState] = useState('register')
 
-    const switchLogin = () => {
-        setIsLoggin(!isLoggin)
-    }
+    const handleFormChange = (newState) => {
+        setFormState(newState);
+      };
+    
 
     return(
         <C.Container>
@@ -26,10 +28,27 @@ export const Home = () => {
                 </C.LeftSideContainer>
 
                 <C.RightSideContainer>
-
-                    {/* {isLoggin ? <Login/> : <Register switchLogin={switchLogin}/>} */}
-                   <NewPassword/>
                     
+                {formState === 'register' ? (
+                    <Register setFormState={setFormState}/>
+                ): ''}
+
+                {formState === 'login' ? (
+                    <Login setFormState={setFormState}/>
+                ) : ''}
+
+                {formState === 'forgotPassword' ? (
+                    <ForgotPassword setFormState={setFormState}/>
+                ): ''}
+
+                {formState === 'resendEmail' ? (
+                    <ResendEmail setFormState={setFormState}/>
+                ) : ''}
+
+                {formState === 'newPassword' ? (
+                    <NewPassword setFormState={setFormState}/>
+                ) : ''}
+
                 </C.RightSideContainer>
             </C.ContainerRegister>
         </C.Container>

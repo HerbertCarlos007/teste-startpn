@@ -3,7 +3,7 @@ import * as C from './styles'
 
 import logo from '../../assets/logo.png'
 
-export const Login = ({ handleRememberPassword }) => {
+export const Login = ({ setFormState }) => {
     return (
         <C.Container>
             <C.Logo src={logo} />
@@ -24,7 +24,7 @@ export const Login = ({ handleRememberPassword }) => {
             </C.ContainerFormLogin>
             <C.ContainerButtonAndForgotPassword>
                 <C.ButtonLogin>Entrar</C.ButtonLogin>
-                <C.TextForgotPassword onClick={handleRememberPassword}>Esqueceu a senha?</C.TextForgotPassword>
+                <C.TextForgotPassword onClick={() => setFormState('forgotPassword')}>Esqueceu a senha?</C.TextForgotPassword>
             </C.ContainerButtonAndForgotPassword>
         </C.Container>
     )

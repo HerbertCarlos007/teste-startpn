@@ -7,14 +7,14 @@ import logo from '../../assets/logo.png'
 
 import { Login } from '../Login'
 
-export const Register = ({switchLogin}) => {
+export const Register = ({ setFormState }) => {
     return (
         <C.Container>
             <C.ContainerForm>
                 <C.Logo src={logo} />
-                <br/>
-                <br/>
-                <br/>
+                <br />
+                <br />
+                <br />
                 <C.TextRegister>Cadastro</C.TextRegister>
 
                 <C.UpFormInputs>
@@ -56,7 +56,7 @@ export const Register = ({switchLogin}) => {
 
                 <C.ContainerHaveAccount>
                     <C.TextHaveAccount>Já tem conta? </C.TextHaveAccount>
-                    <C.TextLogin onClick={switchLogin}>Login</C.TextLogin>
+                    <C.TextLogin onClick={() => setFormState('login')}>Login</C.TextLogin>
                 </C.ContainerHaveAccount>
             </C.ContainerForm>
 
