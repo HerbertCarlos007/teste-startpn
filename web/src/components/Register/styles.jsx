@@ -1,9 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    height: 100vh;
-    background-color: #E5E5E5;
-    display: flex;
+   
     justify-content: center;
     align-items: center;
     display: flex;
@@ -11,45 +9,13 @@ export const Container = styled.div`
     
 `
 
-export const ContainerRegister = styled.div`
-    width: 1366px;
-    height: 812px;
-    background-color: #FFFFFF;
-    border: 1px solid #D7D7D7;
-    border-radius: 20px;
-    display: flex;
-
-`
-
-export const LeftSideContainer = styled.div`
-    
-`
-
-export const RightSideContainer = styled.div`
-   width: 100%;
-   
-`
-
-export const ImageBackground = styled.img`
-    border: 1px solid #D7D7D7;
-    border-radius: 20px;
-    z-index: -10;
-`
-
-export const Image = styled.img`
-    position: relative;
-    bottom: 682px;
-    left: 1px;
-`
-
 export const Logo = styled.img`
-    margin-top: 100px;
-    margin-left: 30px;
+    
 
 `
 
 export const ContainerForm = styled.div`
-    margin-top: 40px;
+    margin-top: 90px;
     margin-left: 30px;
 
 `
@@ -129,7 +95,7 @@ export const TermsOfUseAndPrivacy = styled.span`
 export const ButtonRegister = styled.button`
     width: 267px;
     height: 45px;
-    margin-top: 80px;
+    margin-top: 60px;
     margin-left: 180px;
     background: #476EE6;
     border: 1px solid #476EE6;
