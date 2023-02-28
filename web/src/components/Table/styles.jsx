@@ -178,7 +178,7 @@ export const TopSectionModalDeleteOutsider = styled.div`
     width: 375px;
 `
 
-export const LeftSideModalDeleteOutsider = styled.div`
+export const LeftSideModal = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -219,4 +219,102 @@ export const TextIndent = styled.span`
 
 export const TextBold = styled.span`
     font-weight: bold;
+`
+
+export const ModalContainerEditOutsider = styled.div`
+    
+`
+
+export const TopSectionModalEditOutsider = styled.div`
+    width: 605px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`
+
+export const ContainerPhotoOutsider = styled.div`
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+`
+
+export const PhotoOutsider = styled.img`
+    
+`
+
+export const ContainerUploadPhoto = styled.div`
+    background: #476EE6;
+    width: 28.57px;
+    height: 28.79px;
+    border-radius: 70px;
+    text-align: center;
+    position: relative;
+    right: 20px;
+    top: 60px;
+    cursor: pointer;
+   
+`
+export const IconUpload = styled.div`
+     border: 2px solid #FFFFFF;
+    border-radius: 70px;
+    color: white;
+`
+
+export const ContainerInputs = styled.div`
+    margin-top: 30px;
+    padding-bottom: 20px;
+`
+export const ContainerForm = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+export const FormInputs = styled.div`
+     display: flex;
+    flex-direction: column;
+`
+
+export const UpFormInputs = styled.div`
+    display: flex;
+    gap: 30px;
+    margin-top: 10px;
+`
+
+export const CenterFormInputs = styled.div`
+    display: flex;
+    gap: 30px;
+    margin-top: 10px;
+`
+
+export const DownFormInputs = styled.div`
+    display: flex;
+    gap: 30px;
+    margin-top: 10px;
+`
+
+export const LabelForm = styled.label`
+    font-size: 16px;
+    font-weight: 500;
+`
+
+export const Input = styled.input`
+    width: 265px;
+    height: 45px;
+    border: 1px solid #D7D7D7;
+    border-radius: 10px;
+    margin-top: 10px;
+    padding-left: 10px;
+`
+
+export const Select = styled.select`
+     width: 265px;
+    height: 45px;
+    border: 1px solid #D7D7D7;
+    border-radius: 10px;
+    margin-top: 10px;
+    padding-left: 10px;
+`
+
+export const OptionsSelect = styled.option`
 `

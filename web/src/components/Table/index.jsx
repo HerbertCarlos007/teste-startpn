@@ -3,11 +3,17 @@ import * as C from './styles'
 import { Modal } from '../Modal'
 import { CgMenu } from 'react-icons/cg'
 import { GrFormClose } from 'react-icons/gr'
+import { BiCamera } from 'react-icons/bi'
+
+import { ButtonActions } from '../ButtonActions'
+import photo from '../../assets/photo.png'
+
 
 export const Table = () => {
 
     const [showCreationModal, setShowCreationModal] = useState(false)
     const [showCreationModalDeleteOutsider, setShowCreationModalDeleteOutsider] = useState(false)
+    const [showCreationModalEditOutsider, setShowCreationModalEditOutsider] = useState(false)
 
     const handleCreationModal = () => {
         setShowCreationModal(true)
@@ -25,6 +31,16 @@ export const Table = () => {
 
     const handleCloseModalDeleteOutsider = () => {
         setShowCreationModalDeleteOutsider(false)
+    }
+
+    const handleCreationModalEditOutsider = () => {
+        setShowCreationModalEditOutsider(true)
+        setShowCreationModal(false)
+
+    }
+
+    const handleCloseModalEditOutsider = () => {
+        setShowCreationModalEditOutsider(false)
     }
 
     return (
@@ -59,21 +75,20 @@ export const Table = () => {
                     <C.Line />
 
                     <C.MidSectionModal>
-                        <C.TextEditOutsider onClick={handleCreationModalDeleteOutsider}>Editar Terceiro</C.TextEditOutsider>
+                        <C.TextEditOutsider onClick={handleCreationModalEditOutsider}>Editar Terceiro</C.TextEditOutsider>
                         <C.Line />
-                        <C.TextDeleteOutsider>Excluir terceiro</C.TextDeleteOutsider>
+                        <C.TextDeleteOutsider onClick={handleCreationModalDeleteOutsider}>Excluir terceiro</C.TextDeleteOutsider>
                         <C.Line />
                     </C.MidSectionModal>
                 </C.ModalContainer>
             </Modal>
-
             <Modal show={showCreationModalDeleteOutsider} onClose={handleCloseModalDeleteOutsider}>
                 <C.ModalContainerDeleteOutsider>
                     <C.TopSectionModalDeleteOutsider>
-                        <C.LeftSideModalDeleteOutsider>
+                        <C.LeftSideModal>
                             <C.IconClose style={{ marginBottom: '6px' }} onClick={handleCloseModalDeleteOutsider}><GrFormClose /></C.IconClose>
                             <C.TextTitleModal>Excluir terceiro</C.TextTitleModal>
-                        </C.LeftSideModalDeleteOutsider>
+                        </C.LeftSideModal>
                         <C.TextModalDeleteOutsider>Excluir</C.TextModalDeleteOutsider>
                     </C.TopSectionModalDeleteOutsider>
                     <C.Line />
@@ -86,9 +101,68 @@ export const Table = () => {
                             <C.TextBold> Mateus santos </C.TextBold>
                         </C.TextIndent>
                     </C.ContainerConfirmDelete>
-
                 </C.ModalContainerDeleteOutsider>
             </Modal>
+
+            <Modal show={showCreationModalEditOutsider} onClose={handleCloseModalEditOutsider}>
+                <C.ModalContainerEditOutsider>
+                    <C.TopSectionModalEditOutsider>
+                        <C.LeftSideModal>
+                            <C.LeftSideModal>
+                                <C.IconClose style={{ marginBottom: '6px' }} ><GrFormClose /></C.IconClose>
+                                <C.TextTitleModal>Editar terceiro</C.TextTitleModal>
+                            </C.LeftSideModal>
+                        </C.LeftSideModal>
+                        <ButtonActions>Editar</ButtonActions>
+                    </C.TopSectionModalEditOutsider>
+                    <C.Line style={{ width: '605px' }} />
+
+                    <C.ContainerPhotoOutsider>
+                        <C.PhotoOutsider src={photo} />
+                        <C.ContainerUploadPhoto>
+                            <C.IconUpload><BiCamera /></C.IconUpload>
+                        </C.ContainerUploadPhoto>
+                    </C.ContainerPhotoOutsider>
+                </C.ModalContainerEditOutsider>
+
+                <C.ContainerForm>
+                    <C.ContainerInputs>
+                        <C.UpFormInputs>
+                            <C.FormInputs>
+                                <C.LabelForm>Nome do Terceiro</C.LabelForm>
+                                <C.Input />
+                            </C.FormInputs>
+
+                            <C.FormInputs>
+                                <C.LabelForm>E-mail</C.LabelForm>
+                                <C.Input />
+                            </C.FormInputs>
+                        </C.UpFormInputs>
+
+                        <C.CenterFormInputs>
+                            <C.FormInputs>
+                                <C.LabelForm>Telefone</C.LabelForm>
+                                <C.Input />
+                            </C.FormInputs>
+
+                            <C.FormInputs>
+                                <C.LabelForm>Endereço</C.LabelForm>
+                                <C.Input />
+                            </C.FormInputs>
+                        </C.CenterFormInputs>
+
+                        <C.DownFormInputs>
+                            <C.FormInputs>
+                                <C.LabelForm>Tipo</C.LabelForm>
+                                <C.Select>
+                                    <C.OptionsSelect>Selecione</C.OptionsSelect>
+                                </C.Select>
+                            </C.FormInputs>
+                        </C.DownFormInputs>
+                    </C.ContainerInputs>
+                </C.ContainerForm>
+            </Modal>
+            
         </C.Container>
     )
 }
