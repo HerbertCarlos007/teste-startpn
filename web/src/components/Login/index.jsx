@@ -3,7 +3,7 @@ import * as C from './styles'
 
 import logo from '../../assets/logo.png'
 
-export const Login = () => {
+export const Login = ({ handleRememberPassword }) => {
     return (
         <C.Container>
             <C.Logo src={logo} />
@@ -24,7 +24,7 @@ export const Login = () => {
             </C.ContainerFormLogin>
             <C.ContainerButtonAndForgotPassword>
                 <C.ButtonLogin>Entrar</C.ButtonLogin>
-                <C.TextForgotPassword>Esqueceu a senha?</C.TextForgotPassword>
+                <C.TextForgotPassword onClick={handleRememberPassword}>Esqueceu a senha?</C.TextForgotPassword>
             </C.ContainerButtonAndForgotPassword>
         </C.Container>
     )

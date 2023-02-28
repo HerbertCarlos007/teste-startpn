@@ -6,9 +6,11 @@ import steveJobsImage from '../../../assets/stevejobs.png'
 import backgroundImage from '../../../assets/background.png'
 import { Login } from "../../Login";
 import { Register } from "../../Register";
+import { ForgotPassword } from "../../ForgotPassword";
+import { ResendEmail } from "../../ResendEmail";
+import { NewPassword } from "../../NewPassword";
 
 export const Home = () => {
-
     const [isLoggin, setIsLoggin] = useState(false)
 
     const switchLogin = () => {
@@ -25,9 +27,8 @@ export const Home = () => {
 
                 <C.RightSideContainer>
 
-                    {isLoggin ? <Login switchLogin={switchLogin}/> : <Register switchLogin={switchLogin}/>}
-
-                
+                    {/* {isLoggin ? <Login/> : <Register switchLogin={switchLogin}/>} */}
+                   <NewPassword/>
                     
                 </C.RightSideContainer>
             </C.ContainerRegister>
