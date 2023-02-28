@@ -6,26 +6,28 @@ import { VscAccount } from 'react-icons/vsc'
 import logo from '../../assets/logo.png'
 
 import * as C from './styles'
- 
+
 
 export const SideBar = () => {
     return (
-        <Sidebar  backgroundColor='#fff' style=
+        <Sidebar backgroundColor='#fff'
+            style=
             {{
                 height: '100vh',
                 border: '1px solid #D7D7D7',
                 borderRadius: '20px',
                 display: 'flex',
-                flexDirection: 'row'
+                flexDirection: 'row',
+                position: 'relative'
             }}
         >
-            <C.Logo src={logo}/>
+            <C.Logo src={logo} />
             <Menu >
-                <MenuItem icon={<GrGroup/>}>Terceiros</MenuItem>
-                <MenuItem icon={<BsChatSquareText/>}> Exemplo </MenuItem>
-                <MenuItem icon={<BsChatSquareText/>}> Exemplo </MenuItem>
-                <MenuItem icon={<RxGear/>}> Exemplo </MenuItem>
-                <MenuItem icon={<VscAccount/>}> Minha conta </MenuItem>
+                <MenuItem icon={<GrGroup />}>Terceiros</MenuItem>
+                <MenuItem icon={<BsChatSquareText />}> Exemplo </MenuItem>
+                <MenuItem icon={<BsChatSquareText />}> Exemplo </MenuItem>
+                <MenuItem icon={<RxGear />}> Exemplo </MenuItem>
+                <MenuItem icon={<VscAccount />}> Minha conta </MenuItem>
             </Menu>
         </Sidebar>
     );
