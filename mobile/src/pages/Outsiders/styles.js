@@ -38,7 +38,7 @@ export const styles = StyleSheet.create({
         borderColor: '#D7D7D7',
         borderRadius: 12,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
 
     containerSwitchOutsider: {
