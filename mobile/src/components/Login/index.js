@@ -13,7 +13,7 @@ export const Login = () => {
 
             <View style={styles.containerForm}>
                 <View style={styles.containerInputs}>
-                    <Text style={styles.textName}>E=mail</Text>
+                    <Text style={styles.textName}>Email</Text>
                     <TextInput style={styles.input} placeholder='Insira seu e-mail' />
                 </View>
 

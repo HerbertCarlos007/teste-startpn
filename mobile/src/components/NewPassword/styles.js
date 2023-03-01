@@ -17,7 +17,14 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 60,
+        marginBottom: 20,
     },
+
+    textInstructions: {
+        fontWeight: '500',
+
+    },
+
 
     title: {
         fontSize: 24,
@@ -25,6 +32,7 @@ export const styles = StyleSheet.create({
         marginTop: 40,
         fontWeight: '500'
     },
+
 
     containerForm: {
         paddingTop: 20
@@ -47,17 +55,21 @@ export const styles = StyleSheet.create({
         borderColor: '#D7D7D7',
         marginTop: 10,
         paddingLeft: 10,
-      },
+    },
 
-      buttonForgotPassword: {
-        marginTop: 10,
-        marginLeft: 200,
-        
-      },
+    textResendEmail: {
+        fontSize: 18,
+        color: '#476EE6'
+    },
 
-      textForgotPassword: {
+    
+
+    textRemeberPassword: {
         color: '#476EE6',
-        fontWeight: '500'
-      }
+        fontWeight: '500',
+        marginTop: 10
+      },
+
+
 
 })  
