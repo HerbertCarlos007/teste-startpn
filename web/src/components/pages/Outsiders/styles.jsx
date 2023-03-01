@@ -14,27 +14,6 @@ export const ContainerAllContent = styled.div`
     
 `
 
-export const TopContainer = styled.div`
-    display: flex;
-    justify-content: space-around;
-    width: 100vw;
-    height: 50px;
-    margin-top: 40px;
-    position: relative;
-    right: 100px;
-`
-
-export const TextOutsider = styled.span`
-    font-size: 30px;
-    color: #476EE6;
-    font-weight: 600;
-`
-
-export const DropDown = styled.div`
-    
-
-`
-
 export const SidebarContainer = styled.div`
     
 `
@@ -46,15 +25,8 @@ export const ContentContainer = styled.div`
 
 `
 
-export const TextName = styled.span`
-    margin-left: 10px;
-    margin-right: 10px;
-    color: #000;
-    font-family: 'Comfortaa', cursive;
-`
 
-export const ImagePerfil = styled.img`
-`
+
 
 export const ContainerOptions = styled.div`
     display: flex;
@@ -340,6 +312,7 @@ export const ContainerCheckbox = styled.div`
 
 export const IconTrash = styled.div`
     font-size: 25px;
+    cursor: pointer;
 `
 
 export const TextAddNewField = styled.span`

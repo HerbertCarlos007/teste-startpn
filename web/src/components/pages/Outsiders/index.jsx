@@ -4,17 +4,14 @@ import { Table } from '../../Table'
 import { SideBar } from '../../Sidebar'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { RxGear } from 'react-icons/rx'
-import perfilImage from '../../../assets/perfil.png'
 import { GrFormClose } from 'react-icons/gr'
 import { BiCamera } from 'react-icons/bi'
 import { HiOutlineTrash } from 'react-icons/hi'
 import { AiOutlinePlus } from 'react-icons/ai'
-import Dropdown from 'react-bootstrap/Dropdown';
 import photo from '../../../assets/group.png'
-import box from '../../../assets/box.png'
-
 import { Modal } from '../../Modal'
 import { ButtonActions } from "../../ButtonActions";
+import { Header } from "../../Header";
 
 
 
@@ -48,29 +45,7 @@ export const Outsiders = () => {
             </C.SidebarContainer>
 
             <C.ContainerAllContent>
-                <C.TopContainer>
-                    <C.TextOutsider>Terceiros</C.TextOutsider>
-                    <C.DropDown>
-                        <Dropdown >
-                            <Dropdown.Toggle style=
-                                {{
-                                    backgroundColor: "#FFFFFF",
-                                    border: '1px solid #D8D8D8',
-                                    borderRadius: '60px',
-                                    color: 'black'
-                                }}
-                                id="dropdown-basic"
-                            >
-                                <C.ImagePerfil src={perfilImage} />
-                                <C.TextName>Mateus Barbosa</C.TextName>
-                            </Dropdown.Toggle>
-
-                            <Dropdown.Menu>
-                                <Dropdown.Item >Perfil</Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>
-                    </C.DropDown>
-                </C.TopContainer>
+                <Header title='Terceiros'/>
                 <C.ContainerOptions>
                     <C.LeftSection>
                         <C.ContainerCustomersAndSuppliers>
