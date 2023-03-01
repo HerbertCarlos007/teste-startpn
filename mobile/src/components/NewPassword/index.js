@@ -3,7 +3,7 @@ import { styles } from './styles'
 import logo from '../../../assets/logo.png'
 import { ButtonActions } from '../ButtonActions'
 
-export const NewPassword = () => {
+export const NewPassword = ({setFormState}) => {
     return (
         <View style={styles.container}>
             <View style={styles.topSection}>
@@ -25,8 +25,10 @@ export const NewPassword = () => {
                 </View>
             </View>
 
-            <ButtonActions title='Criar senha' />
-            <TouchableOpacity style={styles.buttonRememberPassword}>
+            <TouchableOpacity style={styles.button} onPress={() => setFormState('login')}>
+                <Text style={styles.text}>Criar senha</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.buttonRememberPassword} onPress={() => setFormState('login')}>
                 <Text style={styles.textRemeberPassword}>Lembrou da senha?</Text>
             </TouchableOpacity>
         </View>

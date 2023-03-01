@@ -1,10 +1,10 @@
-import { View, Text, Image, TextInput } from 'react-native'
+import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native'
 import Checkbox from 'expo-checkbox';
 import { styles } from './styles'
 import logo from '../../../assets/logo.png'
 import { ButtonActions } from '../ButtonActions'
 
-export const Register = () => {
+export const Register = ({ setFormState }) => {
     return (
         <View style={styles.container}>
 
@@ -46,7 +46,9 @@ export const Register = () => {
                 <Text style={styles.LinkTerms}>Termos de uso e privacidade</Text>
             </View>
 
-            <ButtonActions title='Cadastrar' style={styles.button} />
+            <TouchableOpacity style={styles.button} onPress={() => setFormState('login')}>
+                <Text style={styles.text}>Cadastrar</Text>
+            </TouchableOpacity>
         </View>
     )
 }
