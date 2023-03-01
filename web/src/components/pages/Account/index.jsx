@@ -14,7 +14,38 @@ export const Account = () => {
             <C.AllContainer>
                 <Header title='Minha conta' />
                 <C.Content>
-                    <UploadPhoto/>
+                    <UploadPhoto />
+
+                    <C.ContainerForm>
+                        <C.ContainerInputs>
+                            <C.UpFormInputs>
+                                <C.FormInputs>
+                                    <C.LabelForm>Nome do Terceiro</C.LabelForm>
+                                    <C.InputNewOutsider />
+                                </C.FormInputs>
+
+                                <C.FormInputs>
+                                    <C.LabelForm>E-mail</C.LabelForm>
+                                    <C.InputNewOutsider />
+                                </C.FormInputs>
+                            </C.UpFormInputs>
+
+                            <C.CenterFormInputs>
+                                <C.FormInputs>
+                                    <C.LabelForm>Telefone</C.LabelForm>
+                                    <C.InputNewOutsider />
+                                </C.FormInputs>
+
+                                <C.FormInputs>
+                                    <C.LabelForm>Endereço</C.LabelForm>
+                                    <C.InputNewOutsider />
+                                </C.FormInputs>
+                            </C.CenterFormInputs>
+                        </C.ContainerInputs>
+                    </C.ContainerForm>
+                    <C.ContainerButtonSave>
+                        <C.ButtonSave>Salvar</C.ButtonSave>
+                    </C.ContainerButtonSave>
                 </C.Content>
             </C.AllContainer>
         </C.Container>
