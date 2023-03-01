@@ -1,5 +1,4 @@
 import { View } from 'react-native'
-import { StatusBar } from 'expo-status-bar';
 import React, { useState } from "react";
 import { styles } from './styles'
 import { Register } from '../../components/Register'
@@ -19,7 +18,7 @@ export const Home = () => {
 
     return (
         <View style={styles.container}>
-            <StatusBar style='auto' />
+
             {formState === 'register' && (
                 <Register setFormState={setFormState} />
             )}
