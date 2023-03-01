@@ -1,9 +1,17 @@
 import React from "react";
+import {useNavigate} from 'react-router-dom'
 import * as C from './styles'
 
 import logo from '../../assets/logo.png'
 
 export const Login = ({ setFormState }) => {
+
+    const navigate = useNavigate()
+
+    const navigateToOutsiders = () => {
+        navigate('/outsiders')
+    }
+
     return (
         <C.Container>
             <C.Logo src={logo} />
@@ -23,7 +31,7 @@ export const Login = ({ setFormState }) => {
                 </C.ContainerInputs>
             </C.ContainerFormLogin>
             <C.ContainerButtonAndForgotPassword>
-                <C.ButtonLogin>Entrar</C.ButtonLogin>
+                <C.ButtonLogin onClick={navigateToOutsiders}>Entrar</C.ButtonLogin>
                 <C.TextForgotPassword onClick={() => setFormState('forgotPassword')}>Esqueceu a senha?</C.TextForgotPassword>
             </C.ContainerButtonAndForgotPassword>
         </C.Container>
