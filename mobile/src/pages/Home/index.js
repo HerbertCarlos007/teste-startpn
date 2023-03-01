@@ -1,7 +1,9 @@
 import {Register} from '../../components/Register'
+import {Login} from '../../components/Login'
 
 export const Home = () => {
     return (
-        <Register />
+        // <Register />
+        <Login/>
     )
 }

@@ -21,7 +21,8 @@ export const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     color: '#476EE6',
-    paddingTop: 20
+    paddingTop: 20,
+    fontWeight: '500'
   },
 
   containerForm: {
