@@ -7,8 +7,11 @@ import { RxGear } from 'react-icons/rx'
 import perfilImage from '../../../assets/perfil.png'
 import { GrFormClose } from 'react-icons/gr'
 import { BiCamera } from 'react-icons/bi'
+import { HiOutlineTrash } from 'react-icons/hi'
+import { AiOutlinePlus } from 'react-icons/ai'
 import Dropdown from 'react-bootstrap/Dropdown';
 import photo from '../../../assets/group.png'
+import box from '../../../assets/box.png'
 
 import { Modal } from '../../Modal'
 import { ButtonActions } from "../../ButtonActions";
@@ -18,6 +21,7 @@ import { ButtonActions } from "../../ButtonActions";
 export const Outsiders = () => {
 
     const [showCreationModalNewOutsider, setCreationModalNewOutsider] = useState(false)
+    const [showCreationModalConfiguration, setCreationModalConfiguration] = useState(false)
 
     const handleCreationModalNewOutsider = () => {
         setCreationModalNewOutsider(true)
@@ -27,6 +31,14 @@ export const Outsiders = () => {
 
     const handleCloseModalNewOutsider = () => {
         setCreationModalNewOutsider(false)
+    }
+
+    const handleCreationModalConfiguration = () => {
+        setCreationModalConfiguration(true)
+    }
+
+    const handleCloseModalConfiguration = () => {
+        setCreationModalConfiguration(false)
     }
 
     return (
@@ -68,7 +80,7 @@ export const Outsiders = () => {
                         <C.IconSearch><AiOutlineSearch /></C.IconSearch>
                         <C.Input placeholder="Pesquisar" />
 
-                        <C.ContainerGear>
+                        <C.ContainerGear onClick={handleCreationModalConfiguration}>
                             <RxGear />
                         </C.ContainerGear>
                     </C.LeftSection>
@@ -141,6 +153,66 @@ export const Outsiders = () => {
                         </C.ContainerInputs>
                     </C.ContainerForm>
                 </C.ModalContainerNewOutsider>
+            </Modal>
+
+            <Modal show={showCreationModalConfiguration} onClose={handleCloseModalConfiguration}>
+                <C.ModalContainerConfiguration>
+                    <C.TopSectionModalNewOutsider style={{ width: '365px' }}>
+                        <C.LeftSideNewOutsider>
+                            <C.IconClose style={{ marginBottom: '6px' }} onClick={handleCloseModalConfiguration}>
+                                <GrFormClose />
+                            </C.IconClose>
+                            <C.TextTitleModal>Configuração</C.TextTitleModal>
+                        </C.LeftSideNewOutsider>
+                        <ButtonActions>Editar</ButtonActions>
+                    </C.TopSectionModalNewOutsider>
+                    <C.Line style={{ width: '365px' }} />
+
+                    <C.ContainerCustomersAndSuppliers style={{ width: '350px', gap: '130px', position: 'relative', left: '10px', marginTop: '15px' }}>
+                        <C.TextCostumers>Clientes</C.TextCostumers>
+                        <C.TextSuppliers>Fornecedores</C.TextSuppliers>
+                    </C.ContainerCustomersAndSuppliers>
+
+                    <C.TextFieldsForm>Campos do formulário</C.TextFieldsForm>
+
+                    <C.ContainerFormConfiguration>
+
+                        <C.ContainerInputsConfiguration>
+                            <C.LabelFormConfiguration>Nome do campo</C.LabelFormConfiguration>
+                            <C.ContainerBox>
+                                <C.Box>1</C.Box>
+                                <C.InputsConfiguration placeholder="Nome do terceiro" />
+                                <C.IconTrash><HiOutlineTrash /></C.IconTrash>
+                            </C.ContainerBox>
+                        </C.ContainerInputsConfiguration>
+                        <C.ContainerCheckbox>
+                            <C.Checkbox type='checkbox' />
+                            <C.TextIsRequired>O campo e obrigatorio?</C.TextIsRequired>
+                        </C.ContainerCheckbox>
+                    </C.ContainerFormConfiguration>
+
+                    <C.ContainerFormConfiguration>
+
+                        <C.ContainerInputsConfiguration>
+                            <C.LabelFormConfiguration>Nome do campo</C.LabelFormConfiguration>
+                            <C.ContainerBox>
+                                <C.Box>2</C.Box>
+                                <C.InputsConfiguration placeholder="E-mail" />
+                                <C.IconTrash><HiOutlineTrash /></C.IconTrash>
+                            </C.ContainerBox>
+                        </C.ContainerInputsConfiguration>
+                        <C.ContainerCheckbox>
+                            <C.Checkbox type='checkbox' />
+                            <C.TextIsRequired>O campo e obrigatorio?</C.TextIsRequired>
+                        </C.ContainerCheckbox>
+                    </C.ContainerFormConfiguration>
+
+                    <C.IconPlus>
+                        <AiOutlinePlus />
+                        <C.TextAddNewField>Adicionar novo campo</C.TextAddNewField>
+                    </C.IconPlus>
+
+                </C.ModalContainerConfiguration>
             </Modal>
         </C.Container>
     )

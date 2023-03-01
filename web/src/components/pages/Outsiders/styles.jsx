@@ -89,6 +89,7 @@ export const ContainerCustomersAndSuppliers = styled.div`
     justify-content: center;
     align-items: center;
     align-items: center;
+    gap: 40px;
     
     
 `
@@ -267,4 +268,91 @@ export const Select = styled.select`
 export const OptionsSelect = styled.option`
 `
 
+export const ModalContainerConfiguration = styled.div`
+`
+
+export const ContainerFormConfiguration = styled.div`
+    margin-top: 10px;
+`
+
+export const TextFieldsForm = styled.span`
+    font-size: 17px;
+    font-weight: 600;
+    position: relative;
+    left: 10px;
+    top: 10px;
+    
+`
+
+export const ContainerInputsConfiguration = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+`
+export const LabelFormConfiguration = styled.label`
+    margin-right: 127px;
+    margin-top: 10px;
+`
+
+export const InputsConfiguration = styled.input`
+    width: 268px;
+    height: 45px;
+    background-color: #FFFFFF;
+    border: 1px solid #D7D7D7;
+    border-radius: 7px;
+    margin-top: 10px;
+    padding-left: 10px;
+`
+
+
+export const Box = styled.div`
+    background: #476EE6;
+    border-radius: 60px;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+`
+
+export const ContainerBox = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    
+`
+export const Checkbox = styled.input`
+    
+`
+
+export const TextIsRequired = styled.span`
+    margin-left: 20px;
+`
+
+export const ContainerCheckbox = styled.div`
+    margin-top: 10px;
+    margin-left: 20px;
+    
+`
+
+export const IconTrash = styled.div`
+    font-size: 25px;
+`
+
+export const TextAddNewField = styled.span`
+    display: flex;
+    align-items: center;
+`
+
+export const IconPlus = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #476EE6;
+    cursor: pointer;
+    margin-top: 20px;
+`
 
