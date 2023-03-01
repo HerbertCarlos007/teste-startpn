@@ -1,11 +1,13 @@
 import { Register } from '../../components/Register'
 import { Login } from '../../components/Login'
 import { ForgotPassword } from '../../components/ForgotPassword'
+import { ResendEmail } from '../../components/ResendEmail'
 
 export const Home = () => {
     return (
         // <Register />
         // <Login/>
-        <ForgotPassword />
+        // <ForgotPassword />
+        <ResendEmail/>
     )
 }
