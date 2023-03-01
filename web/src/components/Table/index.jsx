@@ -43,6 +43,8 @@ export const Table = () => {
         setShowCreationModalEditOutsider(false)
     }
 
+    
+
     return (
         <C.Container>
             <C.HeaderTable>
@@ -107,12 +109,10 @@ export const Table = () => {
             <Modal show={showCreationModalEditOutsider} onClose={handleCloseModalEditOutsider}>
                 <C.ModalContainerEditOutsider>
                     <C.TopSectionModalEditOutsider>
-                        <C.LeftSideModal>
                             <C.LeftSideModal>
-                                <C.IconClose style={{ marginBottom: '6px' }} ><GrFormClose /></C.IconClose>
+                                <C.IconClose style={{ marginBottom: '6px' }} onClick={handleCloseModalEditOutsider}><GrFormClose /></C.IconClose>
                                 <C.TextTitleModal>Editar terceiro</C.TextTitleModal>
                             </C.LeftSideModal>
-                        </C.LeftSideModal>
                         <ButtonActions>Editar</ButtonActions>
                     </C.TopSectionModalEditOutsider>
                     <C.Line style={{ width: '605px' }} />
@@ -161,8 +161,8 @@ export const Table = () => {
                         </C.DownFormInputs>
                     </C.ContainerInputs>
                 </C.ContainerForm>
-            </Modal>
-            
+            </Modal >
+
         </C.Container>
     )
 }

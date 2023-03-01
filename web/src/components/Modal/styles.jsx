@@ -15,9 +15,9 @@ export const Container = styled.div`
     z-index: 5;
     padding: 20px;
     background-color: white;
-    border-radius: 8px;
-    border: 1px solid #412972;
-    box-shadow: 2px 2px 5px black;
+    border-radius: 20px;
+    border: 1px solid #D7D7D7;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.15);
 `
 
 export const Translucent = styled.div`
