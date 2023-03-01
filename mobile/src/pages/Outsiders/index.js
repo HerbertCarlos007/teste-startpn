@@ -1,5 +1,6 @@
 import { View, Text, TouchableOpacity } from 'react-native'
 import { Header } from '../../components/Header'
+import { Table } from '../../components/Table'
 import { styles } from './styles'
 import { EvilIcons } from '@expo/vector-icons'
 import { AntDesign } from '@expo/vector-icons'
@@ -43,6 +44,8 @@ export const Outsiders = () => {
                     </TouchableOpacity>
 
                 </View>
+
+                <Table />
             </View>
         </>
     )
