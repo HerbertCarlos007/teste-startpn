@@ -4,13 +4,12 @@ const statusBarHeight = StatusBar.currentHeight ? StatusBar.currentHeight + 22 :
 
 export const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#FFFFFF',
     paddingTop: statusBarHeight,
     paddingStart: 20,
     paddingEnd: 16,
     paddingBottom: 16,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
 
   topSection: {
