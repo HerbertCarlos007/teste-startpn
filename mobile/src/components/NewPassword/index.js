@@ -8,7 +8,7 @@ export const NewPassword = () => {
         <View style={styles.container}>
             <View style={styles.topSection}>
                 <Image source={logo} />
-                <Text style={styles.title}>E-mail enviado!</Text>
+                <Text style={styles.title}>Criar nova senha</Text>
             </View>
             <Text style={styles.textInstructions}>Preencha os campos abaixo com a nova senha </Text>
             <Text style={styles.textInstructions}>que deseja cadastrar</Text>
