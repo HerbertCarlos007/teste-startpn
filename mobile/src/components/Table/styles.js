@@ -95,7 +95,36 @@ export const styles = StyleSheet.create({
         marginTop: 30,
         fontWeight: 500,
         color: '#808080'
+    },
+
+    containerModal: {
+        height: 200,
+    },
+
+    topSectionModal: {
+       width: 375,
+       display: 'flex',
+       flexDirection: 'row',
+       justifyContent: 'space-between'
+    },
+
+    containerActions: {
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+
+    textEdit: {
+        fontSize: 18,
+        fontWeight: 500,
+        marginTop: 15,
+    },
+
+    textDelete: {
+        fontSize: 18,
+        fontWeight: 500,
+        color: '#EA0000',
+        marginTop: 15,
     }
 
-
+   
 })

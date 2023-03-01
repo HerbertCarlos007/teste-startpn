@@ -1,11 +1,16 @@
+import React, { useState } from 'react';
 import { View, Text, Image, SafeAreaView, FlatList, TouchableOpacity } from 'react-native'
 import { styles } from './styles'
 import perfil from '../../../assets/perfil.png'
 import Checkbox from 'expo-checkbox';
 import { Entypo } from '@expo/vector-icons'
+import { ModalComponent } from '../Modal'
 
 
 export const Table = () => {
+
+    const [showModal, setShowModal] = useState(false)
+
     const data = [
         {
             id: 1,
@@ -54,11 +59,9 @@ export const Table = () => {
 
     ]
 
-
     return (
-
-        <SafeAreaView>
-            <View style={styles.container}>
+        <>
+            <View style={styles.container} >
                 <FlatList
                     showsVerticalScrollIndicator={false}
                     data={data}
@@ -73,8 +76,11 @@ export const Table = () => {
                                 </View>
 
                                 <View style={styles.rightSide}>
-                                    <TouchableOpacity>
-                                        <Entypo name="dots-three-vertical" size={24} color="black" />
+                                    <TouchableOpacity onPress={() => setShowModal(true)}>
+                                        <Entypo
+                                            name="dots-three-vertical"
+                                            size={24} color="black"
+                                        />
                                     </TouchableOpacity>
                                 </View>
                             </View>
@@ -109,7 +115,45 @@ export const Table = () => {
 
                         </View>}
                 />
+
             </View>
-        </SafeAreaView>
+            <ModalComponent
+                visibleModal={showModal}
+
+            >
+                <View style={styles.containerModal}>
+                    <View style={styles.topSectionModal}>
+                        <View style={styles.leftSideModal}>
+                            <TouchableOpacity>
+                                <Text>acoes</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={styles.rightSideModal}>
+                            <Text>x</Text>
+                        </View>
+                    </View>
+                    <View style={styles.line}></View>
+
+                    <View style={styles.containerActions}>
+                        <TouchableOpacity onPress={() => setShowModal(false)}>
+                            <Text style={styles.textEdit}>
+                                Editar terceiro
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.line}></View>
+
+                    <View style={styles.containerActions}>
+                        <TouchableOpacity>
+                            <Text style={styles.textDelete}>
+                                Excluir terceiro
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.line}></View>
+                </View>
+            </ModalComponent>
+        </>
+
     )
 }
