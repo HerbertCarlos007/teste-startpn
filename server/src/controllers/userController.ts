@@ -35,7 +35,7 @@ class UserController {
     }
 
     async forgotPassword(req: Request, res: Response) {
-        const { email } = req.body
+        const { email, newPassword } = req.body
 
         try {
             const user = await Users.findOne({
@@ -48,6 +48,11 @@ class UserController {
                 return res.status(404).json({ error: 'Usuário não encontrado' })
             }
 
+            const hashPassword = await hash(newPassword, 8)
+            await user.update({
+                password: hashPassword
+            })
+
             const transporter = nodemailer.createTransport({
                 host: "sandbox.smtp.mailtrap.io",
                 port: 2525,
@@ -57,30 +62,20 @@ class UserController {
                 }
             })
 
-            const newPassword = crypto.randomBytes(4).toString('hex')
-
             transporter.sendMail({
                 from: 'Administrador <c1331cf0bc-5132b9+1@inbox.mailtrap.io>',
                 to: email,
-                subject: 'Recuperação de senha!',
-                html: `<p>Olá, sua nova senha para acessar o sistema é ${newPassword}</p><br/><a href="http://localhost:3000/login>Sistema</a>`
+                subject: 'Senha atualizada!',
+                html: `<p>Olá, sua senha foi atualizada com sucesso ${newPassword}</p><br/><a href="http://localhost:3000/login>Sistema</a>`
             }).then(() => {
-
-                bcrypt.hash(newPassword, 8).then(
-                    password => {
-                        user.update({
-                            password
-                        })
-                    }
-                )
-                res.status(200).json({ message: 'Nova senha enviada para o email cadastrado' })
+                res.status(200).json({ message: 'Senha atualizada com sucesso' })
             }).catch((error) => {
                 console.log(error)
-                res.status(500).json({ error: 'Erro ao enviar email de recuperação de senha' })
+                res.status(500).json({ error: 'Erro ao enviar email de confirmação' })
             })
         } catch (error) {
             console.log(error)
-            res.status(500).json({ error: 'Erro ao recuperar usuário' })
+            res.status(500).json({ error: 'Erro ao atualizar senha' })
         }
     }
 }
