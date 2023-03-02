@@ -81,40 +81,40 @@ export const styles = StyleSheet.create({
     },
 
     valueAddress: {
-        marginTop:30,
+        marginTop: 30,
         color: '#1A1A1A',
         fontWeight: '600',
     },
 
     titleEmail: {
         marginTop: 2,
-        fontWeight: 500,
+        fontWeight: '500',
         color: '#808080'
     },
 
     titleTelephone: {
         marginTop: 20,
-        fontWeight: 500,
+        fontWeight: '500',
         color: '#808080'
     },
 
     titleAddress: {
         marginTop: 30,
-        fontWeight: 500,
+        fontWeight: '500',
         color: '#808080'
     },
 
     containerModal: {
         height: 200,
     },
-    
+
 
     topSectionModal: {
-       width: 375,
-       display: 'flex',
-       flexDirection: 'row',
-       justifyContent: 'space-between',
-       alignItems: 'center'
+        width: 375,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center'
     },
 
     textTitle: {
@@ -129,13 +129,13 @@ export const styles = StyleSheet.create({
 
     textEdit: {
         fontSize: 18,
-        fontWeight: 500,
+        fontWeight: '500',
         marginTop: 15,
     },
 
     textDelete: {
         fontSize: 18,
-        fontWeight: 500,
+        fontWeight: '500',
         color: '#EA0000',
         marginTop: 15,
     },
@@ -161,18 +161,75 @@ export const styles = StyleSheet.create({
 
     containerInstructions: {
         alignItems: 'center',
-        justifyContent:'center',
+        justifyContent: 'center',
         padding: 50,
     },
 
     textDeleteOutsider: {
         fontSize: 18,
-        fontWeight: 600,
+        fontWeight: '600',
     },
 
     buttonCloseModalDelete: {
         marginTop: 5,
+    },
+
+    containerEdit: {
+        width: 95,
+        height: 40,
+        backgroundColor: '#476EE6',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 50,
+    },
+
+    buttonEdit: {
+        fontSize: 15,
+        fontWeight: '500',
+        color: '#FFFFFF'
+    },
+
+    uploadPhoto: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 10,
+
+    },
+
+    containerIconPhoto: {
+        backgroundColor: '#476EE6',
+        borderWidth: 2,
+        borderColor: '#FFFFFF',
+        borderRadius: 70,
+        padding: 5,
+        position: 'relative',
+        bottom: 35,
+        left: 35,
+    },
+
+    containerForm: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingBottom: 50,
+    },
+
+    labelForm: {
+        fontWeight: '400',
+        marginTop: 10,
+    },
+
+    input: {
+        width: 350,
+        height: 50,
+        backgroundColor: '#FFFFFF',
+        borderWidth: 1,
+        borderColor: '#D7D7D7',
+        borderRadius: 7,
+        marginTop: 10,
+        paddingLeft: 10,
+
+
     }
 
-   
+
 })

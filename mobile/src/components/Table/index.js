@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
-import { View, Text, Image, SafeAreaView, FlatList, TouchableOpacity } from 'react-native'
+import { View, Text, Image, SafeAreaView, FlatList, TouchableOpacity, TextInput } from 'react-native'
 import { styles } from './styles'
 import perfil from '../../../assets/perfil.png'
+import photo from '../../../assets/photo.png'
+import group from '../../../assets/group.png'
 import Checkbox from 'expo-checkbox';
 import { Entypo } from '@expo/vector-icons'
 import { EvilIcons } from '@expo/vector-icons'
+import { MaterialIcons } from '@expo/vector-icons'
 import { ModalComponent } from '../Modal'
+import { ModalEditAndCreate } from '../ModalEditAndCreate'
+
+import Dropdown from 'react-native-input-select';
 
 
 
@@ -13,6 +19,10 @@ export const Table = () => {
 
     const [showModal, setShowModal] = useState(false)
     const [showModalDeleteOutsider, setShowModalDeleteOutsider] = useState(false)
+    const [showModalEditOutsider, setShowModalEditOutsider] = useState(false)
+
+    const [country, setCountry] = useState();
+
 
     const handleOpenModalDeleteOustider = () => {
         setShowModalDeleteOutsider(true)
@@ -21,6 +31,15 @@ export const Table = () => {
 
     const handleCloseModalDeleteOutsider = () => {
         setShowModalDeleteOutsider(false)
+    }
+
+    const handleOpenModalEditOutsider = () => {
+        setShowModalEditOutsider(true)
+        setShowModal(false)
+    }
+
+    const handleCloseModalEditOutsider = () => {
+        setShowModalEditOutsider(false)
     }
 
     const data = [
@@ -139,13 +158,13 @@ export const Table = () => {
                             <Text style={styles.textAction}>Acoes</Text>
                         </View>
                         <View style={styles.rightSideModal}>
-                        <EvilIcons name="close" size={24} color="black" onPress={() => setShowModal(false)}/>
+                            <EvilIcons name="close" size={24} color="black" onPress={() => setShowModal(false)} />
                         </View>
                     </View>
                     <View style={styles.line}></View>
 
                     <View style={styles.containerActions}>
-                        <TouchableOpacity >
+                        <TouchableOpacity onPress={handleOpenModalEditOutsider}>
                             <Text style={styles.textEdit}>
                                 Editar terceiro
                             </Text>
@@ -187,6 +206,118 @@ export const Table = () => {
                     </View>
                 </View>
             </ModalComponent>
+
+            <ModalEditAndCreate visibleModal={showModalEditOutsider}>
+                <View style={styles.modalContainerDelete}>
+                    <View style={styles.topSectionModal}>
+                        <View style={styles.leftSideModal}>
+                            <TouchableOpacity style={styles.buttonCloseModalDelete} onPress={handleCloseModalEditOutsider}>
+                                <EvilIcons name="close" size={24} color="black" />
+                            </TouchableOpacity>
+                            <Text style={styles.textTitle}>Editar terceiro</Text>
+                        </View>
+                        <View style={styles.rightSideModal}>
+                            <View style={styles.containerEdit}>
+                                <TouchableOpacity >
+                                    <Text style={styles.buttonEdit}>Editar</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    </View>
+                    <View style={styles.line}></View>
+
+                    <View style={styles.uploadPhoto}>
+                        <Image source={photo} />
+                        <View style={styles.containerIconPhoto}>
+                            <TouchableOpacity>
+                                <MaterialIcons name="enhance-photo-translate" size={24} color="#fff" />
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+
+                    <View style={styles.containerForm}>
+                        <View style={styles.containerInputs}>
+                            <Text style={styles.labelForm}>Nome do terceiro</Text>
+                            <TextInput style={styles.input} />
+                        </View>
+                        <View style={styles.containerInputs}>
+                            <Text style={styles.labelForm}>E-mail</Text>
+                            <TextInput style={styles.input} />
+                        </View>
+
+                        <View style={styles.containerInputs}>
+                            <Text style={styles.labelForm}>Telefone</Text>
+                            <TextInput style={styles.input} />
+                        </View>
+
+                        <View style={styles.containerInputs}>
+                            <Text style={styles.labelForm}>Endereço</Text>
+                            <TextInput style={styles.input} />
+                        </View>
+
+                        <View style={styles.containerInputs}>
+                            <Text style={styles.labelForm}>Tipo</Text>
+                            <TextInput style={styles.input} />
+                        </View>
+                    </View>
+                </View>
+            </ModalEditAndCreate>
+
+            <ModalEditAndCreate visibleModal={showModalEditOutsider}>
+                <View style={styles.modalContainerDelete}>
+                    <View style={styles.topSectionModal}>
+                        <View style={styles.leftSideModal}>
+                            <TouchableOpacity style={styles.buttonCloseModalDelete} onPress={handleCloseModalEditOutsider}>
+                                <EvilIcons name="close" size={24} color="black" />
+                            </TouchableOpacity>
+                            <Text style={styles.textTitle}>Criar terceiro</Text>
+                        </View>
+                        <View style={styles.rightSideModal}>
+                            <View style={styles.containerEdit}>
+                                <TouchableOpacity >
+                                    <Text style={styles.buttonEdit}>Adicionar</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    </View>
+                    <View style={styles.line}></View>
+
+                    <View style={styles.uploadPhoto}>
+                        <Image source={group} />
+                        <View style={styles.containerIconPhoto}>
+                            <TouchableOpacity>
+                                <MaterialIcons name="enhance-photo-translate" size={24} color="#fff" />
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+
+                    <View style={styles.containerForm}>
+                        <View style={styles.containerInputs}>
+                            <Text style={styles.labelForm}>Nome do terceiro</Text>
+                            <TextInput style={styles.input} />
+                        </View>
+                        <View style={styles.containerInputs}>
+                            <Text style={styles.labelForm}>E-mail</Text>
+                            <TextInput style={styles.input} />
+                        </View>
+
+                        <View style={styles.containerInputs}>
+                            <Text style={styles.labelForm}>Telefone</Text>
+                            <TextInput style={styles.input} />
+                        </View>
+
+                        <View style={styles.containerInputs}>
+                            <Text style={styles.labelForm}>Endereço</Text>
+                            <TextInput style={styles.input} />
+                        </View>
+
+                        <View style={styles.containerInputs}>
+                            <Text style={styles.labelForm}>Tipo</Text>
+                            <TextInput style={styles.input} />
+                        </View>
+                    </View>
+                </View>
+            </ModalEditAndCreate>
         </>
 
     )

@@ -14,8 +14,7 @@ export const styles = StyleSheet.create({
         borderRadius: 20,
         alignItems: 'center',
         justifyContent: 'center',
-        position: 'relative',
-        top: 300,
+        
     },
 
 })
