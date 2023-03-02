@@ -1,11 +1,11 @@
 import { Request, Response } from 'express'
-import { Clients } from '../models/Clients'
+import {Suppliers} from '../models/Supplier'
 
-class ClientsController {
+class SuppliersController {
     async store(req: Request, res: Response) {
 
         const { name, email, telephone, address, type } = req.body
-        const clients = await Clients.create({
+        const clients = await Suppliers.create({
             name,
             email,
             telephone,
@@ -16,39 +16,39 @@ class ClientsController {
     }
 
     async findAll(req: Request, res: Response) {
-        const clients = await Clients.findAll()
-        return res.json({ clients })
+        const suppliers = await Suppliers.findAll()
+        return res.json({ suppliers })
     }
 
     async findOne(req: Request, res: Response) {
         const { id } = req.params
-        const client = await Clients.findOne({
+        const suppliers = await Suppliers.findOne({
             where: {
                 id: id
             }
         })
-        return client ? res.status(200).json(client) : res.status(204).send()
+        return suppliers ? res.status(200).json(suppliers) : res.status(204).send()
     }
 
     async update(req: Request, res: Response) {
         const { id } = req.params
-        await Clients.update(req.body, {
+        await Suppliers.update(req.body, {
             where: {
                 id
             }
         })
-        return res.status(200).json({message: 'Cliente atualizado com sucesso'})
+        return res.status(200).json({message: 'Fornecedor atualizado com sucesso'})
     }
 
     async delete(req: Request, res: Response) {
         const { id } = req.params
-        await Clients.destroy({
+        await Suppliers.destroy({
             where: {
                 id
             }
         })
-        return res.status(200).json({message: 'Cliente deletado com sucesso'})
+        return res.status(200).json({message: 'Fornecedor deletado com sucesso'})
     }
 }
 
-export default new ClientsController()
+export default new SuppliersController()
