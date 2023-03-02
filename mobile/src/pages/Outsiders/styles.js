@@ -84,7 +84,137 @@ export const styles = StyleSheet.create({
         fontSize: 15,
         fontWeight: 500,
         color: '#476EE6'
-    }
+    },
+
+    modalContainerConfiguration: {
+        width: 375,
+    },
+
+    topSectionModal: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+
+    line: {
+        height: 2,
+        backgroundColor: '#E4E4EF',
+        marginTop: 15,
+        width: 375,
+
+    },
+
+    leftSideModal: {
+        display: 'flex',
+        flexDirection: 'row',
+        gap: 20,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+
+    containerForm: {
+        alignItems: 'center',
+        display: 'flex',
+        justifyContent: 'center',
+        marginTop: 15,
+        
+    },
+
+    textFieldsForm: {
+        fontSize: 17,
+        fontWeight: '500',
+        marginTop: 15,
+        
+    },
+
+    nameField: {
+       fontWeight: '500',
+       position: 'relative',
+       right: 60,
+    },
+
+    inputField:{
+        display: 'flex',
+        flexDirection: 'row',
+        alignContent: 'center',
+        justifyContent: 'space-between',
+        gap: 35,
+        marginTop: 10,
+
+       
+    },
+
+    ContainerIndex: {
+        width: 34,
+        height: 34,
+        backgroundColor: '#476EE6',
+        borderRadius: 60,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 8,
+    
+    },
+
+    textIndex: {
+        fontSize: 21,
+        color: '#FFFFFF',
+        fontWeight: '500',
+    },
+
+    input: {
+        width: 235,
+        height: 45,
+        backgroundColor: '#FFFFFF',
+        borderWidth: 1,
+        borderColor: '#D7D7D7',
+        borderRadius: 7,
+        paddingLeft: 10, 
+    },
+
+    buttonTrash: {
+        marginTop: 5,
+    },
+
+    containerIsRequired:{
+        flexDirection: 'row',
+        gap:20,
+        marginTop: 10,
+        alignContent: 'center',
+        marginLeft: 10,
+    },
+
+    buttonNewField: {
+        flexDirection: 'row',
+        gap: 10,
+        marginTop: 15,
+        marginLeft: 10,
+        alignItems: 'center'
+    },
+
+    textNewField: {
+        color: '#476EE6',
+        fontWeight: '500',
+    },
+
+    textTitle: {
+        fontSize: 18,
+        fontWeight: '500,'
+    },
+
+    containerEdit: {
+        width: 95,
+        height: 40,
+        backgroundColor: '#476EE6',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 50,
+    },
+
+    buttonEdit: {
+        fontSize: 15,
+        fontWeight: '500',
+        color: '#FFFFFF'
+    },
 
     
 })

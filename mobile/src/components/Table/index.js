@@ -21,9 +21,6 @@ export const Table = () => {
     const [showModalDeleteOutsider, setShowModalDeleteOutsider] = useState(false)
     const [showModalEditOutsider, setShowModalEditOutsider] = useState(false)
 
-    const [country, setCountry] = useState();
-
-
     const handleOpenModalDeleteOustider = () => {
         setShowModalDeleteOutsider(true)
         setShowModal(false)
