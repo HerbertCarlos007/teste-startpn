@@ -22,11 +22,17 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
 
+    textAction: {
+        fontSize: 18,
+        fontWeight: '500'
+    },
+
     leftSide: {
         display: 'flex',
         flexDirection: 'row',
         gap: 20,
-        alignItems: 'center'
+        alignItems: 'center',
+        justifyContent: 'center'
     },
 
     rightSide: {
@@ -39,6 +45,7 @@ export const styles = StyleSheet.create({
         height: 2,
         backgroundColor: '#E4E4EF',
         marginTop: 15,
+        width: 375,
 
     },
 
@@ -100,12 +107,19 @@ export const styles = StyleSheet.create({
     containerModal: {
         height: 200,
     },
+    
 
     topSectionModal: {
        width: 375,
        display: 'flex',
        flexDirection: 'row',
-       justifyContent: 'space-between'
+       justifyContent: 'space-between',
+       alignItems: 'center'
+    },
+
+    textTitle: {
+        fontSize: 18,
+        fontWeight: '500,'
     },
 
     containerActions: {
@@ -124,6 +138,40 @@ export const styles = StyleSheet.create({
         fontWeight: 500,
         color: '#EA0000',
         marginTop: 15,
+    },
+
+    leftSideModal: {
+        flexDirection: 'row',
+        gap: 20,
+    },
+
+    containerDelete: {
+        width: 82,
+        height: 37,
+        backgroundColor: '#FFE1E1',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 50,
+    },
+
+    buttonDelete: {
+        fontWeight: '500',
+        color: '#EA0000'
+    },
+
+    containerInstructions: {
+        alignItems: 'center',
+        justifyContent:'center',
+        padding: 50,
+    },
+
+    textDeleteOutsider: {
+        fontSize: 18,
+        fontWeight: 600,
+    },
+
+    buttonCloseModalDelete: {
+        marginTop: 5,
     }
 
    

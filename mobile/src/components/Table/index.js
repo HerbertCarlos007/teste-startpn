@@ -4,12 +4,24 @@ import { styles } from './styles'
 import perfil from '../../../assets/perfil.png'
 import Checkbox from 'expo-checkbox';
 import { Entypo } from '@expo/vector-icons'
+import { EvilIcons } from '@expo/vector-icons'
 import { ModalComponent } from '../Modal'
+
 
 
 export const Table = () => {
 
     const [showModal, setShowModal] = useState(false)
+    const [showModalDeleteOutsider, setShowModalDeleteOutsider] = useState(false)
+
+    const handleOpenModalDeleteOustider = () => {
+        setShowModalDeleteOutsider(true)
+        setShowModal(false)
+    }
+
+    const handleCloseModalDeleteOutsider = () => {
+        setShowModalDeleteOutsider(false)
+    }
 
     const data = [
         {
@@ -124,18 +136,16 @@ export const Table = () => {
                 <View style={styles.containerModal}>
                     <View style={styles.topSectionModal}>
                         <View style={styles.leftSideModal}>
-                            <TouchableOpacity>
-                                <Text>acoes</Text>
-                            </TouchableOpacity>
+                            <Text style={styles.textAction}>Acoes</Text>
                         </View>
                         <View style={styles.rightSideModal}>
-                            <Text>x</Text>
+                        <EvilIcons name="close" size={24} color="black" onPress={() => setShowModal(false)}/>
                         </View>
                     </View>
                     <View style={styles.line}></View>
 
                     <View style={styles.containerActions}>
-                        <TouchableOpacity onPress={() => setShowModal(false)}>
+                        <TouchableOpacity >
                             <Text style={styles.textEdit}>
                                 Editar terceiro
                             </Text>
@@ -144,13 +154,37 @@ export const Table = () => {
                     <View style={styles.line}></View>
 
                     <View style={styles.containerActions}>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={handleOpenModalDeleteOustider}>
                             <Text style={styles.textDelete}>
                                 Excluir terceiro
                             </Text>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.line}></View>
+                </View>
+            </ModalComponent>
+
+            <ModalComponent visibleModal={showModalDeleteOutsider}>
+                <View style={styles.modalContainerDelete}>
+                    <View style={styles.topSectionModal}>
+                        <View style={styles.leftSideModal}>
+                            <TouchableOpacity style={styles.buttonCloseModalDelete} onPress={handleCloseModalDeleteOutsider}>
+                                <EvilIcons name="close" size={24} color="black" />
+                            </TouchableOpacity>
+                            <Text style={styles.textTitle}>Excluir terceiro</Text>
+                        </View>
+                        <View style={styles.rightSideModal}>
+                            <View style={styles.containerDelete}>
+                                <TouchableOpacity >
+                                    <Text style={styles.buttonDelete}>Exluir</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    </View>
+                    <View style={styles.line}></View>
+                    <View style={styles.containerInstructions}>
+                        <Text style={styles.textDeleteOutsider}>Tem certeza que deseja excluir o {'\n'} cliente Mateus santos ?</Text>
+                    </View>
                 </View>
             </ModalComponent>
         </>
