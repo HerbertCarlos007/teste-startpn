@@ -9,4 +9,5 @@ userRouter.get('/users', AuthMiddleware, UserController.findAllUser)
 userRouter.post('/forgot-password', UserController.forgotPassword)
 
 
+
 export default userRouter
