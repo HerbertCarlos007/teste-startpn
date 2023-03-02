@@ -4,8 +4,7 @@ const express = require('express')
 const cors = require('cors')
 import {sequelize} from './src/database/db'
 import {Request, Response} from 'express'
-
-
+import router from './src/routes'
 
 const app = express()
 
@@ -17,6 +16,7 @@ app.use(
 
 app.use(cors())
 app.use(express.json())
+app.use(router)
 
 
 app.get('/', (req: Request,res: Response) => {

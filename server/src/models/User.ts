@@ -6,7 +6,6 @@ interface UsersAttributes {
     name: string
     email: string,
     password: string,
-    telephone: number,
 }
 
 interface UsersCreationAttributes extends Optional<UsersAttributes, 'id'> { }
@@ -17,7 +16,6 @@ interface UsersCreationAttributes extends Optional<UsersAttributes, 'id'> { }
 
 class Users extends Model<UsersAttributes, UsersCreationAttributes> {
 
-
     @Column(DataType.TEXT)
     name: string | undefined
 
@@ -26,9 +24,6 @@ class Users extends Model<UsersAttributes, UsersCreationAttributes> {
 
     @Column(DataType.TEXT)
     password: string | undefined
-
-    @Column(DataType.NUMBER)
-    telephone: string | undefined
 
 }
 
