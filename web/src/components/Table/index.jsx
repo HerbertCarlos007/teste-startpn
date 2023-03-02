@@ -4,7 +4,6 @@ import { Modal } from '../Modal'
 import { CgMenu } from 'react-icons/cg'
 import { GrFormClose } from 'react-icons/gr'
 import { BiCamera } from 'react-icons/bi'
-import { ButtonActions } from '../ButtonActions'
 import photo from '../../assets/photo.png'
 import api from "../../services/api";
 
@@ -15,6 +14,7 @@ export const Table = () => {
     const [email, setEmail] = useState('')
     const [telephone, setTelephone] = useState('')
     const [address, setAddress] = useState('')
+    const [selectedId, setSelectedId] = useState('')
     const [clients, setClients] = useState([])
     const [showCreationModal, setShowCreationModal] = useState(false)
     const [showCreationModalDeleteOutsider, setShowCreationModalDeleteOutsider] = useState(false)
@@ -66,12 +66,34 @@ export const Table = () => {
             setEmail(data.email)
             setTelephone(data.telephone)
             setAddress(data.address)
-
+            setSelectedId(data.id)
             setShowCreationModal(true)
             
         } catch (error) {
 
         }
+    }
+
+    const updateClient = async (id) => {
+        try {
+             await api.put(`/clients/${id}`, {
+                id,
+                name,
+                email,
+                telephone,
+                address
+            })
+            getClients()
+            setShowCreationModalEditOutsider(false)
+        } catch (error) {
+            
+        }
+    }
+
+    const deleteClient = async (id) => {
+        await api.delete(`/clients/${id}`)
+        setShowCreationModalDeleteOutsider(false)
+        getClients()
     }
 
     return (
@@ -122,7 +144,7 @@ export const Table = () => {
                             <C.IconClose style={{ marginBottom: '6px' }} onClick={handleCloseModalDeleteOutsider}><GrFormClose /></C.IconClose>
                             <C.TextTitleModal>Excluir terceiro</C.TextTitleModal>
                         </C.LeftSideModal>
-                        <C.TextModalDeleteOutsider>Excluir</C.TextModalDeleteOutsider>
+                        <C.TextModalDeleteOutsider onClick={() => deleteClient(selectedId)}>Excluir</C.TextModalDeleteOutsider>
                     </C.TopSectionModalDeleteOutsider>
                     <C.Line />
 
@@ -131,7 +153,8 @@ export const Table = () => {
                             Tem certeza que deseja excluir o ?
                         </C.TextConfirmDeleteOutsider>
                         <C.TextIndent>cliente
-                            <C.TextBold> Mateus santos </C.TextBold>
+                            {/* <C.TextBold   </C.TextBold> */}
+                            <input disabled value={name}/>
                         </C.TextIndent>
                     </C.ContainerConfirmDelete>
                 </C.ModalContainerDeleteOutsider>
@@ -144,7 +167,7 @@ export const Table = () => {
                             <C.IconClose style={{ marginBottom: '6px' }} onClick={handleCloseModalEditOutsider}><GrFormClose /></C.IconClose>
                             <C.TextTitleModal>Editar terceiro</C.TextTitleModal>
                         </C.LeftSideModal>
-                        <ButtonActions>Editar</ButtonActions>
+                        <button onClick={() => updateClient(selectedId)}>Editar</button>
                     </C.TopSectionModalEditOutsider>
                     <C.Line style={{ width: '605px' }} />
 
@@ -161,24 +184,24 @@ export const Table = () => {
                         <C.UpFormInputs>
                             <C.FormInputs>
                                 <C.LabelForm>Nome do Terceiro</C.LabelForm>
-                                <C.Input value={name}/>
+                                <C.Input value={name} onChange={(e) => setName(e.target.value)}/>
                             </C.FormInputs>
 
                             <C.FormInputs>
                                 <C.LabelForm >E-mail</C.LabelForm>
-                                <C.Input value={email}/>
+                                <C.Input value={email} onChange={(e) => setEmail(e.target.value)}/>
                             </C.FormInputs>
                         </C.UpFormInputs>
 
                         <C.CenterFormInputs>
                             <C.FormInputs>
                                 <C.LabelForm>Telefone</C.LabelForm>
-                                <C.Input value={telephone}/>
+                                <C.Input value={telephone} onChange={(e) => setTelephone(e.target.value)}/>
                             </C.FormInputs>
 
                             <C.FormInputs>
                                 <C.LabelForm>Endereço</C.LabelForm>
-                                <C.Input value={address}/>
+                                <C.Input value={address} onChange={(e) => setAddress(e.target.value)}/>
                             </C.FormInputs>
                         </C.CenterFormInputs>
 

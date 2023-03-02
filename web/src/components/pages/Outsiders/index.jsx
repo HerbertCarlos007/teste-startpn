@@ -84,7 +84,7 @@ export const Outsiders = () => {
                             </C.IconClose>
                             <C.TextTitleModal>Criar terceiro</C.TextTitleModal>
                         </C.LeftSideNewOutsider>
-                        <ButtonActions>Criar</ButtonActions>
+                        <button>Criar</button>
                     </C.TopSectionModalNewOutsider>
                     <C.Line />
 
@@ -143,7 +143,7 @@ export const Outsiders = () => {
                             </C.IconClose>
                             <C.TextTitleModal>Configuração</C.TextTitleModal>
                         </C.LeftSideNewOutsider>
-                        <ButtonActions>Editar</ButtonActions>
+                        <button>Editar</button>
                     </C.TopSectionModalNewOutsider>
                     <C.Line style={{ width: '365px' }} />
 
