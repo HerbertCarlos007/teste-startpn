@@ -1,19 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as C from './styles'
 import { Modal } from '../Modal'
 import { CgMenu } from 'react-icons/cg'
 import { GrFormClose } from 'react-icons/gr'
 import { BiCamera } from 'react-icons/bi'
-
 import { ButtonActions } from '../ButtonActions'
 import photo from '../../assets/photo.png'
+import api from "../../services/api";
 
 
 export const Table = () => {
 
+    const [clients, setClients] = useState([])
     const [showCreationModal, setShowCreationModal] = useState(false)
     const [showCreationModalDeleteOutsider, setShowCreationModalDeleteOutsider] = useState(false)
     const [showCreationModalEditOutsider, setShowCreationModalEditOutsider] = useState(false)
+
+    useEffect(() => {
+        getClients()
+    }, [])
 
     const handleCreationModal = () => {
         setShowCreationModal(true)
@@ -43,7 +48,14 @@ export const Table = () => {
         setShowCreationModalEditOutsider(false)
     }
 
-    
+    const getClients = async () => {
+        try {
+            const response = await api.get('/clients')
+            setClients(response.data.clients)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     return (
         <C.Container>
@@ -57,16 +69,18 @@ export const Table = () => {
                 </C.ContentHeaderTable>
             </C.HeaderTable>
 
-            <C.ContainerTable>
-                <C.ContentTable>
-                    <C.Checkbox type='checkbox' />
-                    <C.TextInformationsOutsider>Mateus Santos</C.TextInformationsOutsider>
-                    <C.TextInformationsOutsider>mateus@startpn.com</C.TextInformationsOutsider>
-                    <C.TextInformationsOutsider>11 97796-5692</C.TextInformationsOutsider>
-                    <C.TextInformationsOutsider>Av. Brg. Faria Lima, 2355 - São Paulo <br /> - SP, 01452-922</C.TextInformationsOutsider>
-                    <C.IconMenu onClick={handleCreationModal}><CgMenu /></C.IconMenu>
-                </C.ContentTable>
-            </C.ContainerTable>
+            {clients.map((client, index) =>
+                <C.ContainerTable>
+                    <C.ContentTable>
+                        <C.Checkbox type='checkbox' />
+                        <C.TextInformationsOutsider>{client.name}</C.TextInformationsOutsider>
+                        <C.TextInformationsOutsider>{client.email}</C.TextInformationsOutsider>
+                        <C.TextInformationsOutsider>{client.telephone}</C.TextInformationsOutsider>
+                        <C.TextInformationsOutsider>{client.address}</C.TextInformationsOutsider>
+                        <C.IconMenu onClick={handleCreationModal}><CgMenu /></C.IconMenu>
+                    </C.ContentTable>
+                </C.ContainerTable>
+            )}
 
             <Modal show={showCreationModal} onClose={handleCloseCreationModal}>
                 <C.ModalContainer>
@@ -109,10 +123,10 @@ export const Table = () => {
             <Modal show={showCreationModalEditOutsider} onClose={handleCloseModalEditOutsider}>
                 <C.ModalContainerEditOutsider>
                     <C.TopSectionModalEditOutsider>
-                            <C.LeftSideModal>
-                                <C.IconClose style={{ marginBottom: '6px' }} onClick={handleCloseModalEditOutsider}><GrFormClose /></C.IconClose>
-                                <C.TextTitleModal>Editar terceiro</C.TextTitleModal>
-                            </C.LeftSideModal>
+                        <C.LeftSideModal>
+                            <C.IconClose style={{ marginBottom: '6px' }} onClick={handleCloseModalEditOutsider}><GrFormClose /></C.IconClose>
+                            <C.TextTitleModal>Editar terceiro</C.TextTitleModal>
+                        </C.LeftSideModal>
                         <ButtonActions>Editar</ButtonActions>
                     </C.TopSectionModalEditOutsider>
                     <C.Line style={{ width: '605px' }} />

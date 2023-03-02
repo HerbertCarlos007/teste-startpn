@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as C from './styles'
 import { Table } from '../../Table'
 import { SideBar } from '../../Sidebar'
@@ -13,12 +13,16 @@ import { Modal } from '../../Modal'
 import { ButtonActions } from "../../ButtonActions";
 import { Header } from "../../Header";
 
+import api from '../../../services/api'
+
 
 
 export const Outsiders = () => {
 
     const [showCreationModalNewOutsider, setCreationModalNewOutsider] = useState(false)
     const [showCreationModalConfiguration, setCreationModalConfiguration] = useState(false)
+
+    
 
     const handleCreationModalNewOutsider = () => {
         setCreationModalNewOutsider(true)
