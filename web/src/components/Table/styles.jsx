@@ -318,3 +318,26 @@ export const Select = styled.select`
 
 export const OptionsSelect = styled.option`
 `
+
+export const ButtonActions = styled.button`
+    width: 111px;
+    height: 33px;
+    background-color: #476EE6;
+    border: 1px solid #476EE6;
+    border-radius: 50px;
+    color: #FFF;
+    cursor: pointer;
+`
+
+export const InputNameDelete = styled.input`
+    background-color: white;
+    
+    margin-left: 10px;
+    border: none;
+    font-weight: 800;
+    color: black;
+`
+
+export const AlignInputNameDelete = styled.div`
+    margin-left: 150px;
+`

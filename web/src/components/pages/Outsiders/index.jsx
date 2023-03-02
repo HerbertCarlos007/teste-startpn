@@ -19,16 +19,18 @@ import api from '../../../services/api'
 
 export const Outsiders = () => {
 
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [telephone, setTelephone] = useState('')
+    const [address, setAddress] = useState('')
+    const [typeOutsider, setTypeOutsider] = useState('')
     const [showCreationModalNewOutsider, setCreationModalNewOutsider] = useState(false)
     const [showCreationModalConfiguration, setCreationModalConfiguration] = useState(false)
-
-    
 
     const handleCreationModalNewOutsider = () => {
         setCreationModalNewOutsider(true)
 
     }
-
 
     const handleCloseModalNewOutsider = () => {
         setCreationModalNewOutsider(false)
@@ -42,6 +44,31 @@ export const Outsiders = () => {
         setCreationModalConfiguration(false)
     }
 
+    const handleChangeSelect = (e) => {
+       const textSelect = e.target.value
+       setTypeOutsider(textSelect)
+       console.log(typeOutsider)
+    }
+
+    const createNewOutsider = async (e) => {
+        e.preventDefault()
+
+        try {
+            await api.post('/outsiders', {
+                name, 
+                email, 
+                telephone, 
+                address, 
+                typeOutsider
+            })
+          
+            setCreationModalNewOutsider(false)
+            window.location.reload()
+        } catch (error) {
+
+        }
+    }
+
     return (
         <C.Container>
             <C.SidebarContainer>
@@ -49,7 +76,7 @@ export const Outsiders = () => {
             </C.SidebarContainer>
 
             <C.ContainerAllContent>
-                <Header title='Terceiros'/>
+                <Header title='Terceiros' />
                 <C.ContainerOptions>
                     <C.LeftSection>
                         <C.ContainerCustomersAndSuppliers>
@@ -84,7 +111,7 @@ export const Outsiders = () => {
                             </C.IconClose>
                             <C.TextTitleModal>Criar terceiro</C.TextTitleModal>
                         </C.LeftSideNewOutsider>
-                        <button>Criar</button>
+                        <C.ButtonActions onClick={createNewOutsider}>Criar</C.ButtonActions>
                     </C.TopSectionModalNewOutsider>
                     <C.Line />
 
@@ -100,32 +127,34 @@ export const Outsiders = () => {
                             <C.UpFormInputs>
                                 <C.FormInputs>
                                     <C.LabelForm>Nome do Terceiro</C.LabelForm>
-                                    <C.InputNewOutsider />
+                                    <C.InputNewOutsider onChange={(e) => setName(e.target.value)} />
                                 </C.FormInputs>
 
                                 <C.FormInputs>
                                     <C.LabelForm>E-mail</C.LabelForm>
-                                    <C.InputNewOutsider />
+                                    <C.InputNewOutsider onChange={(e) => setEmail(e.target.value)} />
                                 </C.FormInputs>
                             </C.UpFormInputs>
 
                             <C.CenterFormInputs>
                                 <C.FormInputs>
                                     <C.LabelForm>Telefone</C.LabelForm>
-                                    <C.InputNewOutsider />
+                                    <C.InputNewOutsider onChange={(e) => setTelephone(e.target.value)} />
                                 </C.FormInputs>
 
                                 <C.FormInputs>
                                     <C.LabelForm>Endereço</C.LabelForm>
-                                    <C.InputNewOutsider />
+                                    <C.InputNewOutsider onChange={(e) => setAddress(e.target.value)} />
                                 </C.FormInputs>
                             </C.CenterFormInputs>
 
                             <C.DownFormInputs>
                                 <C.FormInputs>
                                     <C.LabelForm>Tipo</C.LabelForm>
-                                    <C.Select>
-                                        <C.OptionsSelect>Selecione</C.OptionsSelect>
+                                    <C.Select onChange={handleChangeSelect}> 
+                                        <C.OptionsSelect >Selecione</C.OptionsSelect>
+                                        <C.OptionsSelect >Cliente</C.OptionsSelect>
+                                        <C.OptionsSelect >Fornecedor</C.OptionsSelect>
                                     </C.Select>
                                 </C.FormInputs>
                             </C.DownFormInputs>
@@ -143,7 +172,7 @@ export const Outsiders = () => {
                             </C.IconClose>
                             <C.TextTitleModal>Configuração</C.TextTitleModal>
                         </C.LeftSideNewOutsider>
-                        <button>Editar</button>
+                        <C.ButtonActions>Editar</C.ButtonActions>
                     </C.TopSectionModalNewOutsider>
                     <C.Line style={{ width: '365px' }} />
 

@@ -14,17 +14,18 @@ export const Table = () => {
     const [email, setEmail] = useState('')
     const [telephone, setTelephone] = useState('')
     const [address, setAddress] = useState('')
+    const [typeOutsider, setTypeOutsider] = useState('')
     const [selectedId, setSelectedId] = useState('')
-    const [clients, setClients] = useState([])
+    const [oustiders, setoustiders] = useState([])
     const [showCreationModal, setShowCreationModal] = useState(false)
     const [showCreationModalDeleteOutsider, setShowCreationModalDeleteOutsider] = useState(false)
     const [showCreationModalEditOutsider, setShowCreationModalEditOutsider] = useState(false)
 
     useEffect(() => {
-        getClients()
+        getOutsiders()
     }, [])
 
-   
+
     const handleCloseCreationModal = () => {
         setShowCreationModal(false)
     }
@@ -49,18 +50,24 @@ export const Table = () => {
         setShowCreationModalEditOutsider(false)
     }
 
-    const getClients = async () => {
+    const handleChangeSelect = (e) => {
+        const textSelect = e.target.value
+        setTypeOutsider(textSelect)
+        console.log(typeOutsider)
+     }
+
+    const getOutsiders = async () => {
         try {
-            const response = await api.get('/clients')
-            setClients(response.data.clients)
+            const response = await api.get('/outsiders')
+            setoustiders(response.data.outsiders)
         } catch (error) {
             console.log(error)
         }
     }
 
-    const getEachClient = async (id) => {
+    const getEachOutsider = async (id) => {
         try {
-            const response = await api.get(`/clients/${id}`)
+            const response = await api.get(`/outsiders/${id}`)
             const data = response.data
             setName(data.name)
             setEmail(data.email)
@@ -68,32 +75,33 @@ export const Table = () => {
             setAddress(data.address)
             setSelectedId(data.id)
             setShowCreationModal(true)
-            
+
         } catch (error) {
 
         }
     }
 
-    const updateClient = async (id) => {
+    const updateOutsider = async (id) => {
         try {
-             await api.put(`/clients/${id}`, {
+            await api.put(`/outsiders/${id}`, {
                 id,
                 name,
                 email,
                 telephone,
-                address
+                address,
+                typeOutsider
             })
-            getClients()
+            getOutsiders()
             setShowCreationModalEditOutsider(false)
         } catch (error) {
-            
+
         }
     }
 
-    const deleteClient = async (id) => {
-        await api.delete(`/clients/${id}`)
+    const deleteOutsider = async (id) => {
+        await api.delete(`/outsiders/${id}`)
         setShowCreationModalDeleteOutsider(false)
-        getClients()
+        getOutsiders()
     }
 
     return (
@@ -108,7 +116,7 @@ export const Table = () => {
                 </C.ContentHeaderTable>
             </C.HeaderTable>
 
-            {clients.map((client, index) =>
+            {oustiders.map((client, index) =>
                 <C.ContainerTable>
                     <C.ContentTable>
                         <C.Checkbox type='checkbox' />
@@ -116,7 +124,7 @@ export const Table = () => {
                         <C.TextInformationsOutsider>{client.email}</C.TextInformationsOutsider>
                         <C.TextInformationsOutsider>{client.telephone}</C.TextInformationsOutsider>
                         <C.TextInformationsOutsider>{client.address}</C.TextInformationsOutsider>
-                        <C.IconMenu onClick={() => getEachClient(client.id)}><CgMenu /></C.IconMenu>
+                        <C.IconMenu onClick={() => getEachOutsider(client.id)}><CgMenu /></C.IconMenu>
                     </C.ContentTable>
                 </C.ContainerTable>
             )}
@@ -144,18 +152,20 @@ export const Table = () => {
                             <C.IconClose style={{ marginBottom: '6px' }} onClick={handleCloseModalDeleteOutsider}><GrFormClose /></C.IconClose>
                             <C.TextTitleModal>Excluir terceiro</C.TextTitleModal>
                         </C.LeftSideModal>
-                        <C.TextModalDeleteOutsider onClick={() => deleteClient(selectedId)}>Excluir</C.TextModalDeleteOutsider>
+                        <C.ButtonActions onClick={() => deleteOutsider(selectedId)}>Excluir</C.ButtonActions>
                     </C.TopSectionModalDeleteOutsider>
                     <C.Line />
 
                     <C.ContainerConfirmDelete>
                         <C.TextConfirmDeleteOutsider>
-                            Tem certeza que deseja excluir o ?
+                            Tem certeza que deseja excluir o 
                         </C.TextConfirmDeleteOutsider>
-                        <C.TextIndent>cliente
+                      
                             {/* <C.TextBold   </C.TextBold> */}
-                            <input disabled value={name}/>
-                        </C.TextIndent>
+                            <C.AlignInputNameDelete>
+                                <C.InputNameDelete placeholder="cliente" disabled value={name} />
+                            </C.AlignInputNameDelete>
+                      
                     </C.ContainerConfirmDelete>
                 </C.ModalContainerDeleteOutsider>
             </Modal>
@@ -167,7 +177,7 @@ export const Table = () => {
                             <C.IconClose style={{ marginBottom: '6px' }} onClick={handleCloseModalEditOutsider}><GrFormClose /></C.IconClose>
                             <C.TextTitleModal>Editar terceiro</C.TextTitleModal>
                         </C.LeftSideModal>
-                        <button onClick={() => updateClient(selectedId)}>Editar</button>
+                        <C.ButtonActions onClick={() => updateOutsider(selectedId)}>Editar</C.ButtonActions>
                     </C.TopSectionModalEditOutsider>
                     <C.Line style={{ width: '605px' }} />
 
@@ -184,32 +194,34 @@ export const Table = () => {
                         <C.UpFormInputs>
                             <C.FormInputs>
                                 <C.LabelForm>Nome do Terceiro</C.LabelForm>
-                                <C.Input value={name} onChange={(e) => setName(e.target.value)}/>
+                                <C.Input value={name} onChange={(e) => setName(e.target.value)} />
                             </C.FormInputs>
 
                             <C.FormInputs>
                                 <C.LabelForm >E-mail</C.LabelForm>
-                                <C.Input value={email} onChange={(e) => setEmail(e.target.value)}/>
+                                <C.Input value={email} onChange={(e) => setEmail(e.target.value)} />
                             </C.FormInputs>
                         </C.UpFormInputs>
 
                         <C.CenterFormInputs>
                             <C.FormInputs>
                                 <C.LabelForm>Telefone</C.LabelForm>
-                                <C.Input value={telephone} onChange={(e) => setTelephone(e.target.value)}/>
+                                <C.Input value={telephone} onChange={(e) => setTelephone(e.target.value)} />
                             </C.FormInputs>
 
                             <C.FormInputs>
                                 <C.LabelForm>Endereço</C.LabelForm>
-                                <C.Input value={address} onChange={(e) => setAddress(e.target.value)}/>
+                                <C.Input value={address} onChange={(e) => setAddress(e.target.value)} />
                             </C.FormInputs>
                         </C.CenterFormInputs>
 
                         <C.DownFormInputs>
                             <C.FormInputs>
                                 <C.LabelForm>Tipo</C.LabelForm>
-                                <C.Select>
+                                <C.Select onChange={handleChangeSelect}>
                                     <C.OptionsSelect>Selecione</C.OptionsSelect>
+                                    <C.OptionsSelect>Cliente</C.OptionsSelect>
+                                    <C.OptionsSelect>Fornecedor</C.OptionsSelect>
                                 </C.Select>
                             </C.FormInputs>
                         </C.DownFormInputs>
