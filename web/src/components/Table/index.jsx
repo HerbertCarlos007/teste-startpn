@@ -11,6 +11,10 @@ import api from "../../services/api";
 
 export const Table = () => {
 
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [telephone, setTelephone] = useState('')
+    const [address, setAddress] = useState('')
     const [clients, setClients] = useState([])
     const [showCreationModal, setShowCreationModal] = useState(false)
     const [showCreationModalDeleteOutsider, setShowCreationModalDeleteOutsider] = useState(false)
@@ -20,10 +24,7 @@ export const Table = () => {
         getClients()
     }, [])
 
-    const handleCreationModal = () => {
-        setShowCreationModal(true)
-    }
-
+   
     const handleCloseCreationModal = () => {
         setShowCreationModal(false)
     }
@@ -57,6 +58,22 @@ export const Table = () => {
         }
     }
 
+    const getEachClient = async (id) => {
+        try {
+            const response = await api.get(`/clients/${id}`)
+            const data = response.data
+            setName(data.name)
+            setEmail(data.email)
+            setTelephone(data.telephone)
+            setAddress(data.address)
+
+            setShowCreationModal(true)
+            
+        } catch (error) {
+
+        }
+    }
+
     return (
         <C.Container>
             <C.HeaderTable>
@@ -77,7 +94,7 @@ export const Table = () => {
                         <C.TextInformationsOutsider>{client.email}</C.TextInformationsOutsider>
                         <C.TextInformationsOutsider>{client.telephone}</C.TextInformationsOutsider>
                         <C.TextInformationsOutsider>{client.address}</C.TextInformationsOutsider>
-                        <C.IconMenu onClick={handleCreationModal}><CgMenu /></C.IconMenu>
+                        <C.IconMenu onClick={() => getEachClient(client.id)}><CgMenu /></C.IconMenu>
                     </C.ContentTable>
                 </C.ContainerTable>
             )}
@@ -144,24 +161,24 @@ export const Table = () => {
                         <C.UpFormInputs>
                             <C.FormInputs>
                                 <C.LabelForm>Nome do Terceiro</C.LabelForm>
-                                <C.Input />
+                                <C.Input value={name}/>
                             </C.FormInputs>
 
                             <C.FormInputs>
-                                <C.LabelForm>E-mail</C.LabelForm>
-                                <C.Input />
+                                <C.LabelForm >E-mail</C.LabelForm>
+                                <C.Input value={email}/>
                             </C.FormInputs>
                         </C.UpFormInputs>
 
                         <C.CenterFormInputs>
                             <C.FormInputs>
                                 <C.LabelForm>Telefone</C.LabelForm>
-                                <C.Input />
+                                <C.Input value={telephone}/>
                             </C.FormInputs>
 
                             <C.FormInputs>
                                 <C.LabelForm>Endereço</C.LabelForm>
-                                <C.Input />
+                                <C.Input value={address}/>
                             </C.FormInputs>
                         </C.CenterFormInputs>
 
