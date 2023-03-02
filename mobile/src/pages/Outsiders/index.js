@@ -42,6 +42,7 @@ export const Outsiders = () => {
                                 <AntDesign name="search1" size={24} color="#476EE6" />
                             </View>
                         </TouchableOpacity>
+                        
                     </View>
                 </View>
 

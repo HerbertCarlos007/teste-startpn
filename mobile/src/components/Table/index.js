@@ -8,18 +8,18 @@ import Checkbox from 'expo-checkbox';
 import { Entypo } from '@expo/vector-icons'
 import { EvilIcons } from '@expo/vector-icons'
 import { MaterialIcons } from '@expo/vector-icons'
+import { AntDesign } from '@expo/vector-icons'
 import { ModalComponent } from '../Modal'
 import { ModalEditAndCreate } from '../ModalEditAndCreate'
 
-import Dropdown from 'react-native-input-select';
-
-
+import { FAB } from 'react-native-elements';
 
 export const Table = () => {
 
     const [showModal, setShowModal] = useState(false)
     const [showModalDeleteOutsider, setShowModalDeleteOutsider] = useState(false)
     const [showModalEditOutsider, setShowModalEditOutsider] = useState(false)
+    const [showModalNewOutsider, setShowModalNewOutsider] = useState(false)
 
     const handleOpenModalDeleteOustider = () => {
         setShowModalDeleteOutsider(true)
@@ -36,6 +36,15 @@ export const Table = () => {
     }
 
     const handleCloseModalEditOutsider = () => {
+        setShowModalEditOutsider(false)
+    }
+
+    const handleOpenModalNewOutsider = () => {
+        setShowModalEditOutsider(true)
+        setShowModal(false)
+    }
+
+    const handleCloseModalNewOutsider = () => {
         setShowModalEditOutsider(false)
     }
 
@@ -88,7 +97,14 @@ export const Table = () => {
     ]
 
     return (
-        <>
+        <>  
+            <FAB 
+            icon={<AntDesign name="plus" size={24} color="#fff" />} 
+            color='#476EE6'
+            placement='right'
+            style={{zIndex: 9}}
+            onPress={handleOpenModalNewOutsider}
+            />
             <View style={styles.container} >
                 <FlatList
                     showsVerticalScrollIndicator={false}
@@ -260,11 +276,11 @@ export const Table = () => {
                 </View>
             </ModalEditAndCreate>
 
-            <ModalEditAndCreate visibleModal={showModalEditOutsider}>
+            <ModalEditAndCreate visibleModal={showModalNewOutsider}>
                 <View style={styles.modalContainerDelete}>
                     <View style={styles.topSectionModal}>
                         <View style={styles.leftSideModal}>
-                            <TouchableOpacity style={styles.buttonCloseModalDelete} onPress={handleCloseModalEditOutsider}>
+                            <TouchableOpacity style={styles.buttonCloseModalDelete} onPress={handleCloseModalNewOutsider}>
                                 <EvilIcons name="close" size={24} color="black" />
                             </TouchableOpacity>
                             <Text style={styles.textTitle}>Criar terceiro</Text>
