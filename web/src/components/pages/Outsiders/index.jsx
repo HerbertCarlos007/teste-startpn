@@ -17,7 +17,11 @@ import api from '../../../services/api'
 
 export const Outsiders = () => {
 
-    const [outsiders, setOutsiders] = useState([])
+    const [outsiders, setOutsiders] = useState([]);
+    const [newFields, setNewFields] = useState([])
+    const [fields, setFields] = useState([])
+    const [valueField, setValueField] = useState('')
+    const [searchedOutsiderValue, setSearchedOutsiderValue] = useState('');
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [telephone, setTelephone] = useState('')
@@ -28,6 +32,7 @@ export const Outsiders = () => {
 
     useEffect(() => {
         getOutsiders('cliente')
+        getCustomFields()
     }, [])
 
     const handleCreationModalNewOutsider = () => {
@@ -50,7 +55,6 @@ export const Outsiders = () => {
     const handleChangeSelect = (e) => {
         const textSelect = e.target.value
         setTypeOutsider(textSelect)
-        console.log(typeOutsider)
     }
 
     const createNewOutsider = async (e) => {
@@ -72,10 +76,49 @@ export const Outsiders = () => {
         }
     }
 
+    const getCustomFields = async () => {
+        const response = await api.get('/custom-fields')
+        setFields(response.data.customFields)
+
+    }
+
+    const addInput = (e) => {
+        e.preventDefault()
+        setNewFields([...newFields, ''])
+    }
+
+    const createCustomField = async () => {
+        const response = await api.post('/custom-fields', {
+            name: valueField
+        })
+        window.location.reload()
+    }
+
+    const deleteField = async (id) => {
+        const response = await api.delete(`/custom-fields/${id}`)
+        getCustomFields()
+    }
+
+    const deleteCustomField = async (position) => {
+        setNewFields([...newFields.filter((_, index) => index !== position)])
+        
+    }
+
     const getOutsiders = async (typeOutsider) => {
         const outsiderServices = new OutsidersService()
         const response = await outsiderServices.getOutsiders(typeOutsider)
         setOutsiders(response)
+        console.log(outsiders)
+    }
+
+    const searchOutsider = () => {
+        const searchedOutsiders = outsiders
+            .find((availableOutsiders) => availableOutsiders.name.toUpperCase() === searchedOutsiderValue.toUpperCase())
+        return setOutsiders([searchedOutsiders])
+    }
+
+    const handleSearchInputChange = (e) => {
+        setSearchedOutsiderValue(e.target.value)
     }
 
     return (
@@ -92,9 +135,12 @@ export const Outsiders = () => {
                             <C.TextCostumers onClick={() => getOutsiders('cliente')}>Clientes</C.TextCostumers>
                             <C.TextSuppliers onClick={() => getOutsiders('fornecedor')}>Fornecedores</C.TextSuppliers>
                         </C.ContainerCustomersAndSuppliers>
-                        <C.IconSearch><AiOutlineSearch /></C.IconSearch>
-                        <C.Input placeholder="Pesquisar" />
-
+                        <C.IconSearch ><AiOutlineSearch /></C.IconSearch>
+                        <C.Input
+                            placeholder="Pesquisar"
+                        // value={searchedOutsiderValue}
+                        // onChange={handleSearchInputChange}
+                        />
                         <C.ContainerGear onClick={handleCreationModalConfiguration}>
                             <RxGear />
                         </C.ContainerGear>
@@ -165,6 +211,16 @@ export const Outsiders = () => {
                                         <C.OptionsSelect >Fornecedor</C.OptionsSelect>
                                     </C.Select>
                                 </C.FormInputs>
+
+
+                                {fields.map((field) =>
+                                    <>
+                                        <C.FormInputs>
+                                            <C.LabelForm>{field.name}</C.LabelForm>
+                                            <C.InputNewOutsider placeholder={field.description} />
+                                        </C.FormInputs>
+                                    </>
+                                )}
                             </C.DownFormInputs>
                         </C.ContainerInputs>
                     </C.ContainerForm>
@@ -180,7 +236,7 @@ export const Outsiders = () => {
                             </C.IconClose>
                             <C.TextTitleModal>Configuração</C.TextTitleModal>
                         </C.LeftSideNewOutsider>
-                        <C.ButtonActions>Editar</C.ButtonActions>
+                        <C.ButtonActions onClick={createCustomField}>Editar</C.ButtonActions>
                     </C.TopSectionModalNewOutsider>
                     <C.Line style={{ width: '365px' }} />
 
@@ -191,41 +247,42 @@ export const Outsiders = () => {
 
                     <C.TextFieldsForm>Campos do formulário</C.TextFieldsForm>
 
-                    <C.ContainerFormConfiguration>
+                    {fields.map((field, index) =>
+                        <C.ContainerFormConfiguration>
+                            <C.ContainerInputsConfiguration>
+                                <C.LabelFormConfiguration style={{marginRight: '160px'}}>{field.name}</C.LabelFormConfiguration>
+                                <C.ContainerBox>
+                                    <C.Box>{index + 1}</C.Box>
+                                    <C.InputsConfiguration onChange={(e) => setValueField(e.target.value)} />
+                                    <C.IconTrash onClick={() => deleteField(field.id)}><HiOutlineTrash /></C.IconTrash>
+                                </C.ContainerBox>
+                            </C.ContainerInputsConfiguration>
+                            <C.ContainerCheckbox>
+                                <C.Checkbox type='checkbox' />
+                                <C.TextIsRequired>O campo e obrigatorio?</C.TextIsRequired>
+                            </C.ContainerCheckbox>
+                        </C.ContainerFormConfiguration>)}
 
-                        <C.ContainerInputsConfiguration>
-                            <C.LabelFormConfiguration>Nome do campo</C.LabelFormConfiguration>
-                            <C.ContainerBox>
-                                <C.Box>1</C.Box>
-                                <C.InputsConfiguration placeholder="Nome do terceiro" />
-                                <C.IconTrash><HiOutlineTrash /></C.IconTrash>
-                            </C.ContainerBox>
-                        </C.ContainerInputsConfiguration>
-                        <C.ContainerCheckbox>
-                            <C.Checkbox type='checkbox' />
-                            <C.TextIsRequired>O campo e obrigatorio?</C.TextIsRequired>
-                        </C.ContainerCheckbox>
-                    </C.ContainerFormConfiguration>
-
-                    <C.ContainerFormConfiguration>
-
-                        <C.ContainerInputsConfiguration>
-                            <C.LabelFormConfiguration>Nome do campo</C.LabelFormConfiguration>
-                            <C.ContainerBox>
-                                <C.Box>2</C.Box>
-                                <C.InputsConfiguration placeholder="E-mail" />
-                                <C.IconTrash><HiOutlineTrash /></C.IconTrash>
-                            </C.ContainerBox>
-                        </C.ContainerInputsConfiguration>
-                        <C.ContainerCheckbox>
-                            <C.Checkbox type='checkbox' />
-                            <C.TextIsRequired>O campo e obrigatorio?</C.TextIsRequired>
-                        </C.ContainerCheckbox>
-                    </C.ContainerFormConfiguration>
+                    {newFields.map((newField, index) =>
+                        <C.ContainerFormConfiguration>
+                            <C.ContainerInputsConfiguration>
+                                <C.LabelFormConfiguration>Nome do campo</C.LabelFormConfiguration>
+                                <C.ContainerBox>
+                                    <C.Box>{index + 1}</C.Box>
+                                    <C.InputsConfiguration onChange={(e) => setValueField(e.target.value)} />
+                                    <C.IconTrash onClick={() => deleteCustomField(index)}><HiOutlineTrash /></C.IconTrash>
+                                </C.ContainerBox>
+                            </C.ContainerInputsConfiguration>
+                            <C.ContainerCheckbox>
+                                <C.Checkbox type='checkbox' />
+                                <C.TextIsRequired>O campo e obrigatorio?</C.TextIsRequired>
+                            </C.ContainerCheckbox>
+                        </C.ContainerFormConfiguration>
+                    )}
 
                     <C.IconPlus>
                         <AiOutlinePlus />
-                        <C.TextAddNewField>Adicionar novo campo</C.TextAddNewField>
+                        <C.TextAddNewField onClick={addInput}>Adicionar novo campo</C.TextAddNewField>
                     </C.IconPlus>
 
                 </C.ModalContainerConfiguration>

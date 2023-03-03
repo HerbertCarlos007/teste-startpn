@@ -16,7 +16,7 @@ export const NewPassword = () => {
     const handleNewPassword = async () => {
         try {
             const response = await api.put(`/recover-password/${id}`, {
-                password, confirmPassword
+               password, confirmPassword
             })
         } catch (error) {
             

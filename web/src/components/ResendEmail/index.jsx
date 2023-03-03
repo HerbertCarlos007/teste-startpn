@@ -1,10 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom"
 import logo from '../../assets/logo.png'
 import mail from '../../assets/mail.png'
-
 import * as C from './styles'
 
-export const ResendEmail = () => {
+export const ResendEmail = ({ setFormState }) => {
+    
+    const navigate = useNavigate()
+
     return (
         <C.Container>
             <C.Logo src={logo} />
@@ -20,8 +23,8 @@ export const ResendEmail = () => {
                 </C.ContainerLetter>
 
                 <C.ContainerActions>
-                    <C.ButtonUnderstand >Entendi</C.ButtonUnderstand>
-                    <C.ButtonResendEmail>Reenviar e-mail</C.ButtonResendEmail>
+                    <C.ButtonUnderstand onClick={() => setFormState('login')}>Entendi</C.ButtonUnderstand>
+                    <C.ButtonResendEmail onClick={() => setFormState('forgotPassword')}>Reenviar e-mail</C.ButtonResendEmail>
                 </C.ContainerActions>
             </C.ContainerResendEmail>
         </C.Container>
