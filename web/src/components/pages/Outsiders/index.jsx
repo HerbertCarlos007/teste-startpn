@@ -101,7 +101,7 @@ export const Outsiders = () => {
 
     const deleteCustomField = async (position) => {
         setNewFields([...newFields.filter((_, index) => index !== position)])
-        
+
     }
 
     const getOutsiders = async (typeOutsider) => {
@@ -178,7 +178,7 @@ export const Outsiders = () => {
 
                     <C.ContainerForm>
                         <C.ContainerInputs>
-                            <C.UpFormInputs>
+                            
                                 <C.FormInputs>
                                     <C.LabelForm>Nome do Terceiro</C.LabelForm>
                                     <C.InputNewOutsider onChange={(e) => setName(e.target.value)} />
@@ -188,9 +188,8 @@ export const Outsiders = () => {
                                     <C.LabelForm>E-mail</C.LabelForm>
                                     <C.InputNewOutsider onChange={(e) => setEmail(e.target.value)} />
                                 </C.FormInputs>
-                            </C.UpFormInputs>
-
-                            <C.CenterFormInputs>
+                            
+                           
                                 <C.FormInputs>
                                     <C.LabelForm>Telefone</C.LabelForm>
                                     <C.InputNewOutsider onChange={(e) => setTelephone(e.target.value)} />
@@ -200,9 +199,9 @@ export const Outsiders = () => {
                                     <C.LabelForm>Endereço</C.LabelForm>
                                     <C.InputNewOutsider onChange={(e) => setAddress(e.target.value)} />
                                 </C.FormInputs>
-                            </C.CenterFormInputs>
+                          
 
-                            <C.DownFormInputs>
+                           
                                 <C.FormInputs>
                                     <C.LabelForm>Tipo</C.LabelForm>
                                     <C.Select onChange={handleChangeSelect}>
@@ -211,17 +210,15 @@ export const Outsiders = () => {
                                         <C.OptionsSelect >Fornecedor</C.OptionsSelect>
                                     </C.Select>
                                 </C.FormInputs>
-
-
-                                {fields.map((field) =>
-                                    <>
-                                        <C.FormInputs>
-                                            <C.LabelForm>{field.name}</C.LabelForm>
-                                            <C.InputNewOutsider placeholder={field.description} />
-                                        </C.FormInputs>
-                                    </>
-                                )}
-                            </C.DownFormInputs>
+                                    {fields.map((field) =>
+                                        <>
+                                            <C.FormInputs>
+                                                <C.LabelForm>{field.name}</C.LabelForm>
+                                                <C.InputNewOutsider placeholder={field.description} />
+                                            </C.FormInputs>
+                                        </>
+                                    )}
+                        
                         </C.ContainerInputs>
                     </C.ContainerForm>
                 </C.ModalContainerNewOutsider>
@@ -250,7 +247,7 @@ export const Outsiders = () => {
                     {fields.map((field, index) =>
                         <C.ContainerFormConfiguration>
                             <C.ContainerInputsConfiguration>
-                                <C.LabelFormConfiguration style={{marginRight: '160px'}}>{field.name}</C.LabelFormConfiguration>
+                                <C.LabelFormConfiguration style={{ marginRight: '160px' }}>{field.name}</C.LabelFormConfiguration>
                                 <C.ContainerBox>
                                     <C.Box>{index + 1}</C.Box>
                                     <C.InputsConfiguration onChange={(e) => setValueField(e.target.value)} />

@@ -184,11 +184,16 @@ export const IconUpload = styled.div`
 export const ContainerInputs = styled.div`
     margin-top: 30px;
     padding-bottom: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    flex-wrap: wrap;
 `
 export const ContainerForm = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
 `
 
 export const FormInputs = styled.div`
@@ -210,6 +215,7 @@ export const CenterFormInputs = styled.div`
 
 export const DownFormInputs = styled.div`
     display: flex;
+    flex-direction: row;
     gap: 30px;
     margin-top: 10px;
 `
