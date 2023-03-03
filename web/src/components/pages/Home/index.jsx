@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-
 import * as C from './styles'
-
 import steveJobsImage from '../../../assets/stevejobs.png'
 import backgroundImage from '../../../assets/background.png'
 import { Login } from "../../Login";
@@ -44,11 +42,6 @@ export const Home = () => {
                 {formState === 'resendEmail' && (
                     <ResendEmail setFormState={setFormState}/>
                 )}
-
-                {formState === 'newPassword' && (
-                    <NewPassword setFormState={setFormState}/>
-                )}
-
                 </C.RightSideContainer>
             </C.ContainerRegister>
         </C.Container>

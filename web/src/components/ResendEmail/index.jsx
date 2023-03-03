@@ -4,7 +4,7 @@ import mail from '../../assets/mail.png'
 
 import * as C from './styles'
 
-export const ResendEmail = ({ setFormState }) => {
+export const ResendEmail = () => {
     return (
         <C.Container>
             <C.Logo src={logo} />
@@ -20,7 +20,7 @@ export const ResendEmail = ({ setFormState }) => {
                 </C.ContainerLetter>
 
                 <C.ContainerActions>
-                    <C.ButtonUnderstand onClick={() => setFormState('newPassword')}>Entendi</C.ButtonUnderstand>
+                    <C.ButtonUnderstand >Entendi</C.ButtonUnderstand>
                     <C.ButtonResendEmail>Reenviar e-mail</C.ButtonResendEmail>
                 </C.ContainerActions>
             </C.ContainerResendEmail>
