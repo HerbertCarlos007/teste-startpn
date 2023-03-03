@@ -93,21 +93,21 @@ export const Table = ({ outsiders }) => {
         <C.Container>
             <C.HeaderTable>
                 <C.ContentHeaderTable>
-                    <C.Checkbox type='checkbox' />
-                    <C.TextName>Nome</C.TextName>
-                    <C.TextEmail>E-mail</C.TextEmail>
-                    <C.TextNumber>Telefone</C.TextNumber>
-                    <C.TextAdress>Endereço</C.TextAdress>
+                    <C.CheckboxHeader type='checkbox' />
+                    <C.ColumnName>Nome</C.ColumnName>
+                    <C.ColumnName>E-mail</C.ColumnName>
+                    <C.ColumnName>Telefone</C.ColumnName>
+                    <C.ColumnName>Endereço</C.ColumnName>
                 </C.ContentHeaderTable>
             </C.HeaderTable>
             {outsiders.map((client, index) =>
                 <C.ContainerTable>
                     <C.ContentTable>
-                        <C.Checkbox type='checkbox' />
-                        <C.TextInformationsOutsider>{client.name}</C.TextInformationsOutsider>
-                        <C.TextInformationsOutsider>{client.email}</C.TextInformationsOutsider>
-                        <C.TextInformationsOutsider>{client.telephone}</C.TextInformationsOutsider>
-                        <C.TextInformationsOutsider>{client.address}</C.TextInformationsOutsider>
+                        <C.ChecboxContainerTable type='checkbox' />
+                        <C.RowName>{client.name}</C.RowName>
+                        <C.RowName>{client.email}</C.RowName>
+                        <C.RowName>{client.telephone}</C.RowName>
+                        <C.RowName>{client.address}</C.RowName>
                         <C.IconMenu onClick={() => getEachOutsider(client.id)}><CgMenu /></C.IconMenu>
                     </C.ContentTable>
                 </C.ContainerTable>

@@ -24,31 +24,38 @@ export const HeaderTable = styled.div`
 export const ContentHeaderTable = styled.div`
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
-    margin-top: 15px;
     position: relative;
-    right: 140px;
-
+    margin-top: 15px;
     @media (max-width: 1366px) {
         position: relative;
         right: 95px;
     }
 `
 
-export const Checkbox = styled.input`
-    
+export const CheckboxHeader = styled.input`
+    position: absolute;
+    left: 25px;
+    top: 5px;
+`
+
+export const ChecboxContainerTable = styled.input`
+    position: absolute;
+    left:24px;
+    top: 19px;
 `
 
 
 export const ContainerTable = styled.div`
      width: 1165px;
-     height: 75px;
+     height: 55px;
      background-color: #FFFFFF;
     border: 1px solid #D7D7D7;
     border-radius: 10px;
-    margin-top: 18px;
-    margin-right: 200px;
+    position: relative;
+    right: 100px;
+    margin-top: 20px;
     @media (max-width: 1366px) {
         width: 890px;
     }
@@ -60,8 +67,6 @@ export const ContentTable = styled.div`
     justify-content: space-around;
     align-items: center;
     margin-top: 15px;
-    position: relative;
-    right: 20px;
 
     @media (max-width: 1366px) {
         position: relative;
@@ -70,45 +75,24 @@ export const ContentTable = styled.div`
 `
 
 
-export const TextInformationsOutsider = styled.span`
+export const RowName = styled.div`
     font-size: 14px;
     color: #101828;
     font-weight: 600;
 `
 
-export const TextName = styled.span`
+export const ColumnName = styled.div`
      font-size: 14px;
     color: #6A6A6A;
     font-weight: 500;
-    position: relative;
-    right: 55px;
-`
-
-export const TextEmail = styled.span`
-    font-size: 14px;
-    color: #6A6A6A;
-    font-weight: 500;
-    position: relative;
-    right: 65px;
-`
-
-export const TextNumber = styled.span`
-    font-size: 14px;
-    color: #6A6A6A;
-    font-weight: 500;
-    position: relative;
-    right: 33px;
-`
-
-export const TextAdress = styled.span`
-    font-size: 14px;
-    color: #6A6A6A;
-    font-weight: 500;
-    position: relative;
-    right: 55px;
+    display: flex;
+    justify-content: flex-start;
+    
 `
 
 export const IconMenu = styled.div`
+    position: absolute;
+    right: 25px;
     cursor: pointer;
 `
 
@@ -123,7 +107,7 @@ export const TopSectionModal = styled.div`
     align-items: center;
     width: 375px;
    
-` 
+`
 
 export const TextTitleModal = styled.span`
     font-size: 18px;
