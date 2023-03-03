@@ -31,6 +31,7 @@ export const ContentHeaderTable = styled.div`
     @media (max-width: 1366px) {
         position: relative;
         align-items: center;
+        padding-left: 20px;
     }
 `
 
@@ -59,7 +60,7 @@ export const ChecboxContainerTable = styled.input`
 `
 
 
-export const ContainerTable = styled.div`
+export const TableRow = styled.div`
      width: 1165px;
      height: 55px;
      background-color: #FFFFFF;
@@ -73,7 +74,7 @@ export const ContainerTable = styled.div`
     }
 `
 
-export const ContentTable = styled.div`
+export const RowContent = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -88,19 +89,26 @@ export const ContentTable = styled.div`
 `
 
 
-export const RowName = styled.div`
+export const ColumnValue = styled.div`
     font-size: 14px;
     color: #101828;
     font-weight: 600;
+    width: 200px;
+
+    @media (max-width: 1366px) {
+       padding-left: 30px;
+    }
 `
 
 export const ColumnName = styled.div`
      font-size: 14px;
     color: #6A6A6A;
     font-weight: 500;
-    display: flex;
-    justify-content: flex-start;
+    width: 200px;
     
+    @media (max-width: 1366px) {
+        width: 160px;
+    }
 `
 
 export const IconMenu = styled.div`

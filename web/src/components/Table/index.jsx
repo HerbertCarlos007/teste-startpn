@@ -47,7 +47,7 @@ export const Table = ({ outsiders }) => {
     const handleChangeSelect = (e) => {
         const textSelect = e.target.value
         setTypeOutsider(textSelect)
-        console.log(typeOutsider)
+        
     }
 
     const getEachOutsider = async (id) => {
@@ -89,6 +89,14 @@ export const Table = ({ outsiders }) => {
         window.location.reload()
     }
 
+    const hideExcessiveLongNames = (name) => {
+        if (name.length > 27) {
+            return name.slice(0, 24) + "...";
+        } else {
+            return name;
+        }
+    }
+
     return (
         <C.Container>
             <C.HeaderTable>
@@ -100,17 +108,17 @@ export const Table = ({ outsiders }) => {
                     <C.ColumnName>Endereço</C.ColumnName>
                 </C.ContentHeaderTable>
             </C.HeaderTable>
-            {outsiders.map((client, index) =>
-                <C.ContainerTable>
-                    <C.ContentTable>
+            {outsiders.map((outsider, index) =>
+                <C.TableRow>
+                    <C.RowContent>
                         <C.ChecboxContainerTable type='checkbox' />
-                        <C.RowName>{client.name}</C.RowName>
-                        <C.RowName>{client.email}</C.RowName>
-                        <C.RowName>{client.telephone}</C.RowName>
-                        <C.RowName>{client.address}</C.RowName>
-                        <C.IconMenu onClick={() => getEachOutsider(client.id)}><CgMenu /></C.IconMenu>
-                    </C.ContentTable>
-                </C.ContainerTable>
+                        <C.ColumnValue title={outsider.name}>{hideExcessiveLongNames(outsider.name)}</C.ColumnValue>
+                        <C.ColumnValue title={outsider.email}>{hideExcessiveLongNames(outsider.email)}</C.ColumnValue>
+                        <C.ColumnValue title={outsider.telephone}>{hideExcessiveLongNames(outsider.telephone)}</C.ColumnValue>
+                        <C.ColumnValue title={outsider.address}>{hideExcessiveLongNames(outsider.address)}</C.ColumnValue>
+                        <C.IconMenu onClick={() => getEachOutsider(outsider.id)}><CgMenu /></C.IconMenu>
+                    </C.RowContent>
+                </C.TableRow>
             )}
 
             <Modal show={showCreationModal} onClose={handleCloseCreationModal}>
