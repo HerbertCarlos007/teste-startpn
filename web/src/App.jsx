@@ -19,7 +19,7 @@ export const App = () => {
             <Route exact path="/" element={<Home />}></Route>
             <Route  path="/outsiders" element={<Outsiders />}></Route>
             <Route  path="/account" element={<Account />}></Route>
-            <Route  path="/newPassword" element={<NewPassword/>}></Route>
+            <Route  path="/newPassword/:id" element={<NewPassword/>}></Route>
           </Routes>
         </ProSidebarProvider>
       </Router>

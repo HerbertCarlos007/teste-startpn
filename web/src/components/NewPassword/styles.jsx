@@ -88,12 +88,14 @@ export const ContainerInput = styled.div`
 export const LabelForm = styled.label`
 `
 
-export const Input = styled.div`
+export const Input = styled.input`
     width: 418px;
     height: 50px;
     border: 1px solid #D7D7D7;
     border-radius: 10px;
     background: #FFFFFF;
+    margin-top: 10px;
+    padding-left: 10px;
 `
 
 export const ContainerButtons = styled.div`

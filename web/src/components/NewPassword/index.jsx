@@ -1,11 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
+import { useParams } from 'react-router-dom'
 import * as C from './styles'
 import backgroundImage from '../../assets/background.png'
 import steveJobsImage from '../../assets/stevejobs.png'
-
 import logo from '../../assets/logo.png'
+import api from '../../services/api'
 
 export const NewPassword = () => {
+
+    const [password, setPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
+    const { id } = useParams()
+
+
+    const handleNewPassword = async () => {
+        try {
+            const response = await api.put(`/recover-password/${id}`, {
+                password, confirmPassword
+            })
+        } catch (error) {
+            
+        }
+    }
+
     return (
         <C.Container>
             <C.Content>
@@ -24,17 +41,23 @@ export const NewPassword = () => {
                     <C.ContainerForm>
                         <C.ContainerInput>
                             <C.LabelForm>Nova senha</C.LabelForm>
-                            <C.Input placeholder="Insira a nova senha" />
+                            <C.Input
+                                placeholder="Insira a nova senha"
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
                         </C.ContainerInput>
 
                         <C.ContainerInput>
-                            <C.LabelForm>Nova senha</C.LabelForm>
-                            <C.Input placeholder="Insira a nova senha" />
+                            <C.LabelForm>Confirmação de nova senha</C.LabelForm>
+                            <C.Input
+                                placeholder="Insira a confirmação da sua senha"
+                                onChange={(e) => setConfirmPassword(e.target.value)}
+                            />
                         </C.ContainerInput>
                     </C.ContainerForm>
 
                     <C.ContainerButtons>
-                        <C.ButtonCreatePassword>Criar senha</C.ButtonCreatePassword>
+                        <C.ButtonCreatePassword onClick={handleNewPassword}>Criar senha</C.ButtonCreatePassword>
                         <C.TextRememberPassword>Lembrou da senha?</C.TextRememberPassword>
                     </C.ContainerButtons>
                 </C.RightSection>
