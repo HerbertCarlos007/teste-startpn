@@ -37,8 +37,8 @@ export const Outsiders = () => {
     }, [])
 
     useEffect(() => {
-        searchOutsider()
-    },[searchedOutsiderValue])
+        searchOutsiders()
+    }, [searchedOutsiderValue])
 
     const handleCreationModalNewOutsider = () => {
         setCreationModalNewOutsider(true)
@@ -116,16 +116,23 @@ export const Outsiders = () => {
         setIsSelected(typeOutsider === 'cliente' ? true : false);
     };
 
-    const searchOutsider = () => {
-        if(!searchedOutsiderValue) return
-        const searchedOutsiders = outsiders
-            .find((availableOutsiders) => availableOutsiders.name.split(' ')[0].toUpperCase() === searchedOutsiderValue.toUpperCase())
-            if (!searchedOutsiders) return
-            setOutsiders([searchedOutsiders])
-    }
+    const searchOutsiders = () => {
+        if (!searchedOutsiderValue) return;
+        const searchedOutsiders = outsiders.filter((availableOutsider) => {
+            const searchParts = searchedOutsiderValue.split(' ');
+            for (const searchedPart of searchParts) {
+                if (!searchedPart) continue;
+                if (!availableOutsider.name.toUpperCase().includes(searchedPart.toUpperCase())) {
+                    return false;
+                }
+            }
+            return true;
+        });
+        setOutsiders(searchedOutsiders);
+    };
 
-  const handleSearchInputChange = (e) => {
-    setSearchedOutsiderValue(e.target.value)
+    const handleSearchInputChange = (e) => {
+        setSearchedOutsiderValue(e.target.value)
     }
 
     return (
@@ -162,7 +169,7 @@ export const Outsiders = () => {
                             >
                                 Fornecedores
                             </C.TextSuppliers>
-                            
+
                         </C.ContainerCustomersAndSuppliers>
                         <C.IconSearch ><AiOutlineSearch /></C.IconSearch>
                         <C.Input
