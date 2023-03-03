@@ -119,7 +119,7 @@ export const Outsiders = () => {
     const searchOutsider = () => {
         if(!searchedOutsiderValue) return
         const searchedOutsiders = outsiders
-            .find((availableOutsiders) => availableOutsiders.name.toUpperCase() === searchedOutsiderValue.toUpperCase())
+            .find((availableOutsiders) => availableOutsiders.name.split(' ')[0].toUpperCase() === searchedOutsiderValue.toUpperCase())
             if (!searchedOutsiders) return
             setOutsiders([searchedOutsiders])
     }
