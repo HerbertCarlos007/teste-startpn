@@ -1,22 +1,22 @@
 import { Table, Column, Model, DataType, AllowNull} from 'sequelize-typescript'
 import { Optional } from 'sequelize'
 
-interface ClientsAttributes {
+interface OutsidersAttributes {
   id: number
   name: string
   email: string
   telephone: string
   address: string
-  type: string
+  typeOutsider: string
 }
 
-interface ClientsCreationAttributes extends Optional<ClientsAttributes, 'id'> {}
+interface OutsidersCreationAttributes extends Optional<OutsidersAttributes, 'id'> {}
 
 @Table({
   timestamps: true
 })
 
-class Clients extends Model <ClientsAttributes, ClientsCreationAttributes> {
+class Outsiders extends Model <OutsidersAttributes, OutsidersCreationAttributes> {
 
   @Column(DataType.TEXT)
   name: string | undefined
@@ -31,8 +31,8 @@ class Clients extends Model <ClientsAttributes, ClientsCreationAttributes> {
   address: string | undefined
 
   @Column(DataType.TEXT)
-  type: string | undefined
+  typeOutsider: string | undefined
 
 }
 
-export {Clients}
+export {Outsiders}

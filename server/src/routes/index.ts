@@ -1,12 +1,11 @@
 import { Router } from "express";
 import userRoutes from "./userRoutes";
-import clientRoutes from './clientsRoutes'
-import supplier from './suppliersRoutes'
+import outsiderRoutes from './outsidersRoutes'
 
 const router = require('express').Router()
 
 router.use(userRoutes)
-router.use(clientRoutes)
-router.use(supplier)
+router.use(outsiderRoutes)
+
 
 export default router

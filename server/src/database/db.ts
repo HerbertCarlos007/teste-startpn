@@ -1,7 +1,6 @@
 import { Sequelize } from 'sequelize-typescript'
 import { Users } from '../models/User'
-import {Clients} from '../models/Clients'
-import {Suppliers} from '../models/Supplier'
+import {Outsiders} from '../models/Outsiders'
 
 const sequelize = new Sequelize({
   database: process.env.DATABASE_NAME,
@@ -10,6 +9,6 @@ const sequelize = new Sequelize({
   password: process.env.DATABASE_PASS,
   host: process.env.DATABASE_HOST,
 })
-sequelize.addModels([Users, Clients, Suppliers])
+sequelize.addModels([Users, Outsiders])
 
 export { sequelize }
