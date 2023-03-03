@@ -40,6 +40,7 @@ export const Outsiders = () => {
         searchOutsiders()
     }, [searchedOutsiderValue])
 
+
     const handleCreationModalNewOutsider = () => {
         setCreationModalNewOutsider(true)
 

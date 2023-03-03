@@ -1,15 +1,28 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import * as C from './styles'
 import perfilImage from '../../assets/perfil.png'
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Dropdown from 'react-bootstrap/Dropdown';
+import api from '../../services/api'
 
-export const Header = ({ title}) => {
+export const Header = ({ title }) => {
 
+    const [user, setUser] = useState({})
     const navigate = useNavigate()
 
     const navigateToAccount = () => {
         navigate('/account')
+    }
+
+    useEffect(() => {
+        getUser()
+    }, [])
+
+    const getUser = async () => {
+        const id = localStorage.getItem('id')
+        const response = await api.get(`/users/${id}`)
+        setUser(response.data.user)
+        console.log(response.data.user)
     }
 
     return (
@@ -27,7 +40,7 @@ export const Header = ({ title}) => {
                         id="dropdown-basic"
                     >
                         <C.ImagePerfil src={perfilImage} />
-                        <C.TextName>Mateus Barbosa</C.TextName>
+                        <C.TextName>{user.name}</C.TextName>
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
