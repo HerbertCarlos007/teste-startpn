@@ -36,6 +36,10 @@ export const Outsiders = () => {
         getCustomFields()
     }, [])
 
+    useEffect(() => {
+        searchOutsider()
+    },[searchedOutsiderValue])
+
     const handleCreationModalNewOutsider = () => {
         setCreationModalNewOutsider(true)
 
@@ -113,13 +117,15 @@ export const Outsiders = () => {
     };
 
     const searchOutsider = () => {
+        if(!searchedOutsiderValue) return
         const searchedOutsiders = outsiders
             .find((availableOutsiders) => availableOutsiders.name.toUpperCase() === searchedOutsiderValue.toUpperCase())
-        return setOutsiders([searchedOutsiders])
+            if (!searchedOutsiders) return
+            setOutsiders([searchedOutsiders])
     }
 
-    const handleSearchInputChange = (e) => {
-        setSearchedOutsiderValue(e.target.value)
+  const handleSearchInputChange = (e) => {
+    setSearchedOutsiderValue(e.target.value)
     }
 
     return (
@@ -161,8 +167,8 @@ export const Outsiders = () => {
                         <C.IconSearch ><AiOutlineSearch /></C.IconSearch>
                         <C.Input
                             placeholder="Pesquisar"
-                        // value={searchedOutsiderValue}
-                        // onChange={handleSearchInputChange}
+                            value={searchedOutsiderValue}
+                            onChange={handleSearchInputChange}
                         />
                         <C.ContainerGear onClick={handleCreationModalConfiguration}>
                             <RxGear />

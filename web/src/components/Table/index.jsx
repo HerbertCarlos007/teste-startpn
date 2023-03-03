@@ -89,8 +89,6 @@ export const Table = ({ outsiders }) => {
         getOutsiders()
     }
 
-    console.log(outsiders)
-
     return (
         <C.Container>
             <C.HeaderTable>
@@ -102,7 +100,6 @@ export const Table = ({ outsiders }) => {
                     <C.TextAdress>Endereço</C.TextAdress>
                 </C.ContentHeaderTable>
             </C.HeaderTable>
-
             {outsiders.map((client, index) =>
                 <C.ContainerTable>
                     <C.ContentTable>
