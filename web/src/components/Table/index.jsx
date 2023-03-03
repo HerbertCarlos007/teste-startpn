@@ -76,8 +76,8 @@ export const Table = ({ outsiders }) => {
                 address,
                 typeOutsider
             })
-            getOutsiders()
             setShowCreationModalEditOutsider(false)
+            window.location.reload()
         } catch (error) {
 
         }
@@ -86,7 +86,7 @@ export const Table = ({ outsiders }) => {
     const deleteOutsider = async (id) => {
         await api.delete(`/outsiders/${id}`)
         setShowCreationModalDeleteOutsider(false)
-        getOutsiders()
+        window.location.reload()
     }
 
     return (

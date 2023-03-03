@@ -30,7 +30,7 @@ export const ContentHeaderTable = styled.div`
     margin-top: 15px;
     @media (max-width: 1366px) {
         position: relative;
-        right: 95px;
+        align-items: center;
     }
 `
 
@@ -38,12 +38,24 @@ export const CheckboxHeader = styled.input`
     position: absolute;
     left: 25px;
     top: 5px;
+
+    @media (max-width: 1366px) {
+        position: absolute;
+        left: 18px;
+        top: 5px;
+    }
 `
 
 export const ChecboxContainerTable = styled.input`
     position: absolute;
     left:24px;
     top: 19px;
+
+    @media (max-width: 1366px) {
+        position: absolute;
+        left: 17px;
+        top: 4px;
+    }
 `
 
 
@@ -70,7 +82,8 @@ export const ContentTable = styled.div`
 
     @media (max-width: 1366px) {
         position: relative;
-        right: 3px;
+        justify-content: space-evenly;
+        align-items: center;
     }
 `
 
