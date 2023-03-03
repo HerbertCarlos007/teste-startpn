@@ -29,6 +29,7 @@ export const Outsiders = () => {
     const [typeOutsider, setTypeOutsider] = useState('')
     const [showCreationModalNewOutsider, setCreationModalNewOutsider] = useState(false)
     const [showCreationModalConfiguration, setCreationModalConfiguration] = useState(false)
+    const [isSelected, setIsSelected] = useState(false)
 
     useEffect(() => {
         getOutsiders('cliente')
@@ -105,11 +106,11 @@ export const Outsiders = () => {
     }
 
     const getOutsiders = async (typeOutsider) => {
-        const outsiderServices = new OutsidersService()
-        const response = await outsiderServices.getOutsiders(typeOutsider)
-        setOutsiders(response)
-        console.log(outsiders)
-    }
+        const outsiderServices = new OutsidersService();
+        const response = await outsiderServices.getOutsiders(typeOutsider);
+        setOutsiders(response);
+        setIsSelected(typeOutsider === 'cliente' ? true : false);
+    };
 
     const searchOutsider = () => {
         const searchedOutsiders = outsiders
@@ -132,8 +133,30 @@ export const Outsiders = () => {
                 <C.ContainerOptions>
                     <C.LeftSection>
                         <C.ContainerCustomersAndSuppliers>
-                            <C.TextCostumers onClick={() => getOutsiders('cliente')}>Clientes</C.TextCostumers>
-                            <C.TextSuppliers onClick={() => getOutsiders('fornecedor')}>Fornecedores</C.TextSuppliers>
+                            <C.TextCostumers
+                                onClick={() => getOutsiders('cliente')}
+                                style={{
+                                    backgroundColor: isSelected ? '#476EE6' : '',
+                                    color: isSelected ? 'white' : '',
+                                    padding: '5px',
+                                    borderRadius: '100px',
+                                }}
+                            >
+                                Clientes
+                            </C.TextCostumers>
+
+                            <C.TextSuppliers
+                                onClick={() => getOutsiders('fornecedor')}
+                                style={{
+                                    backgroundColor: !isSelected ? '#476EE6' : '',
+                                    color: !isSelected ? 'white' : '',
+                                    padding: '5px',
+                                    borderRadius: '100px',
+                                }}
+                            >
+                                Fornecedores
+                            </C.TextSuppliers>
+                            
                         </C.ContainerCustomersAndSuppliers>
                         <C.IconSearch ><AiOutlineSearch /></C.IconSearch>
                         <C.Input
@@ -178,47 +201,47 @@ export const Outsiders = () => {
 
                     <C.ContainerForm>
                         <C.ContainerInputs>
-                            
-                                <C.FormInputs>
-                                    <C.LabelForm>Nome do Terceiro</C.LabelForm>
-                                    <C.InputNewOutsider onChange={(e) => setName(e.target.value)} />
-                                </C.FormInputs>
 
-                                <C.FormInputs>
-                                    <C.LabelForm>E-mail</C.LabelForm>
-                                    <C.InputNewOutsider onChange={(e) => setEmail(e.target.value)} />
-                                </C.FormInputs>
-                            
-                           
-                                <C.FormInputs>
-                                    <C.LabelForm>Telefone</C.LabelForm>
-                                    <C.InputNewOutsider onChange={(e) => setTelephone(e.target.value)} />
-                                </C.FormInputs>
+                            <C.FormInputs>
+                                <C.LabelForm>Nome do Terceiro</C.LabelForm>
+                                <C.InputNewOutsider onChange={(e) => setName(e.target.value)} />
+                            </C.FormInputs>
 
-                                <C.FormInputs>
-                                    <C.LabelForm>Endereço</C.LabelForm>
-                                    <C.InputNewOutsider onChange={(e) => setAddress(e.target.value)} />
-                                </C.FormInputs>
-                          
+                            <C.FormInputs>
+                                <C.LabelForm>E-mail</C.LabelForm>
+                                <C.InputNewOutsider onChange={(e) => setEmail(e.target.value)} />
+                            </C.FormInputs>
 
-                           
-                                <C.FormInputs>
-                                    <C.LabelForm>Tipo</C.LabelForm>
-                                    <C.Select onChange={handleChangeSelect}>
-                                        <C.OptionsSelect >Selecione</C.OptionsSelect>
-                                        <C.OptionsSelect >Cliente</C.OptionsSelect>
-                                        <C.OptionsSelect >Fornecedor</C.OptionsSelect>
-                                    </C.Select>
-                                </C.FormInputs>
-                                    {fields.map((field) =>
-                                        <>
-                                            <C.FormInputs>
-                                                <C.LabelForm>{field.name}</C.LabelForm>
-                                                <C.InputNewOutsider placeholder={field.description} />
-                                            </C.FormInputs>
-                                        </>
-                                    )}
-                        
+
+                            <C.FormInputs>
+                                <C.LabelForm>Telefone</C.LabelForm>
+                                <C.InputNewOutsider onChange={(e) => setTelephone(e.target.value)} />
+                            </C.FormInputs>
+
+                            <C.FormInputs>
+                                <C.LabelForm>Endereço</C.LabelForm>
+                                <C.InputNewOutsider onChange={(e) => setAddress(e.target.value)} />
+                            </C.FormInputs>
+
+
+
+                            <C.FormInputs>
+                                <C.LabelForm>Tipo</C.LabelForm>
+                                <C.Select onChange={handleChangeSelect}>
+                                    <C.OptionsSelect >Selecione</C.OptionsSelect>
+                                    <C.OptionsSelect >Cliente</C.OptionsSelect>
+                                    <C.OptionsSelect >Fornecedor</C.OptionsSelect>
+                                </C.Select>
+                            </C.FormInputs>
+                            {fields.map((field) =>
+                                <>
+                                    <C.FormInputs>
+                                        <C.LabelForm>{field.name}</C.LabelForm>
+                                        <C.InputNewOutsider placeholder={field.description} />
+                                    </C.FormInputs>
+                                </>
+                            )}
+
                         </C.ContainerInputs>
                     </C.ContainerForm>
                 </C.ModalContainerNewOutsider>
