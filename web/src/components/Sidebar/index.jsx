@@ -1,5 +1,5 @@
 import React from 'react';
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import { GrGroup } from 'react-icons/gr'
 import { RxGear } from 'react-icons/rx'
@@ -21,6 +21,11 @@ export const SideBar = () => {
         navigate('/outsiders')
     }
 
+    const logout = () => {
+        localStorage.removeItem('token')
+        navigate('/')    
+    }
+
     return (
         <Sidebar backgroundColor='#fff'
             style=
@@ -34,13 +39,13 @@ export const SideBar = () => {
             }}
         >
             <C.Logo src={logo} />
-            <Menu style={{marginTop: '60px'}}>
+            <Menu style={{ marginTop: '60px' }}>
                 <MenuItem icon={<GrGroup />} onClick={navigateToOutsiders}>Terceiros</MenuItem>
                 <MenuItem icon={<BsChatSquareText />}> Exemplo </MenuItem>
                 <MenuItem icon={<BsChatSquareText />}> Exemplo </MenuItem>
                 <MenuItem icon={<RxGear />}> Exemplo </MenuItem>
                 <MenuItem icon={<VscAccount />} onClick={navigateToAccount}> Minha conta </MenuItem>
-                <MenuItem icon={<RxExit />} style={{marginTop: '150px'}} onClick={navigateToAccount}> Sair </MenuItem>
+                <MenuItem icon={<RxExit />} style={{ marginTop: '150px' }} onClick={logout}> Sair </MenuItem>
             </Menu>
         </Sidebar>
     );

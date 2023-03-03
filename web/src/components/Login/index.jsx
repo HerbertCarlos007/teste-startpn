@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import {useNavigate} from 'react-router-dom'
+import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom'
 import * as C from './styles'
 import api from "../../services/api";
 
@@ -16,8 +16,9 @@ export const Login = ({ setFormState }) => {
         const response = await api.post('/auth', {
             email, password
         })
-        if(response.status === 200) {
+        if (response.status === 200) {
             localStorage.setItem('token', response.data.token)
+            localStorage.setItem('id', response.data.user.id)
             navigate('/outsiders')
         }
     }
@@ -31,12 +32,12 @@ export const Login = ({ setFormState }) => {
                 <C.ContainerInputs>
                     <C.FormInputs>
                         <C.LabelForm>E-mail</C.LabelForm>
-                        <C.Input placeholder="Insira seu nome" onChange={(e) => setEmail(e.target.value)}/>
+                        <C.Input placeholder="Insira seu nome" onChange={(e) => setEmail(e.target.value)} />
                     </C.FormInputs>
 
                     <C.FormInputs>
                         <C.LabelForm>Senha</C.LabelForm>
-                        <C.Input placeholder="Insira sua senha" onChange={(e) => setPassword(e.target.value)}/>
+                        <C.Input placeholder="Insira sua senha" onChange={(e) => setPassword(e.target.value)} />
                     </C.FormInputs>
                 </C.ContainerInputs>
             </C.ContainerFormLogin>

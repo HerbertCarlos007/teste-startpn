@@ -1,10 +1,17 @@
 import React from "react";
 import * as C from './styles'
 import perfilImage from '../../assets/perfil.png'
-
+import {useNavigate} from 'react-router-dom'
 import Dropdown from 'react-bootstrap/Dropdown';
 
 export const Header = ({ title}) => {
+
+    const navigate = useNavigate()
+
+    const navigateToAccount = () => {
+        navigate('/account')
+    }
+
     return (
         <C.TopContainer>
             <C.TextOutsider>{title}</C.TextOutsider>
@@ -24,7 +31,7 @@ export const Header = ({ title}) => {
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
-                        <Dropdown.Item >Perfil</Dropdown.Item>
+                        <Dropdown.Item onClick={navigateToAccount}>Perfil</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
             </C.DropDown>

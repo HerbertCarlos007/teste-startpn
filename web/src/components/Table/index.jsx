@@ -205,7 +205,7 @@ export const Table = ({ outsiders }) => {
                         <C.DownFormInputs>
                             <C.FormInputs>
                                 <C.LabelForm>Tipo</C.LabelForm>
-                                <C.Select onChange={handleChangeSelect}>
+                                <C.Select onChange={handleChangeSelect} value={typeOutsider}>
                                     <C.OptionsSelect>Selecione</C.OptionsSelect>
                                     <C.OptionsSelect>Cliente</C.OptionsSelect>
                                     <C.OptionsSelect>Fornecedor</C.OptionsSelect>
