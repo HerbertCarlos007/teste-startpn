@@ -10,15 +10,14 @@ import { HiOutlineTrash } from 'react-icons/hi'
 import { AiOutlinePlus } from 'react-icons/ai'
 import photo from '../../../assets/group.png'
 import { Modal } from '../../Modal'
-import { ButtonActions } from "../../ButtonActions";
 import { Header } from "../../Header";
+import { OutsidersService } from '../../../services/outsidersService'
 
 import api from '../../../services/api'
 
-
-
 export const Outsiders = () => {
 
+    const [outsiders, setOutsiders] = useState([])
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [telephone, setTelephone] = useState('')
@@ -26,6 +25,10 @@ export const Outsiders = () => {
     const [typeOutsider, setTypeOutsider] = useState('')
     const [showCreationModalNewOutsider, setCreationModalNewOutsider] = useState(false)
     const [showCreationModalConfiguration, setCreationModalConfiguration] = useState(false)
+
+    useEffect(() => {
+        getOutsiders('cliente')
+    }, [])
 
     const handleCreationModalNewOutsider = () => {
         setCreationModalNewOutsider(true)
@@ -45,9 +48,9 @@ export const Outsiders = () => {
     }
 
     const handleChangeSelect = (e) => {
-       const textSelect = e.target.value
-       setTypeOutsider(textSelect)
-       console.log(typeOutsider)
+        const textSelect = e.target.value
+        setTypeOutsider(textSelect)
+        console.log(typeOutsider)
     }
 
     const createNewOutsider = async (e) => {
@@ -55,18 +58,24 @@ export const Outsiders = () => {
 
         try {
             await api.post('/outsiders', {
-                name, 
-                email, 
-                telephone, 
-                address, 
+                name,
+                email,
+                telephone,
+                address,
                 typeOutsider
             })
-          
+
             setCreationModalNewOutsider(false)
             window.location.reload()
         } catch (error) {
 
         }
+    }
+
+    const getOutsiders = async (typeOutsider) => {
+        const outsiderServices = new OutsidersService()
+        const response = await outsiderServices.getOutsiders(typeOutsider)
+        setOutsiders(response)
     }
 
     return (
@@ -80,8 +89,8 @@ export const Outsiders = () => {
                 <C.ContainerOptions>
                     <C.LeftSection>
                         <C.ContainerCustomersAndSuppliers>
-                            <C.TextCostumers>Clientes</C.TextCostumers>
-                            <C.TextSuppliers>Fornecedores</C.TextSuppliers>
+                            <C.TextCostumers onClick={() => getOutsiders('cliente')}>Clientes</C.TextCostumers>
+                            <C.TextSuppliers onClick={() => getOutsiders('fornecedor')}>Fornecedores</C.TextSuppliers>
                         </C.ContainerCustomersAndSuppliers>
                         <C.IconSearch><AiOutlineSearch /></C.IconSearch>
                         <C.Input placeholder="Pesquisar" />
@@ -96,9 +105,8 @@ export const Outsiders = () => {
                     </C.RightSection>
                 </C.ContainerOptions>
 
-
                 <C.ContentContainer>
-                    <Table />
+                    <Table outsiders={outsiders} />
                 </C.ContentContainer>
             </C.ContainerAllContent>
 
@@ -151,7 +159,7 @@ export const Outsiders = () => {
                             <C.DownFormInputs>
                                 <C.FormInputs>
                                     <C.LabelForm>Tipo</C.LabelForm>
-                                    <C.Select onChange={handleChangeSelect}> 
+                                    <C.Select onChange={handleChangeSelect}>
                                         <C.OptionsSelect >Selecione</C.OptionsSelect>
                                         <C.OptionsSelect >Cliente</C.OptionsSelect>
                                         <C.OptionsSelect >Fornecedor</C.OptionsSelect>
@@ -222,6 +230,6 @@ export const Outsiders = () => {
 
                 </C.ModalContainerConfiguration>
             </Modal>
-        </C.Container>
+        </C.Container >
     )
 }

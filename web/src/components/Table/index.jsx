@@ -8,7 +8,7 @@ import photo from '../../assets/photo.png'
 import api from "../../services/api";
 
 
-export const Table = () => {
+export const Table = ({ outsiders }) => {
 
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -16,15 +16,9 @@ export const Table = () => {
     const [address, setAddress] = useState('')
     const [typeOutsider, setTypeOutsider] = useState('')
     const [selectedId, setSelectedId] = useState('')
-    const [oustiders, setoustiders] = useState([])
     const [showCreationModal, setShowCreationModal] = useState(false)
     const [showCreationModalDeleteOutsider, setShowCreationModalDeleteOutsider] = useState(false)
     const [showCreationModalEditOutsider, setShowCreationModalEditOutsider] = useState(false)
-
-    useEffect(() => {
-        getOutsiders()
-    }, [])
-
 
     const handleCloseCreationModal = () => {
         setShowCreationModal(false)
@@ -54,15 +48,6 @@ export const Table = () => {
         const textSelect = e.target.value
         setTypeOutsider(textSelect)
         console.log(typeOutsider)
-     }
-
-    const getOutsiders = async () => {
-        try {
-            const response = await api.get('/outsiders')
-            setoustiders(response.data.outsiders)
-        } catch (error) {
-            console.log(error)
-        }
     }
 
     const getEachOutsider = async (id) => {
@@ -104,6 +89,8 @@ export const Table = () => {
         getOutsiders()
     }
 
+    console.log(outsiders)
+
     return (
         <C.Container>
             <C.HeaderTable>
@@ -116,7 +103,7 @@ export const Table = () => {
                 </C.ContentHeaderTable>
             </C.HeaderTable>
 
-            {oustiders.map((client, index) =>
+            {outsiders.map((client, index) =>
                 <C.ContainerTable>
                     <C.ContentTable>
                         <C.Checkbox type='checkbox' />
@@ -158,14 +145,14 @@ export const Table = () => {
 
                     <C.ContainerConfirmDelete>
                         <C.TextConfirmDeleteOutsider>
-                            Tem certeza que deseja excluir o 
+                            Tem certeza que deseja excluir o
                         </C.TextConfirmDeleteOutsider>
-                      
-                            {/* <C.TextBold   </C.TextBold> */}
-                            <C.AlignInputNameDelete>
-                                <C.InputNameDelete placeholder="cliente" disabled value={name} />
-                            </C.AlignInputNameDelete>
-                      
+
+                        {/* <C.TextBold   </C.TextBold> */}
+                        <C.AlignInputNameDelete>
+                            <C.InputNameDelete placeholder="cliente" disabled value={name} />
+                        </C.AlignInputNameDelete>
+
                     </C.ContainerConfirmDelete>
                 </C.ModalContainerDeleteOutsider>
             </Modal>
@@ -228,6 +215,8 @@ export const Table = () => {
                     </C.ContainerInputs>
                 </C.ContainerForm>
             </Modal >
+
+
 
         </C.Container>
     )
