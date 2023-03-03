@@ -27,9 +27,19 @@ class UserController {
         return res.status(200).json(user)
     }
 
-    async findAllUser(req: Request, res: Response) {
+    async find(req: Request, res: Response) {
+        const {id} = req.params
+        console.log(req.params)
+        if(id) {
+           const user = await Users.findOne({
+            where: {
+                id: Number(id)
+            }
+           })
+            return res.json({ user })
+        }
         const users = await Users.findAll()
-        return res.json({ users })
+        return res.status(200).json({users})
     }
 
     async forgotPassword(req: Request, res: Response) {

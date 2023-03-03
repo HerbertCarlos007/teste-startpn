@@ -26,6 +26,6 @@ app.get('/', (req: Request,res: Response) => {
 
 
 app.listen(process.env.PORT, async () => {
-    await sequelize.sync()
+    await sequelize.sync({force: true})
     console.log(`Porta: ${process.env.PORT}`)
 })
