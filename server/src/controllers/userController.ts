@@ -1,9 +1,7 @@
 import { Request, Response } from 'express'
 import { Users } from '../models/User'
 import nodemailer from 'nodemailer'
-import crypto from 'crypto'
-import bcrypt from 'bcrypt'
-import {encryptPassword } from '../utils/encryptPassword'
+import { encryptPassword } from '../utils/encryptPassword'
 
 class UserController {
 
@@ -20,7 +18,7 @@ class UserController {
             return res.json({ error: 'Usuário já existe' })
         }
 
-     const hashPassword = await encryptPassword(password)
+        const hashPassword = await encryptPassword(password)
         const user = await Users.create({
             name,
             email,
@@ -75,14 +73,25 @@ class UserController {
     }
 
     async recoverPassword(req: Request, res: Response) {
-        const {id} = req.params
-
-        const oldUser = await Users
-    //    const password = await encryptPassword(req.body.password)
-
-       
-         
-    }
+        const { id } = req.params;
+        const password = await encryptPassword(req.body.password);
+      
+        try {
+          await Users.update({
+            password
+          }, {
+            where: {
+              id
+            }
+          });
+      
+          return res.status(200).json({ message: 'Senha atualizada com sucesso.'});
+        } catch (error) {
+          
+          return res.status(500).json({ message: 'Erro ao atualizar senha.',});
+        }
+      }
+      
 }
 
 export default new UserController()
