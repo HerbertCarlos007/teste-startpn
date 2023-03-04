@@ -251,7 +251,7 @@ export const Outsiders = () => {
                                 <>
                                     <C.FormInputs>
                                         <C.LabelForm>{field.name}</C.LabelForm>
-                                        <C.InputNewOutsider placeholder={field.description} />
+                                        <C.InputNewOutsider  />
                                     </C.FormInputs>
                                 </>
                             )}

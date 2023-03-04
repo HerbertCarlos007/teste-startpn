@@ -36,19 +36,19 @@ export const Register = ({ setFormState }) => {
 
                     <C.FormInputs>
                         <C.LabelForm>E-mail</C.LabelForm>
-                        <C.Input placeholder="Insira seu e-mail" onChange={(e) => setEmail(e.target.value)}/>
+                        <C.Input placeholder="Insira seu e-mail" onChange={(e) => setEmail(e.target.value)} type='email'/>
                     </C.FormInputs>
                 </C.UpFormInputs>
 
                 <C.DownFormInputs>
                     <C.FormInputs>
                         <C.LabelForm>Senha</C.LabelForm>
-                        <C.Input placeholder="Insira sua senha" onChange={(e) => setPassword(e.target.value)}/>
+                        <C.Input placeholder="Insira sua senha" onChange={(e) => setPassword(e.target.value)} type='password'/>
                     </C.FormInputs>
 
                     <C.FormInputs>
                         <C.LabelForm>Confirme sua senha</C.LabelForm>
-                        <C.Input placeholder="Confirme senha" onChange={(e) => setConfirmPassword(e.target.value)}/>
+                        <C.Input placeholder="Confirme senha" onChange={(e) => setConfirmPassword(e.target.value)} type='password'/>
                     </C.FormInputs>
                 </C.DownFormInputs>
 

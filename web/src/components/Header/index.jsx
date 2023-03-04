@@ -22,7 +22,6 @@ export const Header = ({ title }) => {
         const id = localStorage.getItem('id')
         const response = await api.get(`/users/${id}`)
         setUser(response.data.user)
-        console.log(response.data.user)
     }
 
     return (

@@ -44,6 +44,7 @@ export const NewPassword = () => {
                             <C.Input
                                 placeholder="Insira a nova senha"
                                 onChange={(e) => setPassword(e.target.value)}
+                                type='password'
                             />
                         </C.ContainerInput>
 
@@ -52,6 +53,7 @@ export const NewPassword = () => {
                             <C.Input
                                 placeholder="Insira a confirmação da sua senha"
                                 onChange={(e) => setConfirmPassword(e.target.value)}
+                                type='password'
                             />
                         </C.ContainerInput>
                     </C.ContainerForm>

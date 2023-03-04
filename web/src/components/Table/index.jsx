@@ -58,6 +58,7 @@ export const Table = ({ outsiders }) => {
             setEmail(data.email)
             setTelephone(data.telephone)
             setAddress(data.address)
+            setTypeOutsider(data.typeOutsider)
             setSelectedId(data.id)
             setShowCreationModal(true)
 
