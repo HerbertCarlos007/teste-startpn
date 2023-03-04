@@ -5,7 +5,11 @@ export const styles = StyleSheet.create({
         backgroundColor: '#FFFFFF',
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+    },
+
+    content: {
+        marginBottom: 60,
     },
 
     button: {
@@ -16,6 +20,11 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 10
+    },
+
+    title: {
+        fontSize: 21,
+        fontWeight: 600
     },
 
     text: {
