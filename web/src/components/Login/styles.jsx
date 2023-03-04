@@ -81,3 +81,12 @@ export const TextForgotPassword = styled.span`
    color:  #476EE6;
    cursor: pointer;
 `
+
+export const IconHidePassword = styled.div`
+   position: relative;
+   left: 380px;
+   bottom: 35px;
+   cursor: pointer;
+   width: 0;
+   height: 0;
+`

@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom'
 import * as C from './styles'
 import api from "../../services/api";
-
 import logo from '../../assets/logo.png'
+import { GrHide } from 'react-icons/gr'
 
 export const Login = ({ setFormState }) => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [typeInputPassword, setTypeInputPassword] = useState('text')
 
     const navigate = useNavigate()
 
@@ -21,6 +22,10 @@ export const Login = ({ setFormState }) => {
             localStorage.setItem('id', response.data.user.id)
             navigate('/outsiders')
         }
+    }
+
+    const toggleTypeInputPassword = () => {
+        setTypeInputPassword(typeInputPassword === 'text' ? 'password' : 'text')
     }
 
     return (
@@ -36,8 +41,11 @@ export const Login = ({ setFormState }) => {
                     </C.FormInputs>
                     <C.FormInputs>
                         <C.LabelForm>Senha</C.LabelForm>
-                        <C.Input placeholder="Insira sua senha" type='password' onChange={(e) => setPassword(e.target.value)} />
+                        <C.Input placeholder="Insira sua senha" type={typeInputPassword} onChange={(e) => setPassword(e.target.value)} />
                     </C.FormInputs>
+                    <C.IconHidePassword onClick={toggleTypeInputPassword}>
+                        <GrHide size={24} color='black' />
+                    </C.IconHidePassword>
                 </C.ContainerInputs>
             </C.ContainerFormLogin>
             <C.ContainerButtonAndForgotPassword>

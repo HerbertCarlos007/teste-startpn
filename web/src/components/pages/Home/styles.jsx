@@ -22,7 +22,9 @@ export const ContainerRegister = styled.div`
 `
 
 export const LeftSideContainer = styled.div`
-    
+      @media only screen and (max-width: 574px) {
+        display: none;
+    }
 `
 
 export const RightSideContainer = styled.div`

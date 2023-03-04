@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import * as C from './styles'
 import logo from '../../assets/logo.png'
 import api from '../../services/api'
-import {GrHide} from 'react-icons/gr'
+import { GrHide } from 'react-icons/gr'
 
 
 export const Register = ({ setFormState }) => {
@@ -60,7 +60,7 @@ export const Register = ({ setFormState }) => {
                             type={typeInputPassword}
                         />
                         <C.IconHidePassword onClick={toggleTypeInputPassword}>
-                            <GrHide size={24} color='black'/>
+                            <GrHide size={24} color='black' />
                         </C.IconHidePassword>
                     </C.FormInputs>
 
@@ -71,11 +71,11 @@ export const Register = ({ setFormState }) => {
                             onChange={(e) => setConfirmPassword(e.target.value)}
                             type={typeInputConfirmPassword} />
                         <C.IconHidePassword onClick={toggleTypeInputConfirmPassword}>
-                            <GrHide size={24} color='black'/>
+                            <GrHide size={24} color='black' />
                         </C.IconHidePassword>
                     </C.FormInputs>
                 </C.DownFormInputs>
-    
+
                 <C.ContainerTerms>
                     <C.TextTerms>Termos de uso e privacidade</C.TextTerms>
                     <br />
