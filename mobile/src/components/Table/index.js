@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Image, SafeAreaView, FlatList, TouchableOpacity, TextInput } from 'react-native'
 import { styles } from './styles'
 import perfil from '../../../assets/perfil.png'
@@ -11,15 +11,45 @@ import { MaterialIcons } from '@expo/vector-icons'
 import { AntDesign } from '@expo/vector-icons'
 import { ModalComponent } from '../Modal'
 import { ModalEditAndCreate } from '../ModalEditAndCreate'
-
+import api from '../../services/api';
 import { FAB } from 'react-native-elements';
+import {OutsidersService} from '../../services/outsidersService'
 
-export const Table = ({outsiders}) => {
+export const Table = ({ outsiders }) => {
 
     const [showModal, setShowModal] = useState(false)
     const [showModalDeleteOutsider, setShowModalDeleteOutsider] = useState(false)
     const [showModalEditOutsider, setShowModalEditOutsider] = useState(false)
     const [showModalNewOutsider, setShowModalNewOutsider] = useState(false)
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [telephone, setTelephone] = useState('')
+    const [address, setAddress] = useState('')
+    const [typeOutsider, setTypeOutsider] = useState('')
+
+    useEffect(() => {
+        getOutsiders('cliente')
+    }, [])
+
+    const handleName = (value) => {
+        setName(value)
+    }
+
+    const handleEmail = (value) => {
+        setEmail(value)
+    }
+
+    const handleTelephone = (value) => {
+        setTelephone(value)
+    }
+
+    const handleAddress = (value) => {
+        setAddress(value)
+    }
+
+    const handleTypeOutsider = (value) => {
+        setTypeOutsider(value)
+    }
 
     const handleOpenModalDeleteOustider = () => {
         setShowModalDeleteOutsider(true)
@@ -40,15 +70,22 @@ export const Table = ({outsiders}) => {
     }
 
     const handleOpenModalNewOutsider = () => {
-        setShowModalEditOutsider(true)
+        setShowModalNewOutsider(true)
         setShowModal(false)
     }
 
     const handleCloseModalNewOutsider = () => {
-        setShowModalEditOutsider(false)
+        setShowModalNewOutsider(false)
     }
 
-    
+    const getOutsiders = async (typeOutsider) => {
+        const outsiderServices = new OutsidersService();
+        const response = await outsiderServices.getOutsiders(typeOutsider);
+        setOutsiders(response);
+
+    };
+
+
     const hideExcessiveLongNames = (name) => {
         if (name.length > 30) {
             return name.slice(0, 27) + "...";
@@ -57,14 +94,31 @@ export const Table = ({outsiders}) => {
         }
     }
 
+    const createNewOutsider = async (e) => {
+        e.preventDefault()
+        try {
+            const response = await api.post('/outsiders', {
+                name,
+                email,
+                telephone,
+                address,
+                typeOutsider
+            })
+            console.log(response)
+            setShowModalNewOutsider(false)
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     return (
-        <>  
-            <FAB 
-            icon={<AntDesign name="plus" size={24} color="#fff" />} 
-            color='#476EE6'
-            placement='right'
-            style={{zIndex: 9}}
-            onPress={handleOpenModalNewOutsider}
+        <>
+            <FAB
+                icon={<AntDesign name="plus" size={24} color="#fff" />}
+                color='#476EE6'
+                placement='right'
+                style={{ zIndex: 9 }}
+                onPress={handleOpenModalNewOutsider}
             />
             <View style={styles.container} >
                 <FlatList
@@ -248,7 +302,7 @@ export const Table = ({outsiders}) => {
                         </View>
                         <View style={styles.rightSideModal}>
                             <View style={styles.containerEdit}>
-                                <TouchableOpacity >
+                                <TouchableOpacity onPress={createNewOutsider}>
                                     <Text style={styles.buttonEdit}>Adicionar</Text>
                                 </TouchableOpacity>
                             </View>
@@ -268,26 +322,39 @@ export const Table = ({outsiders}) => {
                     <View style={styles.containerForm}>
                         <View style={styles.containerInputs}>
                             <Text style={styles.labelForm}>Nome do terceiro</Text>
-                            <TextInput style={styles.input} />
+                            <TextInput 
+                            style={styles.input} 
+                            onChangeText={handleName}
+                            />
                         </View>
                         <View style={styles.containerInputs}>
                             <Text style={styles.labelForm}>E-mail</Text>
-                            <TextInput style={styles.input} />
+                            <TextInput 
+                            style={styles.input} 
+                            onChangeText={handleEmail}
+                            />
                         </View>
 
                         <View style={styles.containerInputs}>
                             <Text style={styles.labelForm}>Telefone</Text>
-                            <TextInput style={styles.input} />
+                            <TextInput 
+                            style={styles.input} 
+                            onChangeText={handleTelephone}
+                            />
                         </View>
 
                         <View style={styles.containerInputs}>
                             <Text style={styles.labelForm}>Endereço</Text>
-                            <TextInput style={styles.input} />
+                            <TextInput style={styles.input} 
+                             onChangeText={handleAddress}
+                            />
                         </View>
 
                         <View style={styles.containerInputs}>
                             <Text style={styles.labelForm}>Tipo</Text>
-                            <TextInput style={styles.input} />
+                            <TextInput style={styles.input} 
+                             onChangeText={handleTypeOutsider}
+                            />
                         </View>
                     </View>
                 </View>
