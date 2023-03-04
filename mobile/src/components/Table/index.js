@@ -14,7 +14,7 @@ import { ModalEditAndCreate } from '../ModalEditAndCreate'
 
 import { FAB } from 'react-native-elements';
 
-export const Table = () => {
+export const Table = ({outsiders}) => {
 
     const [showModal, setShowModal] = useState(false)
     const [showModalDeleteOutsider, setShowModalDeleteOutsider] = useState(false)
@@ -48,53 +48,53 @@ export const Table = () => {
         setShowModalEditOutsider(false)
     }
 
-    const data = [
-        {
-            id: 1,
-            nome: 'Matheus Santos',
-            email: 'mateus@startpn.com',
-            telefone: '11 97796-5692',
-            endereco: 'Av. Brg. Faria Lima, 2355 - São Paulo - SP, 01452-922'
-        },
+    // const data = [
+    //     {
+    //         id: 1,
+    //         nome: 'Matheus Santos',
+    //         email: 'mateus@startpn.com',
+    //         telefone: '11 97796-5692',
+    //         endereco: 'Av. Brg. Faria Lima, 2355 - São Paulo - SP, 01452-922'
+    //     },
 
-        {
-            id: 2,
-            nome: 'Robert Vitoriano',
-            email: 'mateus@startpn.com',
-            telefone: '11 97796-5692',
-            endereco: 'Av. Brg. Faria Lima, 2355 - São Paulo - SP, 01452-922'
-        },
+    //     {
+    //         id: 2,
+    //         nome: 'Robert Vitoriano',
+    //         email: 'mateus@startpn.com',
+    //         telefone: '11 97796-5692',
+    //         endereco: 'Av. Brg. Faria Lima, 2355 - São Paulo - SP, 01452-922'
+    //     },
 
-        {
-            id: 3,
-            nome: 'Patrick Alves',
-            email: 'mateus@startpn.com',
-            telefone: '11 97796-5692',
-            endereco: 'Av. Brg. Faria Lima, 2355 - São Paulo - SP, 01452-922'
-        },
-        {
-            id: 4,
-            nome: 'Herbert Carlos',
-            email: 'mateus@startpn.com',
-            telefone: '11 97796-5692',
-            endereco: 'Av. Brg. Faria Lima, 2355 - São Paulo - SP, 01452-922'
-        },
-        {
-            id: 5,
-            nome: 'Bruno Sousa',
-            email: 'mateus@startpn.com',
-            telefone: '11 97796-5692',
-            endereco: 'Av. Brg. Faria Lima, 2355 - São Paulo - SP, 01452-922'
-        },
-        {
-            id: 6,
-            nome: 'Vitor Carlos',
-            email: 'mateus@startpn.com',
-            telefone: '11 97796-5692',
-            endereco: 'Av. Brg. Faria Lima, 2355 - São Paulo - SP, 01452-922'
-        },
+    //     {
+    //         id: 3,
+    //         nome: 'Patrick Alves',
+    //         email: 'mateus@startpn.com',
+    //         telefone: '11 97796-5692',
+    //         endereco: 'Av. Brg. Faria Lima, 2355 - São Paulo - SP, 01452-922'
+    //     },
+    //     {
+    //         id: 4,
+    //         nome: 'Herbert Carlos',
+    //         email: 'mateus@startpn.com',
+    //         telefone: '11 97796-5692',
+    //         endereco: 'Av. Brg. Faria Lima, 2355 - São Paulo - SP, 01452-922'
+    //     },
+    //     {
+    //         id: 5,
+    //         nome: 'Bruno Sousa',
+    //         email: 'mateus@startpn.com',
+    //         telefone: '11 97796-5692',
+    //         endereco: 'Av. Brg. Faria Lima, 2355 - São Paulo - SP, 01452-922'
+    //     },
+    //     {
+    //         id: 6,
+    //         nome: 'Vitor Carlos',
+    //         email: 'mateus@startpn.com',
+    //         telefone: '11 97796-5692',
+    //         endereco: 'Av. Brg. Faria Lima, 2355 - São Paulo - SP, 01452-922'
+    //     },
 
-    ]
+    // ]
 
     return (
         <>  
@@ -108,7 +108,7 @@ export const Table = () => {
             <View style={styles.container} >
                 <FlatList
                     showsVerticalScrollIndicator={false}
-                    data={data}
+                    data={outsiders}
                     renderItem={({ item }) =>
 
                         <View style={styles.containerList}>
@@ -116,7 +116,7 @@ export const Table = () => {
                                 <View style={styles.leftSide}>
                                     <Checkbox color='#476EE6' style={styles.checkbox} />
                                     <Image source={perfil} />
-                                    <Text>{item.nome}</Text>
+                                    <Text>{item.name}</Text>
                                 </View>
 
                                 <View style={styles.rightSide}>
@@ -146,12 +146,12 @@ export const Table = () => {
                                     </Text>
 
                                     <Text style={styles.valueTelephone}>
-                                        {item.telefone}
+                                        {item.telephone}
                                     </Text>
 
                                     <View style={styles.containerAddress}>
                                         <Text style={styles.valueAddress}>
-                                            {item.endereco}
+                                            {item.address}
                                         </Text>
                                     </View>
                                 </View>

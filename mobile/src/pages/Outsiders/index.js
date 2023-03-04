@@ -75,7 +75,7 @@ export const Outsiders = () => {
                     </TouchableOpacity>
                 </View>
 
-                <Table />
+                <Table outsiders={outsiders}/>
             </View>
 
             <ModalEditAndCreate visibleModal={showModalConfiguration}>
