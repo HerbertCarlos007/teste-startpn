@@ -1,16 +1,38 @@
+import React, { useState, useEffect } from 'react'
 import { View, Text, Image, TouchableOpacity, TextInput } from 'react-native'
 import { styles } from './styles'
 import photo from '../../../assets/photo.png'
 import { MaterialIcons } from '@expo/vector-icons'
 import { AntDesign } from '@expo/vector-icons'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import api from '../../services/api'
 
 export const Account = () => {
+
+    const [user, setUser] = useState({})
+
+    useEffect(() => {
+        getUser()
+    }, [])
+
+    const getUser = async () => {
+        try {
+            const id = await AsyncStorage.getItem('id')
+            if (id) {
+                const response = await api.get(`/users/${id}`)
+                setUser(response.data.user)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <View style={styles.container}>
             <View style={styles.topSection}>
                 <TouchableOpacity>
                     <View style={styles.containerIconIconArrow}>
-                        <AntDesign name="arrowleft" size={24} color="#476EE6" style={styles.iconArrow}/>
+                        <AntDesign name="arrowleft" size={24} color="#476EE6" style={styles.iconArrow} />
                     </View>
                 </TouchableOpacity>
                 <Text style={styles.myAccount}>Minha conta</Text>
@@ -27,27 +49,25 @@ export const Account = () => {
 
             <View style={styles.containerForm}>
                 <View style={styles.containerInputs}>
-                    <Text style={styles.labelForm}>Nome do terceiro</Text>
-                    <TextInput style={styles.input} />
+                    <Text style={styles.labelForm}>Nome</Text>
+                    <TextInput style={styles.input} value={user.name}/>
                 </View>
                 <View style={styles.containerInputs}>
                     <Text style={styles.labelForm}>E-mail</Text>
-                    <TextInput style={styles.input} />
+                    <TextInput style={styles.input} value={user.email}/>
                 </View>
 
                 <View style={styles.containerInputs}>
-                    <Text style={styles.labelForm}>Telefone</Text>
-                    <TextInput style={styles.input} />
+                    <Text style={styles.labelForm}>Numero</Text>
+                    <TextInput style={styles.input} value={user.telephone}/>
                 </View>
 
                 <View style={styles.containerInputs}>
-                    <Text style={styles.labelForm}>Endereço</Text>
-                    <TextInput style={styles.input} />
-                </View>
-
-                <View style={styles.containerInputs}>
-                    <Text style={styles.labelForm}>Tipo</Text>
-                    <TextInput style={styles.input} />
+                    <Text style={styles.labelForm}>senha</Text>
+                    <TextInput 
+                    style={styles.input} 
+                    secureTextEntry={true}
+                    value={user.password}/>
                 </View>
 
                 <TouchableOpacity>
