@@ -1,10 +1,47 @@
+import React, { useState, useEffect } from 'react';
 import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native'
 import Checkbox from 'expo-checkbox';
 import { styles } from './styles'
 import logo from '../../../assets/logo.png'
-import { ButtonActions } from '../ButtonActions'
+import api from '../../services/api'
+import axios from 'axios'
+
+
 
 export const Register = ({ setFormState }) => {
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
+
+    const handleName = (value) => {
+        setName(value)
+    }
+
+    const handleEmail = (value) => {
+        setEmail(value)
+    }
+
+    const handlePassword = (value) => {
+        setPassword(value)
+    }
+
+    const handleConfirmPassword = (value) => {
+        setConfirmPassword(value)
+    }
+
+    const register = async () => {
+        try {
+            const response = await api.post('/register', {
+                name, email, password, confirmPassword
+            })
+            console.log(response)
+            setFormState('login')
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     return (
         <View style={styles.container}>
 
@@ -16,22 +53,44 @@ export const Register = ({ setFormState }) => {
             <View style={styles.containerForm}>
                 <View style={styles.containerInputs}>
                     <Text style={styles.textName}>Nome</Text>
-                    <TextInput style={styles.input} placeholder='Insira seu nome' />
+                    <TextInput
+                        style={styles.input}
+                        placeholder='Insira seu nome'
+                        value={name}
+                        onChangeText={handleName}
+                    />
                 </View>
 
                 <View style={styles.containerInputs}>
                     <Text style={styles.textName}>E-mail</Text>
-                    <TextInput style={styles.input} placeholder='Insira seu e-mail' />
+                    <TextInput
+                        style={styles.input}
+                        placeholder='Insira seu e-mail'
+                        value={email}
+                        onChangeText={handleEmail}
+                    />
                 </View>
 
                 <View style={styles.containerInputs}>
                     <Text style={styles.textName}>Senha</Text>
-                    <TextInput style={styles.input} placeholder='Insira sua senha' />
+                    <TextInput
+                        style={styles.input}
+                        placeholder='Insira sua senha'
+                        secureTextEntry={true}
+                        value={password}
+                        onChangeText={handlePassword}
+                    />
                 </View>
 
                 <View style={styles.containerInputs}>
                     <Text style={styles.textName}>Confirme sua senha</Text>
-                    <TextInput style={styles.input} placeholder='Confirme sua senha' />
+                    <TextInput
+                        style={styles.input}
+                        placeholder='Confirme sua senha'
+                        secureTextEntry={true}
+                        value={confirmPassword}
+                        onChangeText={handleConfirmPassword}
+                    />
                 </View>
             </View>
 
@@ -46,7 +105,7 @@ export const Register = ({ setFormState }) => {
                 <Text style={styles.LinkTerms}>Termos de uso e privacidade</Text>
             </View>
 
-            <TouchableOpacity style={styles.button} onPress={() => setFormState('login')}>
+            <TouchableOpacity style={styles.button} onPress={register}>
                 <Text style={styles.text}>Cadastrar</Text>
             </TouchableOpacity>
         </View>
