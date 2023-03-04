@@ -18,10 +18,10 @@ export const ResendEmail = ({ setFormState }) => {
                 <Image source={letter} />
             </View>
 
-            <TouchableOpacity style={styles.button} onPress={() => setFormState('newPassword')}>
+            <TouchableOpacity style={styles.button} onPress={() => setFormState('login')}>
                 <Text style={styles.text}>Entendi</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonResendEmail}>
+            <TouchableOpacity style={styles.buttonResendEmail} onPress={() => setFormState('forgotPassword')}>
                 <Text style={styles.textResendEmail}>Reenviar -email</Text>
             </TouchableOpacity>
         </View>

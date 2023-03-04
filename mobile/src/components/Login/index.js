@@ -68,8 +68,12 @@ export const Login = ({ setFormState }) => {
                     <Text style={styles.textForgotPassword} onPress={() => setFormState('forgotPassword')}>Esqueceu a senha?</Text>
                 </TouchableOpacity>
             </View>
-            <TouchableOpacity style={styles.button}  onPress={login}>
+            <TouchableOpacity style={styles.button} onPress={login}>
                 <Text style={styles.text}>Entrar</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.buttonRegister} onPress={() => setFormState('register')}>
+                <Text style={styles.textRegister}>Cadastre-se</Text>
             </TouchableOpacity>
         </View>
     )
