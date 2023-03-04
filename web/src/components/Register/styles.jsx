@@ -124,3 +124,11 @@ export const TextLogin = styled.span`
     cursor: pointer;
 ;
 `
+export const IconHidePassword = styled.div`
+   position: relative;
+   left: 260px;
+   bottom: 35px;
+   cursor: pointer;
+   width: 0;
+   height: 0;
+`

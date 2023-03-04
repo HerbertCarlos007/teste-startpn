@@ -34,10 +34,9 @@ export const Login = ({ setFormState }) => {
                         <C.LabelForm>E-mail</C.LabelForm>
                         <C.Input placeholder="Insira seu nome" onChange={(e) => setEmail(e.target.value)} />
                     </C.FormInputs>
-
                     <C.FormInputs>
                         <C.LabelForm>Senha</C.LabelForm>
-                        <C.Input placeholder="Insira sua senha" onChange={(e) => setPassword(e.target.value)} />
+                        <C.Input placeholder="Insira sua senha" type='password' onChange={(e) => setPassword(e.target.value)} />
                     </C.FormInputs>
                 </C.ContainerInputs>
             </C.ContainerFormLogin>
