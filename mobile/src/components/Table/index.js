@@ -137,6 +137,12 @@ export const Table = ({ outsiders, getOutsiders }) => {
         }
     }
 
+    const deleteOutsider = async (id) => {
+        await api.delete(`/outsiders/${id}`)
+        setShowModalDeleteOutsider(false)
+        getOutsiders('cliente')
+    }
+
     return (
         <>
             <FAB
@@ -244,11 +250,11 @@ export const Table = ({ outsiders, getOutsiders }) => {
                             <TouchableOpacity style={styles.buttonCloseModalDelete} onPress={handleCloseModalDeleteOutsider}>
                                 <EvilIcons name="close" size={24} color="black" />
                             </TouchableOpacity>
-                            <Text style={styles.textTitle}>Excluir terceiro</Text>
+                            <Text style={styles.textTitle} >Excluir terceiro</Text>
                         </View>
                         <View style={styles.rightSideModal}>
                             <View style={styles.containerDelete}>
-                                <TouchableOpacity >
+                                <TouchableOpacity onPress={() => deleteOutsider(selectedId)}>
                                     <Text style={styles.buttonDelete}>Exluir</Text>
                                 </TouchableOpacity>
                             </View>
