@@ -13,9 +13,9 @@ import { ModalComponent } from '../Modal'
 import { ModalEditAndCreate } from '../ModalEditAndCreate'
 import api from '../../services/api';
 import { FAB } from 'react-native-elements';
-import {OutsidersService} from '../../services/outsidersService'
+import { OutsidersService } from '../../services/outsidersService'
 
-export const Table = ({ outsiders }) => {
+export const Table = ({ outsiders, getOutsiders }) => {
 
     const [showModal, setShowModal] = useState(false)
     const [showModalDeleteOutsider, setShowModalDeleteOutsider] = useState(false)
@@ -26,6 +26,7 @@ export const Table = ({ outsiders }) => {
     const [telephone, setTelephone] = useState('')
     const [address, setAddress] = useState('')
     const [typeOutsider, setTypeOutsider] = useState('')
+    const [selectedId, setSelectedId] = useState('')
 
     useEffect(() => {
         getOutsiders('cliente')
@@ -78,14 +79,6 @@ export const Table = ({ outsiders }) => {
         setShowModalNewOutsider(false)
     }
 
-    const getOutsiders = async (typeOutsider) => {
-        const outsiderServices = new OutsidersService();
-        const response = await outsiderServices.getOutsiders(typeOutsider);
-        setOutsiders(response);
-
-    };
-
-
     const hideExcessiveLongNames = (name) => {
         if (name.length > 30) {
             return name.slice(0, 27) + "...";
@@ -97,17 +90,50 @@ export const Table = ({ outsiders }) => {
     const createNewOutsider = async (e) => {
         e.preventDefault()
         try {
-            const response = await api.post('/outsiders', {
+            await api.post('/outsiders', {
                 name,
                 email,
                 telephone,
                 address,
                 typeOutsider
             })
-            console.log(response)
             setShowModalNewOutsider(false)
+            getOutsiders('cliente')
         } catch (error) {
             console.error(error);
+        }
+    }
+
+    const getEachOutsider = async (id) => {
+        try {
+            const response = await api.get(`/outsiders/${id}`)
+            const data = response.data
+            setName(data.name)
+            setEmail(data.email)
+            setTelephone(data.telephone)
+            setAddress(data.address)
+            setTypeOutsider(data.typeOutsider)
+            setSelectedId(data.id)
+            setShowModal(true)
+        } catch (error) {
+
+        }
+    }
+
+    const updateOutsider = async (id) => {
+        try {
+            await api.put(`/outsiders/${id}`, {
+                id,
+                name,
+                email,
+                telephone,
+                address,
+                typeOutsider
+            })
+            setShowModalEditOutsider(false)
+            getOutsiders('cliente')
+        } catch (error) {
+
         }
     }
 
@@ -135,7 +161,7 @@ export const Table = ({ outsiders }) => {
                                 </View>
 
                                 <View style={styles.rightSide}>
-                                    <TouchableOpacity onPress={() => setShowModal(true)}>
+                                    <TouchableOpacity onPress={() => getEachOutsider(item.id)}>
                                         <Entypo
                                             name="dots-three-vertical"
                                             size={24} color="black"
@@ -246,7 +272,7 @@ export const Table = ({ outsiders }) => {
                         </View>
                         <View style={styles.rightSideModal}>
                             <View style={styles.containerEdit}>
-                                <TouchableOpacity >
+                                <TouchableOpacity onPress={() => updateOutsider(selectedId)}>
                                     <Text style={styles.buttonEdit}>Editar</Text>
                                 </TouchableOpacity>
                             </View>
@@ -266,26 +292,46 @@ export const Table = ({ outsiders }) => {
                     <View style={styles.containerForm}>
                         <View style={styles.containerInputs}>
                             <Text style={styles.labelForm}>Nome do terceiro</Text>
-                            <TextInput style={styles.input} />
+                            <TextInput
+                                style={styles.input}
+                                value={name}
+                                onChangeText={handleName}
+                            />
                         </View>
                         <View style={styles.containerInputs}>
                             <Text style={styles.labelForm}>E-mail</Text>
-                            <TextInput style={styles.input} />
+                            <TextInput
+                                style={styles.input}
+                                value={email}
+                                onChangeText={handleEmail}
+                            />
                         </View>
 
                         <View style={styles.containerInputs}>
                             <Text style={styles.labelForm}>Telefone</Text>
-                            <TextInput style={styles.input} />
+                            <TextInput
+                                style={styles.input}
+                                value={telephone}
+                                onChangeText={handleTelephone}
+                            />
                         </View>
 
                         <View style={styles.containerInputs}>
                             <Text style={styles.labelForm}>Endereço</Text>
-                            <TextInput style={styles.input} />
+                            <TextInput
+                                style={styles.input}
+                                value={address}
+                                onChangeText={handleTelephone}
+                            />
                         </View>
 
                         <View style={styles.containerInputs}>
                             <Text style={styles.labelForm}>Tipo</Text>
-                            <TextInput style={styles.input} />
+                            <TextInput
+                                style={styles.input}
+                                value={typeOutsider}
+                                onChangeText={handleTypeOutsider}
+                            />
                         </View>
                     </View>
                 </View>
@@ -322,38 +368,38 @@ export const Table = ({ outsiders }) => {
                     <View style={styles.containerForm}>
                         <View style={styles.containerInputs}>
                             <Text style={styles.labelForm}>Nome do terceiro</Text>
-                            <TextInput 
-                            style={styles.input} 
-                            onChangeText={handleName}
+                            <TextInput
+                                style={styles.input}
+                                onChangeText={handleName}
                             />
                         </View>
                         <View style={styles.containerInputs}>
                             <Text style={styles.labelForm}>E-mail</Text>
-                            <TextInput 
-                            style={styles.input} 
-                            onChangeText={handleEmail}
+                            <TextInput
+                                style={styles.input}
+                                onChangeText={handleEmail}
                             />
                         </View>
 
                         <View style={styles.containerInputs}>
                             <Text style={styles.labelForm}>Telefone</Text>
-                            <TextInput 
-                            style={styles.input} 
-                            onChangeText={handleTelephone}
+                            <TextInput
+                                style={styles.input}
+                                onChangeText={handleTelephone}
                             />
                         </View>
 
                         <View style={styles.containerInputs}>
                             <Text style={styles.labelForm}>Endereço</Text>
-                            <TextInput style={styles.input} 
-                             onChangeText={handleAddress}
+                            <TextInput style={styles.input}
+                                onChangeText={handleAddress}
                             />
                         </View>
 
                         <View style={styles.containerInputs}>
                             <Text style={styles.labelForm}>Tipo</Text>
-                            <TextInput style={styles.input} 
-                             onChangeText={handleTypeOutsider}
+                            <TextInput style={styles.input}
+                                onChangeText={handleTypeOutsider}
                             />
                         </View>
                     </View>

@@ -96,7 +96,7 @@ export const styles = StyleSheet.create({
 
     textSuppliers: {
         fontSize: 15,
-        fontWeight: 500,
+        fontWeight: '500',
         color: '#476EE6'
     },
 
