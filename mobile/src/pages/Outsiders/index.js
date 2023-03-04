@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, Text, TouchableOpacity, TextInput } from 'react-native'
 import Checkbox from 'expo-checkbox';
 import { Header } from '../../components/Header'
@@ -7,10 +7,18 @@ import { ModalEditAndCreate } from '../../components/ModalEditAndCreate'
 import { styles } from './styles'
 import { EvilIcons } from '@expo/vector-icons'
 import { AntDesign } from '@expo/vector-icons'
+import { OutsidersService } from '../../services/outsidersService'
+import api from '../../services/api';
 
 export const Outsiders = () => {
 
     const [showModalConfiguration, setShowModalConfiguration] = useState(false)
+    const [outsiders, setOutsiders] = useState([])
+    const [isSelected, setIsSelected] = useState(false)
+
+    useEffect(() => {
+        getOutsiders('cliente')
+    }, [])
 
     const handleOpenModalConfiguration = () => {
         setShowModalConfiguration(true)
@@ -20,6 +28,13 @@ export const Outsiders = () => {
     const handleCloseModalConfiguration = () => {
         setShowModalConfiguration(false)
     }
+
+    const getOutsiders = async (typeOutsider) => {
+        const outsiderServices = new OutsidersService();
+        const response = await outsiderServices.getOutsiders(typeOutsider);
+        setOutsiders(response);
+
+    };
 
     return (
         <>
@@ -42,20 +57,20 @@ export const Outsiders = () => {
                                 <AntDesign name="search1" size={24} color="#476EE6" />
                             </View>
                         </TouchableOpacity>
-                        
+
                     </View>
                 </View>
 
                 <View style={styles.containerSwitchOutsider}>
-                    <TouchableOpacity>
-                        <View style={styles.containerClient}>
-                            <Text style={styles.textClient}>Clientes</Text>
+                    <TouchableOpacity onPress={() => { setIsSelected(true); getOutsiders('cliente'); }}>
+                        <View style={[styles.containerSwtich, isSelected && styles.selected]}>
+                            <Text style={[styles.text, isSelected && styles.selectedText]}>Clientes</Text>
                         </View>
                     </TouchableOpacity>
 
-                    <TouchableOpacity>
-                        <View style={styles.containerSuppliers}>
-                            <Text style={styles.textSuppliers}>Fornecedores</Text>
+                    <TouchableOpacity onPress={() => { setIsSelected(false); getOutsiders('fornecedor'); }}>
+                        <View style={[styles.containerSwtich, !isSelected && styles.selected]}>
+                            <Text style={[styles.text, !isSelected && styles.selectedText]}>Fornecedores</Text>
                         </View>
                     </TouchableOpacity>
                 </View>

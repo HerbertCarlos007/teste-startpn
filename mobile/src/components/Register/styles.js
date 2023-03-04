@@ -102,6 +102,11 @@ export const styles = StyleSheet.create({
   text: {
      fontSize: 18,
      color: '#FFFFFF'
+  },
+
+  textLogin: {
+   marginTop: 10,
+   color: '#476EE6'
   }
 
 

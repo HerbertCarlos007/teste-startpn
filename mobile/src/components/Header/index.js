@@ -1,4 +1,4 @@
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, TouchableOpacity } from 'react-native'
 import { styles } from './styles'
 import { Entypo } from '@expo/vector-icons';
 import logo from '../../../assets/logo.png'
@@ -12,14 +12,17 @@ export const Header = () => {
     return (
         <View style={styles.container}>
             <View style={styles.content}>
-                <Entypo 
-                name="menu" 
-                size={50} 
-                color="#476EE6"
-                onPress={() => navigation.openDrawer()} 
-                />
-                <Image source={logo}/>
-                <Image source={perfil}/>
+                <TouchableOpacity>
+                    <Entypo
+                        name="menu"
+                        size={50}
+                        color="#476EE6"
+                        onPress={() => navigation.openDrawer()}
+                    />
+                </TouchableOpacity>
+
+                <Image source={logo} />
+                <Image source={perfil} />
             </View>
         </View>
     )

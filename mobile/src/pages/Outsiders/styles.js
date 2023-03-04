@@ -16,6 +16,20 @@ export const styles = StyleSheet.create({
         alignItems: 'center'
     },
 
+    selected: {
+        backgroundColor: '#476EE6',
+      },
+
+      selectedText: {
+        color: 'white',
+      },
+
+      containerSwtich: {
+        backgroundColor: 'white',
+        borderRadius: 100,
+        padding: 5,
+      },
+
     righSide: {
         display: 'flex',
         flexDirection: 'row',

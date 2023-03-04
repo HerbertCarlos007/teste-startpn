@@ -35,7 +35,6 @@ export const Register = ({ setFormState }) => {
             const response = await api.post('/register', {
                 name, email, password, confirmPassword
             })
-            console.log(response)
             setFormState('login')
         } catch (error) {
             console.error(error);
@@ -107,6 +106,9 @@ export const Register = ({ setFormState }) => {
 
             <TouchableOpacity style={styles.button} onPress={register}>
                 <Text style={styles.text}>Cadastrar</Text>
+            </TouchableOpacity>
+            <TouchableOpacity>
+                <Text style={styles.textLogin} onPress={() => setFormState('login')}>Já tem conta? Login</Text>
             </TouchableOpacity>
         </View>
     )
