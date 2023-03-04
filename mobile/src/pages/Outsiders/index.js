@@ -15,9 +15,13 @@ export const Outsiders = () => {
     const [showModalConfiguration, setShowModalConfiguration] = useState(false)
     const [outsiders, setOutsiders] = useState([])
     const [isSelected, setIsSelected] = useState(false)
+    const [newFields, setNewFields] = useState([])
+    const [fields, setFields] = useState([])
+    const [valueField, setValueField] = useState('')
 
     useEffect(() => {
         getOutsiders('cliente')
+        getCustomFields()
     }, [])
 
     const handleOpenModalConfiguration = () => {
@@ -29,12 +33,46 @@ export const Outsiders = () => {
         setShowModalConfiguration(false)
     }
 
+    const handleChangeCustomField = (value) => {
+        setValueField(value)
+    }
+
     const getOutsiders = async (typeOutsider) => {
         const outsiderServices = new OutsidersService();
         const response = await outsiderServices.getOutsiders(typeOutsider);
         setOutsiders(response);
 
     };
+
+    const addInput = (e) => {
+        e.preventDefault()
+        setNewFields([...newFields, ''])
+    }
+
+    const deleteCustomField = async (position) => {
+        setNewFields([...newFields.filter((_, index) => index !== position)])
+
+    }
+
+    const createCustomField = async () => {
+        await api.post('/custom-fields', {
+            name: valueField
+        })
+        getOutsiders()
+        setShowModalConfiguration(false)
+    }
+
+    const getCustomFields = async () => {
+        const response = await api.get('/custom-fields')
+        setFields(response.data.customFields)
+
+    }
+
+    const deleteField = async (id) => {
+        await api.delete(`/custom-fields/${id}`)
+        getCustomFields()
+    }
+
 
     return (
         <>
@@ -75,7 +113,7 @@ export const Outsiders = () => {
                     </TouchableOpacity>
                 </View>
 
-                <Table outsiders={outsiders} getOutsiders={getOutsiders}/>
+                <Table outsiders={outsiders} getOutsiders={getOutsiders} />
             </View>
 
             <ModalEditAndCreate visibleModal={showModalConfiguration}>
@@ -89,8 +127,8 @@ export const Outsiders = () => {
                         </View>
                         <View style={styles.rightSideModal}>
                             <View style={styles.containerEdit}>
-                                <TouchableOpacity >
-                                    <Text style={styles.buttonEdit}>Editar</Text>
+                                <TouchableOpacity onPress={createCustomField}>
+                                    <Text style={styles.buttonEdit} >Editar</Text>
                                 </TouchableOpacity>
                             </View>
                         </View>
@@ -113,46 +151,53 @@ export const Outsiders = () => {
 
                     <Text style={styles.textFieldsForm}>Campos do formulário</Text>
 
-                    <View style={styles.containerForm}>
-                        <Text style={styles.nameField}>Nome do campo</Text>
-                        <View style={styles.inputField}>
-                            <View style={styles.ContainerIndex}>
-                                <Text style={styles.textIndex}>1</Text>
+                    {fields.map((field, index) =>
+                        <>
+                            <View style={styles.containerForm} key={field.index}>
+                                <Text style={styles.nameField}>{field.name}</Text>
+                                <View style={styles.inputField}>
+                                    <View style={styles.ContainerIndex} >
+                                        <Text style={styles.textIndex}>1</Text>
+                                    </View>
+                                    <TextInput style={styles.input} onChangeText={handleChangeCustomField}/>
+                                    <TouchableOpacity style={styles.buttonTrash} onPress={() => deleteField(field.id)}>
+                                        <EvilIcons name="trash" size={37} color="black" />
+                                    </TouchableOpacity>
+                                </View>
                             </View>
-                            <TextInput placeholder='ola' style={styles.input} />
-                            <TouchableOpacity style={styles.buttonTrash}>
-                                <EvilIcons name="trash" size={37} color="black" />
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                    <View style={styles.containerIsRequired}>
-                        <TouchableOpacity>
-                            <Checkbox color='#476EE6' style={styles.checkbox} />
-                        </TouchableOpacity>
-                        <Text>o campo é obrigatório?</Text>
-                    </View>
-
-                    <View style={styles.containerForm}>
-                        <Text style={styles.nameField}>Nome do campo</Text>
-                        <View style={styles.inputField}>
-                            <View style={styles.ContainerIndex}>
-                                <Text style={styles.textIndex}>1</Text>
+                            <View style={styles.containerIsRequired}>
+                                <TouchableOpacity>
+                                    <Checkbox color='#476EE6' style={styles.checkbox} />
+                                </TouchableOpacity>
+                                <Text>o campo é obrigatório?</Text>
                             </View>
-                            <TextInput placeholder='ola' style={styles.input} />
-                            <TouchableOpacity style={styles.buttonTrash}>
-                                <EvilIcons name="trash" size={37} color="black" />
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                    <View style={styles.containerIsRequired}>
-                        <TouchableOpacity>
-                            <Checkbox color='#476EE6' style={styles.checkbox} />
-                        </TouchableOpacity>
-                        <Text>o campo é obrigatório?</Text>
-                    </View>
+                        </>
+                    )}
 
+                    {newFields.map((newField, index) =>
+                        <>
+                            <View style={styles.containerForm} key={newField.index}>
+                                <Text style={styles.nameField}>Nome do campo</Text>
+                                <View style={styles.inputField}>
+                                    <View style={styles.ContainerIndex}>
+                                        <Text style={styles.textIndex}>1</Text>
+                                    </View>
+                                    <TextInput style={styles.input} onChangeText={handleChangeCustomField}/>
+                                    <TouchableOpacity style={styles.buttonTrash} onPress={() => deleteCustomField(index)}>
+                                        <EvilIcons name="trash" size={37} color="black" />
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
+                            <View style={styles.containerIsRequired}>
+                                <TouchableOpacity>
+                                    <Checkbox color='#476EE6' style={styles.checkbox} />
+                                </TouchableOpacity>
+                                <Text>o campo é obrigatório?</Text>
+                            </View>
+                        </>
+                    )}
                     <View>
-                        <TouchableOpacity >
+                        <TouchableOpacity onPress={addInput}>
                             <View style={styles.buttonNewField}>
                                 <AntDesign name="plus" size={24} color="#476EE6" />
                                 <Text style={styles.textNewField}>

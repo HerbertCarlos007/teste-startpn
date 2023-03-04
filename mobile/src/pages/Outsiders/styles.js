@@ -144,7 +144,7 @@ export const styles = StyleSheet.create({
     nameField: {
        fontWeight: '500',
        position: 'relative',
-       right: 60,
+       right: 90,
     },
 
     inputField:{
