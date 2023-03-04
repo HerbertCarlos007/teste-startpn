@@ -17,10 +17,14 @@ export const Content = styled.div`
     border: 1px solid #D7D7D7;
     border-radius: 20px;
     display: flex;
+
+   
 `
 
 export const LeftSection = styled.div`
-
+     @media only screen and (max-width: 574px) {
+        display: none;
+    }
 `
 
 export const ImageBackground = styled.img`
@@ -38,10 +42,14 @@ export const Image = styled.img`
 
 
 export const RightSection = styled.div`
-    width: 100%;
+   
     display: flex;
     flex-direction: column;
     margin-top: 100px;
+
+    @media only screen and (max-width: 574px) {
+       align-items: center;
+    }
 
 `
 
@@ -57,6 +65,11 @@ export const ImageLogo = styled.img`
     width: 190px;
     height: 50px;
     margin-right: 180px;
+
+    @media only screen and (max-width: 574px) {
+      margin-right: 0;
+       
+    }
 `
 
 export const TextNewPassword = styled.span`
@@ -65,10 +78,20 @@ export const TextNewPassword = styled.span`
     color: '#476EE6';
     margin-right: 150px;
     margin-top: 20px;
+
+    @media only screen and (max-width: 574px) {
+      margin-right: 0;
+       
+    }
 `
 
 export const TextInstructions = styled.span`
     margin-top: 20px;
+
+    @media only screen and (max-width: 574px) {
+    margin-left: 35px;
+       
+    }
 `
 
 export const ContainerForm = styled.div`
@@ -96,6 +119,11 @@ export const Input = styled.input`
     background: #FFFFFF;
     margin-top: 10px;
     padding-left: 10px;
+
+    @media only screen and (max-width: 574px) {
+       align-items: center;
+       width: 324px;
+    }
 `
 
 export const ContainerButtons = styled.div`
@@ -103,6 +131,12 @@ export const ContainerButtons = styled.div`
     margin-top: 30px;
     margin-left: 135px;
     align-items: center;
+
+    @media only screen and (max-width: 574px) {
+     flex-direction: column;
+       margin-left: 0;
+
+    }
 `
 
 export const ButtonCreatePassword = styled.button`
@@ -115,6 +149,11 @@ export const ButtonCreatePassword = styled.button`
     font-weight: 500;
     font-size: 20;
     border: 1px solid #476EE6;
+
+    @media only screen and (max-width: 574px) {
+       align-items: center;
+       width: 315px;
+    }
 `
 
 export const TextRememberPassword = styled.span`
@@ -122,5 +161,11 @@ export const TextRememberPassword = styled.span`
     font-weight: 500;
     margin-left: 70px;
     cursor: pointer;
+
+    @media only screen and (max-width: 574px) {
+       margin-left: 0;
+       margin-top: 15px;
+       
+    }
 `
 

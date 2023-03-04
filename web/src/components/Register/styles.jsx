@@ -6,7 +6,10 @@ export const Container = styled.div`
     align-items: center;
     display: flex;
     overflow-y: hidden;
-    
+    @media only screen and (max-width: 574px) {
+    height: 100%;
+        
+    }
     
 `
 
@@ -26,6 +29,7 @@ export const ContainerForm = styled.div`
     @media only screen and (max-width: 574px) {
         margin-top: 0px;
         margin-left: 0;
+        
         
     }
 
