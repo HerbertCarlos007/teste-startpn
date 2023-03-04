@@ -194,7 +194,8 @@ export const ContainerHaveAccount = styled.div`
 export const TextHaveAccount = styled.span`
     color: #3C3C43 ;
     opacity: 0.8;
-
+    position: relative;
+    bottom: 30px;
     @media only screen and (max-width: 574px) {
       position: relative;
       bottom: 20px;
@@ -206,7 +207,8 @@ export const TextLogin = styled.span`
     margin-left: 10px;
     color: #476EE6;
     cursor: pointer;
-
+    position: relative; 
+    bottom: 30px;
     @media only screen and (max-width: 574px) {
       position: relative;
       bottom: 20px;

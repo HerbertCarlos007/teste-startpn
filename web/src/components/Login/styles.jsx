@@ -11,12 +11,24 @@ export const Container = styled.div`
 export const Logo = styled.img`
     position: relative;
     right: 126px;
+
+    @media only screen and (max-width: 574px) {
+     right: 0;
+    }
+    
 `
+
+
 
 export const ContainerFormLogin = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media only screen and (max-width: 574px) {
+     
+
+    }
 
 `
 
@@ -27,6 +39,11 @@ export const TextAccessData = styled.span`
     color: #476EE6;
     position: relative;
     right: 126px;
+
+    
+    @media only screen and (max-width: 574px) {
+     right: 0;
+    }
 `
 
 export const ContainerInputs = styled.div`
@@ -54,12 +71,21 @@ export const Input = styled.input`
     border-radius: 10px;
     margin-top: 10px;
     padding-left: 10px;
+
+    @media only screen and (max-width: 574px) {
+     width: 324px;
+
+    }
 `
 
 export const ContainerButtonAndForgotPassword = styled.div`
     margin-top: 30px;
     display: flex;
     align-items: center;
+
+    @media only screen and (max-width: 574px) {
+    flex-direction: column;
+    }
 `
 
 
@@ -80,6 +106,11 @@ export const TextForgotPassword = styled.span`
    margin-left: 90px;
    color:  #476EE6;
    cursor: pointer;
+
+   @media only screen and (max-width: 574px) {
+    margin-left: 0px;
+    margin-top: 30px;
+    }
 `
 
 export const IconHidePassword = styled.div`

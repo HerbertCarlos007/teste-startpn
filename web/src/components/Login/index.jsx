@@ -31,7 +31,6 @@ export const Login = ({ setFormState }) => {
     return (
         <C.Container>
             <C.Logo src={logo} />
-
             <C.TextAccessData>Dados de acesso</C.TextAccessData>
             <C.ContainerFormLogin>
                 <C.ContainerInputs>
