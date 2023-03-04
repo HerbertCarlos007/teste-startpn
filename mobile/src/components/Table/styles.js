@@ -57,51 +57,27 @@ export const styles = StyleSheet.create({
 
     },
 
-    leftSideTitles: {
-
+    contentHeader: {
+        height: 150
     },
 
-    rightSideDatas: {
-
+    rowContent: {
+        height: 150,
+        
     },
 
-    containerAddress: {
-        width: 150,
-    },
 
-    valueEmail: {
+    columnValue: {
         color: '#1A1A1A',
         fontWeight: '600',
+        marginTop: 10,
     },
 
-    valueTelephone: {
-        marginTop: 22,
-        color: '#1A1A1A',
-        fontWeight: '600',
-    },
-
-    valueAddress: {
-        marginTop: 30,
-        color: '#1A1A1A',
-        fontWeight: '600',
-    },
-
-    titleEmail: {
-        marginTop: 2,
+    columnName: {
         fontWeight: '500',
-        color: '#808080'
-    },
+        color: '#808080',
+        marginTop: 10,
 
-    titleTelephone: {
-        marginTop: 20,
-        fontWeight: '500',
-        color: '#808080'
-    },
-
-    titleAddress: {
-        marginTop: 30,
-        fontWeight: '500',
-        color: '#808080'
     },
 
     containerModal: {

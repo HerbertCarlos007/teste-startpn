@@ -48,53 +48,14 @@ export const Table = ({outsiders}) => {
         setShowModalEditOutsider(false)
     }
 
-    // const data = [
-    //     {
-    //         id: 1,
-    //         nome: 'Matheus Santos',
-    //         email: 'mateus@startpn.com',
-    //         telefone: '11 97796-5692',
-    //         endereco: 'Av. Brg. Faria Lima, 2355 - São Paulo - SP, 01452-922'
-    //     },
-
-    //     {
-    //         id: 2,
-    //         nome: 'Robert Vitoriano',
-    //         email: 'mateus@startpn.com',
-    //         telefone: '11 97796-5692',
-    //         endereco: 'Av. Brg. Faria Lima, 2355 - São Paulo - SP, 01452-922'
-    //     },
-
-    //     {
-    //         id: 3,
-    //         nome: 'Patrick Alves',
-    //         email: 'mateus@startpn.com',
-    //         telefone: '11 97796-5692',
-    //         endereco: 'Av. Brg. Faria Lima, 2355 - São Paulo - SP, 01452-922'
-    //     },
-    //     {
-    //         id: 4,
-    //         nome: 'Herbert Carlos',
-    //         email: 'mateus@startpn.com',
-    //         telefone: '11 97796-5692',
-    //         endereco: 'Av. Brg. Faria Lima, 2355 - São Paulo - SP, 01452-922'
-    //     },
-    //     {
-    //         id: 5,
-    //         nome: 'Bruno Sousa',
-    //         email: 'mateus@startpn.com',
-    //         telefone: '11 97796-5692',
-    //         endereco: 'Av. Brg. Faria Lima, 2355 - São Paulo - SP, 01452-922'
-    //     },
-    //     {
-    //         id: 6,
-    //         nome: 'Vitor Carlos',
-    //         email: 'mateus@startpn.com',
-    //         telefone: '11 97796-5692',
-    //         endereco: 'Av. Brg. Faria Lima, 2355 - São Paulo - SP, 01452-922'
-    //     },
-
-    // ]
+    
+    const hideExcessiveLongNames = (name) => {
+        if (name.length > 30) {
+            return name.slice(0, 27) + "...";
+        } else {
+            return name;
+        }
+    }
 
     return (
         <>  
@@ -116,7 +77,7 @@ export const Table = ({outsiders}) => {
                                 <View style={styles.leftSide}>
                                     <Checkbox color='#476EE6' style={styles.checkbox} />
                                     <Image source={perfil} />
-                                    <Text>{item.name}</Text>
+                                    <Text>{hideExcessiveLongNames(item.name)}</Text>
                                 </View>
 
                                 <View style={styles.rightSide}>
@@ -134,23 +95,23 @@ export const Table = ({outsiders}) => {
                             </View>
 
                             <View style={styles.centerSection}>
-                                <View style={styles.leftSideTitles}>
-                                    <Text style={styles.titleEmail}>Email</Text>
-                                    <Text style={styles.titleTelephone}>Telefone</Text>
-                                    <Text style={styles.titleAddress}>Endereço</Text>
+                                <View style={styles.contentHeader}>
+                                    <Text style={styles.columnName}>Email</Text>
+                                    <Text style={styles.columnName}>Telefone</Text>
+                                    <Text style={styles.columnName}>Endereço</Text>
                                 </View>
 
-                                <View style={styles.rightSideDatas}>
-                                    <Text style={styles.valueEmail}>
+                                <View style={styles.rowContent}>
+                                    <Text style={styles.columnValue}>
                                         {item.email}
                                     </Text>
 
-                                    <Text style={styles.valueTelephone}>
+                                    <Text style={styles.columnValue}>
                                         {item.telephone}
                                     </Text>
 
-                                    <View style={styles.containerAddress}>
-                                        <Text style={styles.valueAddress}>
+                                    <View >
+                                        <Text style={styles.columnValue}>
                                             {item.address}
                                         </Text>
                                     </View>
