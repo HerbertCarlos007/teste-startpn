@@ -79,7 +79,8 @@ export const ContainerList = styled.div`
     border: 1px solid #D7D7D7;
     border-radius: 10px;    
     margin-top: 20px;
-    
+   
+
 `
 
 export const UpSectionList = styled.div`
@@ -122,7 +123,6 @@ export const Content = styled.div`
     display: flex;
     justify-content: space-between;
     position: relative;
-    bottom: 150px;
     padding: 10px;
 `
 
@@ -134,6 +134,7 @@ export const Header = styled.div`
 
 export const TextHeader = styled.span`
     margin-top: 10px;
+    color: #808080;
 `
 
 export const Row = styled.div`
@@ -143,4 +144,9 @@ export const Row = styled.div`
 
 export const TextRow = styled.span`
     margin-top: 10px;
+    font-weight: 500;
+`
+
+export const Teste = styled.div`
+    overflow-y: scroll;
 `

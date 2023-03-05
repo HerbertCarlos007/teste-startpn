@@ -61,33 +61,37 @@ export const MobileList = () => {
                 </C.TextSuppliers>
             </C.ContainerCustomersAndSuppliers>
 
-            <C.ContainerList>
-                <C.UpSectionList>
-                    <C.LeftSection>
-                        <C.Checkbox type='checkbox' />
-                        <C.ImagePerfil src={perfil} />
-                        <C.Name>Mateus Santos</C.Name>
-                    </C.LeftSection>
+            {outsiders.map((outsider) =>
+                <>
+                    <C.ContainerList>
+                        <C.UpSectionList>
+                            <C.LeftSection>
+                                <C.Checkbox type='checkbox' />
+                                <C.ImagePerfil src={perfil} />
+                                <C.Name>{outsider.name}</C.Name>
+                            </C.LeftSection>
 
-                    <C.IconOptions>
-                        <SlOptionsVertical size={27} />
-                    </C.IconOptions>
-                </C.UpSectionList>
-                <C.Line></C.Line>
-            </C.ContainerList>
+                            <C.IconOptions>
+                                <SlOptionsVertical size={27} />
+                            </C.IconOptions>
+                        </C.UpSectionList>
+                        <C.Line></C.Line>
 
-            <C.Content>
-                <C.Header>
-                    <C.TextHeader>E-mail</C.TextHeader>
-                    <C.TextHeader>Telefone</C.TextHeader>
-                    <C.TextHeader>Endereço</C.TextHeader>
-                </C.Header>
-                <C.Row>
-                    <C.TextRow>herbert.saopaulino@hotmail.com</C.TextRow>
-                    <C.TextRow>11-966119472</C.TextRow>
-                    <C.TextRow>Rua zodiaco 291</C.TextRow>
-                </C.Row>
-            </C.Content>
+                        <C.Content>
+                            <C.Header>
+                                <C.TextHeader>E-mail</C.TextHeader>
+                                <C.TextHeader>Telefone</C.TextHeader>
+                                <C.TextHeader>Endereço</C.TextHeader>
+                            </C.Header>
+                            <C.Row>
+                                <C.TextRow>{outsider.email}</C.TextRow>
+                                <C.TextRow>{outsider.telephone}</C.TextRow>
+                                <C.TextRow>{outsider.address}</C.TextRow>
+                            </C.Row>
+                        </C.Content>
+                    </C.ContainerList>
+                </>
+            )}
         </C.Container >
 
     )

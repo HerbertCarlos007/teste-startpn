@@ -7,7 +7,6 @@ export const Container = styled.div`
 
     @media only screen and (max-width: 574px) {
         background-color: #FFFF;
-        overflow-y: hidden;
         overflow-x: hidden;
     }
      
