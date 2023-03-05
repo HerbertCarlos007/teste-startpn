@@ -69,7 +69,8 @@ class UserController {
                 from: 'Administrador <c1331cf0bc-5132b9+1@inbox.mailtrap.io>',
                 to: email,
                 subject: 'E-mail para trocar senha!',
-                html: `<p>Clique no link para alterar sua senha</p><br/><a href="http://127.0.0.1:5173/newPassword/${user.id}">Sistema</a>`
+                html: `<p>Clique no link para alterar sua senha</p><br/><a href="http://127.0.0.1:5173/newPassword/${user.id}">Sistema</a>`,
+               
             }).then(() => {
                 res.status(200).json({ message: 'Email enviado com sucesso' })
             }).catch((error) => {
