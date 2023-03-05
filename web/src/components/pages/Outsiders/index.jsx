@@ -33,6 +33,7 @@ export const Outsiders = () => {
     const [showCreationModalConfiguration, setCreationModalConfiguration] = useState(false)
     const [isSelected, setIsSelected] = useState(false)
     const [isVisible, setIsVisible] = useState(true)
+    const [file, setFile] = useState('')
 
     useEffect(() => {
         getOutsiders('cliente')
@@ -139,6 +140,19 @@ export const Outsiders = () => {
         setSearchedOutsiderValue(e.target.value)
     }
 
+    const uploadImage = async (event) => {
+        setFile(event.target.files[0]);
+        console.log(event.target.files[0]);
+        const formData = new FormData();
+        const config = {
+            headers: {
+              'content-type': 'multipart/form-data'
+            }
+          };
+        formData.append('file', event.target.files[0]);
+        await api.post('/upload', formData, config
+        );
+    };
     return (
         <C.Container>
             <C.SidebarContainer>
@@ -214,6 +228,8 @@ export const Outsiders = () => {
                     <C.ContainerPhotoOutsider>
                         <C.PhotoOutsider src={photo} />
                         <C.ContainerUploadPhoto>
+                            <input type='file' onChange={uploadImage} />
+                            <button onClick={uploadImage}>clicar</button>
                             <C.IconUpload><BiCamera /></C.IconUpload>
                         </C.ContainerUploadPhoto>
                     </C.ContainerPhotoOutsider>
@@ -252,7 +268,7 @@ export const Outsiders = () => {
                                     <C.OptionsSelect >Fornecedor</C.OptionsSelect>
                                 </C.Select>
                             </C.FormInputs>
-                            {fields.map((field) =>
+                            {fields && fields.map((field) =>
                                 <>
                                     <C.FormInputs>
                                         <C.LabelForm>{field.name}</C.LabelForm>
@@ -286,7 +302,7 @@ export const Outsiders = () => {
 
                     <C.TextFieldsForm>Campos do formulário</C.TextFieldsForm>
 
-                    {fields.map((field, index) =>
+                    {fields && fields.map((field, index) =>
                         <C.ContainerFormConfiguration>
                             <C.ContainerInputsConfiguration>
                                 <C.LabelFormConfiguration style={{ marginRight: '160px' }}>{field.name}</C.LabelFormConfiguration>
