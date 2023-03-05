@@ -42,6 +42,16 @@ class S3Storage {
         })
         .promise()
     }
+
+    async getFile(fileName: string): Promise<void> {
+        await this.client.getObject({
+            Bucket: 'teste-startpn',
+            Key: fileName
+        })
+        .promise()
+    }
+
+    
  }
 
 export default S3Storage

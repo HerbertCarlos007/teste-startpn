@@ -1,7 +1,8 @@
 const uploadImageRouter = require('express').Router()
 import { Request, response, Response } from 'express'
-import UploadImagesService from "../services/UploadImagesService"
+import UploadImagesService from '../services/UploadImagesService'
 import DeleteImagesService from "../services/DeleteImagesService"
+import GetImagesService from "../services/DeleteImagesService"
 import multer = require('multer')
 import multerConfig from '../config/multer'
 
@@ -22,14 +23,20 @@ uploadImageRouter.post('/', upload.single('image'), async (req: Request, res: Re
 
 uploadImageRouter.delete('/:filename', async(req: Request, res: Response) => {
     const { filename } = req.params
-
-
-
     const deleteImagesService = new DeleteImagesService()
     await deleteImagesService.execute(filename)
-
     return res.send()
 })
+
+
+uploadImageRouter.get('/:fileName', async (req: Request, res: Response) => {
+    const {fileName} = req.params
+    const getImagesService = new GetImagesService()
+    await getImagesService.execute(fileName)
+    return res.json(fileName)
+  });
+  
+
 
 export default uploadImageRouter
 
