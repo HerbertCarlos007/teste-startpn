@@ -8,6 +8,7 @@ interface OutsidersAttributes {
   telephone: string
   address: string
   typeOutsider: string
+  avatar: string
 }
 
 interface OutsidersCreationAttributes extends Optional<OutsidersAttributes, 'id'> {}
@@ -32,6 +33,9 @@ class Outsiders extends Model <OutsidersAttributes, OutsidersCreationAttributes>
 
   @Column(DataType.TEXT)
   typeOutsider: string | undefined
+
+  @Column(DataType.TEXT)
+  avatar: string | undefined
 
 }
 

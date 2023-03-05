@@ -1,8 +1,11 @@
 const outsiderRouter = require('express').Router()
 import OutsidersController from '../controllers/OutsidersController'
-import ImageRouter from './ImagesRoutes'
+import multer = require('multer')
+import multerConfig from '../config/multer'
 
-outsiderRouter.post('/outsiders', OutsidersController.store)
+const upload = multer(multerConfig)
+
+outsiderRouter.post('/outsiders', upload.single('file'), OutsidersController.store)
 outsiderRouter.get('/outsiders', OutsidersController.findAll)
 outsiderRouter.get('/outsiders/:id', OutsidersController.findOne)
 outsiderRouter.put('/outsiders/:id', OutsidersController.update)

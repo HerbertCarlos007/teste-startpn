@@ -1,25 +1,28 @@
 import { Request, Response } from 'express'
 import { Outsiders } from '../models/Outsiders'
-
+import UploadImagesService from '../services/UploadImagesService'
 class OutsidersController {
     async store(req: Request, res: Response) {
-
-        const { name, email, telephone, address, typeOutsider } = req.body
+        const { file } = req
+        const { outsiderData } = req.body
+        const parsedOutsiderData = JSON.parse(outsiderData)
+        if (!file) {
+            return res.status(400).json({ error: 'Nenhum arquivo foi enviado.' })
+        }
+        const uploadImagesService = new UploadImagesService()
+        await uploadImagesService.execute(file)
         const outsiders = await Outsiders.create({
-            name,
-            email,
-            telephone,
-            address,
-            typeOutsider
+        avatar: `https://teste-startpn.s3.amazonaws.com/${file.filename}`,
+        ...parsedOutsiderData
         })
         return res.status(201).json(outsiders)
     }
 
     async findAll(req: Request, res: Response) {
         let where = {}
-        if(req.query.typeOutsider) {
+        if (req.query.typeOutsider) {
             const typeOutsider = String(req.query.typeOutsider)
-            where = {typeOutsider}
+            where = { typeOutsider }
         }
         try {
             const outsiders = await Outsiders.findAll({
