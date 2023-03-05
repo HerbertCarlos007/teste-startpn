@@ -228,8 +228,6 @@ export const Outsiders = () => {
                     <C.ContainerPhotoOutsider>
                         <C.PhotoOutsider src={photo} />
                         <C.ContainerUploadPhoto>
-                            <input type='file' onChange={uploadImage} />
-                            <button onClick={uploadImage}>clicar</button>
                             <C.IconUpload><BiCamera /></C.IconUpload>
                         </C.ContainerUploadPhoto>
                     </C.ContainerPhotoOutsider>
