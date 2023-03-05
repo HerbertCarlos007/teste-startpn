@@ -1,4 +1,4 @@
-const uploadImageRouter = require('express').Router()
+const ImageRouter = require('express').Router()
 import { Request, response, Response } from 'express'
 import UploadImagesService from '../services/UploadImagesService'
 import DeleteImagesService from "../services/DeleteImagesService"
@@ -8,7 +8,7 @@ import multerConfig from '../config/multer'
 
 const upload = multer(multerConfig)
 
-uploadImageRouter.post('/', upload.single('image'), async (req: Request, res: Response) => {
+ImageRouter.post('/upload', upload.single('image'), async (req: Request, res: Response) => {
     const { file } = req
 
     if (!file) {
@@ -21,7 +21,7 @@ uploadImageRouter.post('/', upload.single('image'), async (req: Request, res: Re
     return res.send()
 })
 
-uploadImageRouter.delete('/:filename', async(req: Request, res: Response) => {
+ImageRouter.delete('/:filename', async(req: Request, res: Response) => {
     const { filename } = req.params
     const deleteImagesService = new DeleteImagesService()
     await deleteImagesService.execute(filename)
@@ -29,7 +29,7 @@ uploadImageRouter.delete('/:filename', async(req: Request, res: Response) => {
 })
 
 
-uploadImageRouter.get('/:fileName', async (req: Request, res: Response) => {
+ImageRouter.get('/:fileName', async (req: Request, res: Response) => {
     const {fileName} = req.params
     const getImagesService = new GetImagesService()
     await getImagesService.execute(fileName)
@@ -38,5 +38,5 @@ uploadImageRouter.get('/:fileName', async (req: Request, res: Response) => {
   
 
 
-export default uploadImageRouter
+export default ImageRouter
 

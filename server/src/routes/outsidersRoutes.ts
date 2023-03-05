@@ -1,5 +1,6 @@
 const outsiderRouter = require('express').Router()
 import OutsidersController from '../controllers/OutsidersController'
+import ImageRouter from './ImagesRoutes'
 
 outsiderRouter.post('/outsiders', OutsidersController.store)
 outsiderRouter.get('/outsiders', OutsidersController.findAll)
