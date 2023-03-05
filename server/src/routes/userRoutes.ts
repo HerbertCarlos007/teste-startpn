@@ -2,8 +2,12 @@ const userRouter = require('express').Router()
 import UserController from '../controllers/userController'
 import AuthController from '../controllers/AuthController'
 import { AuthMiddleware } from '../middleware/auth'
+import multer = require('multer')
+import multerConfig from '../config/multer'
 
-userRouter.post('/register', UserController.store)
+const upload = multer(multerConfig)
+
+userRouter.post('/register', upload.single('file'), UserController.store)
 userRouter.post('/auth', AuthController.authenticate)
 userRouter.get('/users/:id', AuthMiddleware, UserController.find)
 userRouter.post('/forgot-password', UserController.forgotPassword)
