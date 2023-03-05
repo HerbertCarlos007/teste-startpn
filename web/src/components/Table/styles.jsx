@@ -103,7 +103,7 @@ export const ColumnValue = styled.div`
     color: #101828;
     font-weight: 600;
     width: 200px;
-
+    text-align: center;
     @media (max-width: 1366px) {
        padding-left: 30px;
     }
@@ -114,7 +114,7 @@ export const ColumnName = styled.div`
     color: #6A6A6A;
     font-weight: 500;
     width: 200px;
-    
+    text-align: center;
     @media (max-width: 1366px) {
         width: 160px;
     }
@@ -360,4 +360,17 @@ export const OutsiderAvatar = styled.img`
     width: 35px;
     height: 35px;
     border-radius: 50%;
+    position: absolute;
+`
+
+export const RowLeftCorner = styled.div`
+    width: 100px;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+    left:0;
+    top: 1px;
+    width: 139px;
 `

@@ -47,7 +47,7 @@ export const Table = ({ outsiders }) => {
     const handleChangeSelect = (e) => {
         const textSelect = e.target.value
         setTypeOutsider(textSelect)
-        
+
     }
 
     const getEachOutsider = async (id) => {
@@ -78,7 +78,7 @@ export const Table = ({ outsiders }) => {
                 typeOutsider
             })
             setShowCreationModalEditOutsider(false)
-         
+
         } catch (error) {
 
         }
@@ -87,7 +87,7 @@ export const Table = ({ outsiders }) => {
     const deleteOutsider = async (id) => {
         await api.delete(`/outsiders/${id}`)
         setShowCreationModalDeleteOutsider(false)
-       
+
     }
 
     const hideExcessiveLongNames = (name) => {
@@ -97,7 +97,7 @@ export const Table = ({ outsiders }) => {
             return name;
         }
     }
-    
+
     return (
         <C.Container>
             <C.HeaderTable>
@@ -112,9 +112,10 @@ export const Table = ({ outsiders }) => {
             {outsiders.map((outsider, index) =>
                 <C.TableRow>
                     <C.RowContent>
-                        
-                        <C.ChecboxContainerTable type='checkbox'/>
-                        <C.OutsiderAvatar src={outsider.avatar}/>
+                        <C.RowLeftCorner>
+                            <C.ChecboxContainerTable type='checkbox' />
+                            <C.OutsiderAvatar src={outsider.avatar} />
+                        </C.RowLeftCorner>
                         <C.ColumnValue title={outsider.name}>{hideExcessiveLongNames(outsider.name)}</C.ColumnValue>
                         <C.ColumnValue title={outsider.email}>{hideExcessiveLongNames(outsider.email)}</C.ColumnValue>
                         <C.ColumnValue title={outsider.telephone}>{hideExcessiveLongNames(outsider.telephone)}</C.ColumnValue>
