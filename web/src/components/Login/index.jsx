@@ -9,7 +9,7 @@ export const Login = ({ setFormState }) => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [typeInputPassword, setTypeInputPassword] = useState('text')
+    const [typeInputPassword, setTypeInputPassword] = useState('password')
 
     const navigate = useNavigate()
 
@@ -25,7 +25,7 @@ export const Login = ({ setFormState }) => {
     }
 
     const toggleTypeInputPassword = () => {
-        setTypeInputPassword(typeInputPassword === 'text' ? 'password' : 'text')
+        setTypeInputPassword(typeInputPassword === 'password' ? 'text' : 'password')
     }
 
     return (

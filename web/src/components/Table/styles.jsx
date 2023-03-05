@@ -46,8 +46,7 @@ export const CheckboxHeader = styled.input`
 
     @media (max-width: 1366px) {
         position: absolute;
-        left: 18px;
-        top: 5px;
+        
     }
 `
 
@@ -55,12 +54,6 @@ export const ChecboxContainerTable = styled.input`
     position: absolute;
     left:24px;
     top: 19px;
-
-    @media (max-width: 1366px) {
-        position: absolute;
-        left: 17px;
-        top: 4px;
-    }
 `
 
 
@@ -373,4 +366,9 @@ export const RowLeftCorner = styled.div`
     left:0;
     top: 1px;
     width: 139px;
+
+    @media (max-width: 1366px) {
+        width: 120px;
+        
+    }
 `

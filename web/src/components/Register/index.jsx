@@ -11,8 +11,8 @@ export const Register = ({ setFormState }) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirPassoword, setConfirmPassword] = useState('')
-    const [typeInputPassword, setTypeInputPassword] = useState('text')
-    const [typeInputConfirmPassword, setTypeInputConfirmPassword] = useState('text')
+    const [typeInputPassword, setTypeInputPassword] = useState('password')
+    const [typeInputConfirmPassword, setTypeInputConfirmPassword] = useState('password')
 
     const handleClickRegister = async () => {
         await api.post('/register', {
@@ -23,11 +23,11 @@ export const Register = ({ setFormState }) => {
     }
 
     const toggleTypeInputPassword = () => {
-        setTypeInputPassword(typeInputPassword === 'text' ? 'password' : 'text')
+        setTypeInputPassword(typeInputPassword === 'password' ? 'text' : 'password')
     }
 
     const toggleTypeInputConfirmPassword = () => {
-        setTypeInputConfirmPassword(typeInputConfirmPassword === 'text' ? 'password' : 'text')
+        setTypeInputConfirmPassword(typeInputConfirmPassword === 'password' ? 'text' : 'password')
     }
 
     return (

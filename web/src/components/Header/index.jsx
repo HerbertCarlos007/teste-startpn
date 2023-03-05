@@ -4,6 +4,7 @@ import perfilImage from '../../assets/perfil.png'
 import { useNavigate } from 'react-router-dom'
 import Dropdown from 'react-bootstrap/Dropdown';
 import api from '../../services/api'
+import imagePerfil from '../../assets/group.png'
 
 export const Header = ({ title }) => {
 
@@ -38,7 +39,7 @@ export const Header = ({ title }) => {
                         }}
                         id="dropdown-basic"
                     >
-                        <C.ImagePerfil src={perfilImage} />
+                        <C.ImagePerfil src={imagePerfil} />
                         <C.TextName>{user.name}</C.TextName>
                     </Dropdown.Toggle>
 

@@ -28,6 +28,7 @@ export const DropDown = styled.div`
 `
 
 export const ImagePerfil = styled.img`
+    width: 35px;
 `
 
 export const TextName = styled.span`

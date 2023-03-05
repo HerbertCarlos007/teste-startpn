@@ -78,7 +78,7 @@ export const Table = ({ outsiders }) => {
                 typeOutsider
             })
             setShowCreationModalEditOutsider(false)
-
+            location.reload()
         } catch (error) {
 
         }
@@ -87,7 +87,7 @@ export const Table = ({ outsiders }) => {
     const deleteOutsider = async (id) => {
         await api.delete(`/outsiders/${id}`)
         setShowCreationModalDeleteOutsider(false)
-
+        location.reload()
     }
 
     const hideExcessiveLongNames = (name) => {
