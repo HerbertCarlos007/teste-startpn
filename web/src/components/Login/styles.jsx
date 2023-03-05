@@ -120,4 +120,12 @@ export const IconHidePassword = styled.div`
    cursor: pointer;
    width: 0;
    height: 0;
+
+   @media only screen and (max-width: 574px) {
+    margin-left: 0px;
+    margin-top: 30px;
+    position: relative;
+   left: 280px;
+   bottom: 65px;
+    }
 `

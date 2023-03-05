@@ -44,7 +44,7 @@ export const SideBar = ({ isVisible, setIsVisible }) => {
                         <MenuItem icon={<BsChatSquareText />}> Exemplo </MenuItem>
                         <MenuItem icon={<RxGear />}> Exemplo </MenuItem>
                         <MenuItem icon={<VscAccount />} onClick={navigateToAccount}> Minha conta </MenuItem>
-                        <MenuItem icon={<RxExit />} style={{ marginTop: '150px' }} > Sair </MenuItem>
+                        <MenuItem icon={<RxExit />} style={{ marginTop: '150px' }} onClick={logout}> Sair </MenuItem>
                     </Menu>
                 </Sidebar> : ''
             }
