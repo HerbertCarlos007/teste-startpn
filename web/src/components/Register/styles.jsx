@@ -19,7 +19,6 @@ export const Logo = styled.img`
       margin-top: 10px;
         
     }
-
 `
 
 export const ContainerForm = styled.div`
@@ -28,9 +27,7 @@ export const ContainerForm = styled.div`
 
     @media only screen and (max-width: 574px) {
         margin-top: 0px;
-        margin-left: 0;
-        
-        
+        margin-left: 0;  
     }
 
 `

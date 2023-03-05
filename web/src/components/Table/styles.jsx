@@ -19,6 +19,10 @@ export const HeaderTable = styled.div`
     @media (max-width: 1366px) {
         width: 890px;
     }
+
+    @media only screen and (max-width: 574px) {
+        display: none;
+    }
 `
 
 export const ContentHeaderTable = styled.div`
@@ -71,6 +75,11 @@ export const TableRow = styled.div`
     margin-top: 20px;
     @media (max-width: 1366px) {
         width: 890px;
+    }
+
+    @media only screen and (max-width: 574px) {
+        display: none;
+        
     }
 `
 

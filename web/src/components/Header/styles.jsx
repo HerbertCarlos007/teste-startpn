@@ -14,11 +14,17 @@ export const TextOutsider = styled.span`
     font-size: 30px;
     color: #476EE6;
     font-weight: 600;
+
+    @media only screen and (max-width: 574px) {
+        display: none;
+    }
 `
 
 
 export const DropDown = styled.div`
-
+ @media only screen and (max-width: 574px) {
+        display: none;
+    }
 `
 
 export const ImagePerfil = styled.img`

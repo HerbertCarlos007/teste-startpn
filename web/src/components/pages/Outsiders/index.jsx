@@ -12,6 +12,7 @@ import photo from '../../../assets/group.png'
 import { Modal } from '../../Modal'
 import { Header } from "../../Header";
 import { OutsidersService } from '../../../services/outsidersService'
+import { MobileHeader } from '../../MobileHeader/'
 
 import api from '../../../services/api'
 
@@ -144,6 +145,7 @@ export const Outsiders = () => {
 
             <C.ContainerAllContent>
                 <Header title='Terceiros' />
+                <MobileHeader />
                 <C.ContainerOptions>
                     <C.LeftSection>
                         <C.ContainerCustomersAndSuppliers>
@@ -251,7 +253,7 @@ export const Outsiders = () => {
                                 <>
                                     <C.FormInputs>
                                         <C.LabelForm>{field.name}</C.LabelForm>
-                                        <C.InputNewOutsider  />
+                                        <C.InputNewOutsider />
                                     </C.FormInputs>
                                 </>
                             )}

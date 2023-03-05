@@ -4,8 +4,13 @@ export const Container = styled.div`
     display: flex;
     background-color:#E5E5E5;
     height: 100vh;
-    
-    
+
+    @media only screen and (max-width: 574px) {
+        background-color: #FFFF;
+        overflow-y: hidden;
+        overflow-x: hidden;
+    }
+     
 `
 
 export const ContainerAllContent = styled.div`
@@ -37,6 +42,10 @@ export const ContainerOptions = styled.div`
     margin-top: 80px;
     position: relative;
     right: 150px;
+
+    @media only screen and (max-width: 574px) {
+        display: none;
+    }
 `
 
 export const LeftSection = styled.div`

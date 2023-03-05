@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     height: 100vh;
-    background-color: #E5E5E5;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,6 +17,10 @@ export const ContainerRegister = styled.div`
     border: 1px solid #D7D7D7;
     border-radius: 20px;
     display: flex;
+
+    @media only screen and (max-width: 574px) {
+        border: none;
+    }
 
 `
 

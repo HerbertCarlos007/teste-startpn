@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom'
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import { GrGroup } from 'react-icons/gr'
@@ -10,6 +10,14 @@ import logo from '../../assets/logo.png'
 import * as C from './styles'
 
 export const SideBar = () => {
+
+    const [isVisible, setIsVisible] = useState(true)
+
+    const teste = () => {
+        setIsVisible(!isVisible)
+    }
+
+    
 
     const navigate = useNavigate()
 
@@ -27,26 +35,27 @@ export const SideBar = () => {
     }
 
     return (
-        <Sidebar backgroundColor='#fff'
+        <>  
+            {isVisible ?  <Sidebar backgroundColor='#fff'
             style=
             {{
                 height: '100%',
                 border: '1px solid #D7D7D7',
                 borderRadius: '20px',
-                display: 'flex',
-                flexDirection: 'row',
-                position: 'relative'
             }}
         >
             <C.Logo src={logo} />
             <Menu style={{ marginTop: '60px' }}>
                 <MenuItem icon={<GrGroup />} onClick={navigateToOutsiders}>Terceiros</MenuItem>
-                <MenuItem icon={<BsChatSquareText />}> Exemplo </MenuItem>
+                <MenuItem icon={<BsChatSquareText />} onClick={teste}> Exemplo </MenuItem>
                 <MenuItem icon={<BsChatSquareText />}> Exemplo </MenuItem>
                 <MenuItem icon={<RxGear />}> Exemplo </MenuItem>
                 <MenuItem icon={<VscAccount />} onClick={navigateToAccount}> Minha conta </MenuItem>
                 <MenuItem icon={<RxExit />} style={{ marginTop: '150px' }} onClick={logout}> Sair </MenuItem>
             </Menu>
-        </Sidebar>
+        </Sidebar> : <button style={{position: 'relative',left: '100px', top: '700px'}} onClick={teste}>aparecer</button>}
+        
+        </>
+       
     );
 }

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import * as C from './styles'
 import backgroundImage from '../../assets/background.png'
@@ -11,7 +12,12 @@ export const NewPassword = () => {
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const { id } = useParams()
+    
+    const navigate = useNavigate()
 
+    const navigateToLogin = () => {
+        navigate('/')
+    }
 
     const handleNewPassword = async () => {
         try {
@@ -60,7 +66,7 @@ export const NewPassword = () => {
 
                     <C.ContainerButtons>
                         <C.ButtonCreatePassword onClick={handleNewPassword}>Criar senha</C.ButtonCreatePassword>
-                        <C.TextRememberPassword>Lembrou da senha?</C.TextRememberPassword>
+                        <C.TextRememberPassword onClick={navigateToLogin}>Lembrou da senha?</C.TextRememberPassword>
                     </C.ContainerButtons>
                 </C.RightSection>
             </C.Content>
