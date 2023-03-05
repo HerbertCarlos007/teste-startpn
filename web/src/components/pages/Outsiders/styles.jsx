@@ -72,6 +72,9 @@ export const ContainerCustomersAndSuppliers = styled.div`
     align-items: center;
     gap: 40px;
     
+    @media only screen and (max-width: 574px) {
+        display: none;
+    }
     
 `
 

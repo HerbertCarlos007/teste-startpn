@@ -13,6 +13,7 @@ import { Modal } from '../../Modal'
 import { Header } from "../../Header";
 import { OutsidersService } from '../../../services/outsidersService'
 import { MobileHeader } from '../../MobileHeader/'
+import { MobileList } from '../../MobileList'
 
 import api from '../../../services/api'
 
@@ -31,6 +32,7 @@ export const Outsiders = () => {
     const [showCreationModalNewOutsider, setCreationModalNewOutsider] = useState(false)
     const [showCreationModalConfiguration, setCreationModalConfiguration] = useState(false)
     const [isSelected, setIsSelected] = useState(false)
+    const [isVisible, setIsVisible] = useState(true)
 
     useEffect(() => {
         getOutsiders('cliente')
@@ -140,12 +142,12 @@ export const Outsiders = () => {
     return (
         <C.Container>
             <C.SidebarContainer>
-                <SideBar />
+                <SideBar isVisible={isVisible} setIsVisible={setIsVisible} />
             </C.SidebarContainer>
 
             <C.ContainerAllContent>
                 <Header title='Terceiros' />
-                <MobileHeader />
+                <MobileHeader setIsVisible={setIsVisible} />
                 <C.ContainerOptions>
                     <C.LeftSection>
                         <C.ContainerCustomersAndSuppliers>
@@ -192,6 +194,7 @@ export const Outsiders = () => {
 
                 <C.ContentContainer>
                     <Table outsiders={outsiders} />
+                    <MobileList />
                 </C.ContentContainer>
             </C.ContainerAllContent>
 
