@@ -71,18 +71,26 @@ export const Outsiders = () => {
         e.preventDefault()
 
         try {
-            await api.post('/outsiders', {
+            const formData = new FormData();
+            const config = {
+                headers: {
+                    'content-type': 'multipart/form-data'
+                }
+            };
+            formData.append('file', file);
+            formData.append('outsiderData', JSON.stringify({
                 name,
                 email,
                 telephone,
                 address,
-                typeOutsider
-            })
+                typeOutsider,
+            }))
+            await api.post('/outsiders', formData, config)
 
             setCreationModalNewOutsider(false)
             window.location.reload()
         } catch (error) {
-
+            
         }
     }
 
@@ -142,17 +150,9 @@ export const Outsiders = () => {
 
     const uploadImage = async (event) => {
         setFile(event.target.files[0]);
-        console.log(event.target.files[0]);
-        const formData = new FormData();
-        const config = {
-            headers: {
-              'content-type': 'multipart/form-data'
-            }
-          };
-        formData.append('file', event.target.files[0]);
-        await api.post('/upload', formData, config
-        );
+        
     };
+
     return (
         <C.Container>
             <C.SidebarContainer>

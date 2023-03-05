@@ -86,12 +86,12 @@ export const TableRow = styled.div`
 export const RowContent = styled.div`
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
     align-items: center;
-    margin-top: 15px;
+    justify-content: space-around;
+    height: 100%;
+  
 
     @media (max-width: 1366px) {
-        position: relative;
         justify-content: space-evenly;
         align-items: center;
     }
@@ -354,4 +354,10 @@ export const InputNameDelete = styled.input`
 
 export const AlignInputNameDelete = styled.div`
     margin-left: 150px;
+`
+
+export const OutsiderAvatar = styled.img`
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
 `
