@@ -25,6 +25,12 @@ export const MobileList = () => {
     const [newFields, setNewFields] = useState([])
     const [fields, setFields] = useState([])
     const [valueField, setValueField] = useState('')
+    const [file, setFile] = useState('')
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [telephone, setTelephone] = useState('')
+    const [address, setAddress] = useState('')
+    const [typeOutsider, setTypeOutsider] = useState('')
 
     const [showCreationModalConfigurationOutsider, setShowCreationModalConfigurationOutsider] = useState(false)
     const [showCreationModalNewOutsider, setShowCreationModalNewOutsider] = useState(false)
@@ -77,6 +83,43 @@ export const MobileList = () => {
         getCustomFields()
     }
 
+    const handleChangeSelect = (e) => {
+        const textSelect = e.target.value
+        setTypeOutsider(textSelect)
+    }
+
+    const createNewOutsider = async (e) => {
+        e.preventDefault()
+        try {
+            const formData = new FormData();
+            const config = {
+                headers: {
+                    'content-type': 'multipart/form-data'
+                }
+            };
+            
+            formData.append('file', file);
+            formData.append('outsiderData', JSON.stringify({
+                name,
+                email,
+                telephone,
+                address,
+                typeOutsider,
+            }))
+            await api.post('/outsiders', formData, config)
+
+            setShowCreationModalNewOutsider(false)
+            getOutsiders()
+        } catch (error) {
+
+        }
+    }
+
+    const uploadImage = async (event) => {
+        setFile(event.target.files[0]);
+
+    };
+
     return (
         <C.Container>
 
@@ -124,7 +167,7 @@ export const MobileList = () => {
                         <C.UpSectionList>
                             <C.LeftSection>
                                 <C.Checkbox type='checkbox' />
-                                <C.ImagePerfil src={perfil} />
+                                <C.ImagePerfil src={outsider.avatar} />
                                 <C.Name>{outsider.name}</C.Name>
                             </C.LeftSection>
 
@@ -249,7 +292,7 @@ export const MobileList = () => {
                         </C.LeftSectionModal>
 
                         <C.RightSectionModal>
-                            <C.ButtonAction >Adicionar</C.ButtonAction>
+                            <C.ButtonAction onClick={createNewOutsider}>Adicionar</C.ButtonAction>
                         </C.RightSectionModal>
                     </C.HeaderModal>
                     <C.Line style={{ width: '350px', marginTop: '15px' }}></C.Line>
@@ -261,7 +304,7 @@ export const MobileList = () => {
                         <input
                             type='file'
                             id='input-file'
-                            // onChange={uploadImage}
+                            onChange={uploadImage}
                             style={{ display: 'none' }}
                         />
                         <label htmlFor='input-file'>
@@ -275,27 +318,27 @@ export const MobileList = () => {
                 <C.ContainerForm>
                     <C.ContainerInputs>
                         <C.LabelForm>Nome do terceiro</C.LabelForm>
-                        <C.Input />
+                        <C.Input onChange={(e) => setName(e.target.value)}/>
                     </C.ContainerInputs>
 
                     <C.ContainerInputs>
                         <C.LabelForm>E-mail</C.LabelForm>
-                        <C.Input />
+                        <C.Input onChange={(e) => setEmail(e.target.value)}/>
                     </C.ContainerInputs>
 
                     <C.ContainerInputs>
                         <C.LabelForm>Telefone</C.LabelForm>
-                        <C.Input />
+                        <C.Input onChange={(e) => setTelephone(e.target.value)}/>
                     </C.ContainerInputs>
 
                     <C.ContainerInputs>
                         <C.LabelForm>Endereço</C.LabelForm>
-                        <C.Input />
+                        <C.Input onChange={(e) => setAddress(e.target.value)}/>
                     </C.ContainerInputs>
 
                     <C.ContainerInputs>
                         <C.LabelForm>Nome do terceiro</C.LabelForm>
-                        <C.Select >
+                        <C.Select onChange={handleChangeSelect}>
                             <C.OptionsSelect >Selecione</C.OptionsSelect>
                             <C.OptionsSelect >Cliente</C.OptionsSelect>
                             <C.OptionsSelect >Fornecedor</C.OptionsSelect>
