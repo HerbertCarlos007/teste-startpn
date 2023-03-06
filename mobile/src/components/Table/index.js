@@ -30,9 +30,11 @@ export const Table = ({ outsiders, getOutsiders }) => {
     const [selectedId, setSelectedId] = useState('')
     const [file, setFile] = useState('')
     const [photo, setPhoto] = useState(null);
+    const [fields, setFields] = useState([])
 
     useEffect(() => {
         getOutsiders('cliente')
+        getCustomFields()
     }, [])
 
     const handleName = (value) => {
@@ -116,26 +118,26 @@ export const Table = ({ outsiders, getOutsiders }) => {
             console.error(error);
         }
     }
-    
+
     const handleSelectPhoto = async () => {
         try {
-          const result = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.All,
-            allowsEditing: true,
-            aspect: [4, 3],
-            quality: 1,
-          });
-      
-          if (!result.cancelled) {
-            setPhoto(result.uri);
-          }
+            const result = await ImagePicker.launchImageLibraryAsync({
+                mediaTypes: ImagePicker.MediaTypeOptions.All,
+                allowsEditing: true,
+                aspect: [4, 3],
+                quality: 1,
+            });
 
-          console.log(result.uri)
+            if (!result.cancelled) {
+                setPhoto(result.uri);
+            }
+
+            console.log(result.uri)
         } catch (e) {
-          console.log(e);
+            console.log(e);
         }
-      };
-      
+    };
+
 
     const getEachOutsider = async (id) => {
         try {
@@ -174,6 +176,12 @@ export const Table = ({ outsiders, getOutsiders }) => {
         await api.delete(`/outsiders/${id}`)
         setShowModalDeleteOutsider(false)
         getOutsiders('cliente')
+    }
+
+    const getCustomFields = async () => {
+        const response = await api.get('/custom-fields')
+        setFields(response.data.customFields)
+
     }
 
     return (
@@ -445,6 +453,15 @@ export const Table = ({ outsiders, getOutsiders }) => {
                                 onChangeText={handleTypeOutsider}
                             />
                         </View>
+
+                        {fields && fields.map((field) =>
+                            <View style={styles.containerInputs}>
+                                <Text style={styles.labelForm}>{field.name}</Text>
+                                <TextInput style={styles.input}
+                                    onChangeText={handleAddress}
+                                />
+                            </View>
+                        )}
                     </View>
                 </View>
             </ModalEditAndCreate>
