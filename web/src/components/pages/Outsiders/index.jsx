@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import * as C from './styles'
+import api from '../../../services/api'
 import { Table } from '../../Table'
 import { SideBar } from '../../Sidebar'
 import { AiOutlineSearch } from 'react-icons/ai'
@@ -15,7 +16,6 @@ import { OutsidersService } from '../../../services/outsidersService'
 import { MobileHeader } from '../../MobileHeader/'
 import { MobileList } from '../../MobileList'
 import Swal from 'sweetalert2'
-import api from '../../../services/api'
 
 export const Outsiders = () => {
 
@@ -148,7 +148,6 @@ export const Outsiders = () => {
         }
         getCustomFields()
         setCreationModalConfiguration(false)
-        getCustomFields()
     }
 
     const deleteCustomField = async (position) => {

@@ -4,7 +4,6 @@ import * as C from './styles'
 import api from "../../services/api";
 import logo from '../../assets/logo.png'
 import { GrHide } from 'react-icons/gr'
-import {Load} from '../Load'
 
 export const Login = ({ setFormState }) => {
 
