@@ -70,7 +70,6 @@ export const Outsiders = () => {
 
     const createNewOutsider = async (e) => {
         e.preventDefault()
-
         try {
             const formData = new FormData();
             const config = {
@@ -78,6 +77,7 @@ export const Outsiders = () => {
                     'content-type': 'multipart/form-data'
                 }
             };
+            
             formData.append('file', file);
             formData.append('outsiderData', JSON.stringify({
                 name,
@@ -89,7 +89,7 @@ export const Outsiders = () => {
             await api.post('/outsiders', formData, config)
 
             setCreationModalNewOutsider(false)
-            window.location.reload()
+            location.reload()
         } catch (error) {
 
         }
@@ -110,12 +110,14 @@ export const Outsiders = () => {
         const response = await api.post('/custom-fields', {
             name: valueField
         })
-        setCreationModalNewOutsider(false)
+        setCreationModalConfiguration(false)
+        location.reload()
     }
 
     const deleteField = async (id) => {
         const response = await api.delete(`/custom-fields/${id}`)
         getCustomFields()
+        setCreationModalConfiguration(false)
     }
 
     const deleteCustomField = async (position) => {
@@ -155,7 +157,6 @@ export const Outsiders = () => {
     };
 
    
-
   function handlePhotoChange(event) {
     const file = event.target.files[0];
     setPhoto(URL.createObjectURL(file));
