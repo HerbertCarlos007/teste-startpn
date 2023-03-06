@@ -8,7 +8,7 @@ import { GrFormClose } from 'react-icons/gr'
 import { BiCamera } from 'react-icons/bi'
 import { HiOutlineTrash } from 'react-icons/hi'
 import { AiOutlinePlus } from 'react-icons/ai'
-import photo from '../../../assets/group.png'
+import photoOutsider from '../../../assets/group.png'
 import { Modal } from '../../Modal'
 import { Header } from "../../Header";
 import { OutsidersService } from '../../../services/outsidersService'
@@ -34,6 +34,7 @@ export const Outsiders = () => {
     const [isSelected, setIsSelected] = useState(false)
     const [isVisible, setIsVisible] = useState(true)
     const [file, setFile] = useState('')
+    const [photo, setPhoto] = useState(null);
 
     useEffect(() => {
         getOutsiders('cliente')
@@ -90,7 +91,7 @@ export const Outsiders = () => {
             setCreationModalNewOutsider(false)
             window.location.reload()
         } catch (error) {
-            
+
         }
     }
 
@@ -109,7 +110,7 @@ export const Outsiders = () => {
         const response = await api.post('/custom-fields', {
             name: valueField
         })
-        window.location.reload()
+        setCreationModalNewOutsider(false)
     }
 
     const deleteField = async (id) => {
@@ -150,8 +151,15 @@ export const Outsiders = () => {
 
     const uploadImage = async (event) => {
         setFile(event.target.files[0]);
-        
+
     };
+
+   
+
+  function handlePhotoChange(event) {
+    const file = event.target.files[0];
+    setPhoto(URL.createObjectURL(file));
+  }
 
     return (
         <C.Container>
@@ -226,9 +234,19 @@ export const Outsiders = () => {
                     <C.Line />
 
                     <C.ContainerPhotoOutsider>
-                        <C.PhotoOutsider src={photo} />
+                        <C.PhotoOutsider src={photoOutsider} />
                         <C.ContainerUploadPhoto>
-                            <C.IconUpload><BiCamera /></C.IconUpload>
+                            <input
+                                type='file'
+                                id='input-file'
+                                onChange={uploadImage}
+                                style={{ display: 'none' }}
+                            />
+                            <label htmlFor='input-file'>
+                                <C.IconUpload as='span'>
+                                    <BiCamera />
+                                </C.IconUpload>
+                            </label>
                         </C.ContainerUploadPhoto>
                     </C.ContainerPhotoOutsider>
 
@@ -316,7 +334,7 @@ export const Outsiders = () => {
                             </C.ContainerCheckbox>
                         </C.ContainerFormConfiguration>)}
 
-                    {newFields.map((newField, index) =>
+                    {newFields && newFields.map((newField, index) =>
                         <C.ContainerFormConfiguration>
                             <C.ContainerInputsConfiguration>
                                 <C.LabelFormConfiguration>Nome do campo</C.LabelFormConfiguration>

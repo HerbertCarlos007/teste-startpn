@@ -109,7 +109,7 @@ export const Table = ({ outsiders }) => {
                     <C.ColumnName>Endereço</C.ColumnName>
                 </C.ContentHeaderTable>
             </C.HeaderTable>
-            {outsiders.map((outsider, index) =>
+            {outsiders && outsiders.map((outsider, index) =>
                 <C.TableRow>
                     <C.RowContent>
                         <C.RowLeftCorner>
