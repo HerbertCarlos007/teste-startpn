@@ -151,22 +151,23 @@ export const Teste = styled.div`
     overflow-y: scroll;
 `
 
-export const ContainerModalConfiguration = styled.div`
+export const ContainerModal = styled.div`
     width: 350px;
 `
 
-export const HeaderConfiguration = styled.div`
+export const HeaderModal = styled.div`
     display: flex;
+    align-items: center;
     justify-content: space-between;
 `
 
-export const LeftSectionHeader = styled.div`
+export const LeftSectionModal = styled.div`
     width: 150px;
     display: flex;
     justify-content: space-around;
 `
 
-export const RightSectionHeader = styled.div`
+export const RightSectionModal = styled.div`
 
 `
 
@@ -281,4 +282,73 @@ export const TextAddNewField = styled.span`
       display: flex;
     align-items: center;
   
+`
+
+export const ContainerPhotoOutsider = styled.div`
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+`
+
+export const PhotoOutsider = styled.img`
+    
+`
+
+export const ContainerUploadPhoto = styled.div`
+    background: #476EE6;
+    width: 28.57px;
+    height: 28.79px;
+    border-radius: 70px;
+    text-align: center;
+    position: relative;
+    right: 20px;
+    top: 60px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+`
+
+export const IconUpload = styled.div`
+     border: 2px solid #FFFFFF;
+    border-radius: 70px;
+    color: white;
+`
+
+export const ContainerForm = styled.div`
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    flex-direction: column;
+`
+
+export const ContainerInputs = styled.div`
+    display: flex;
+    flex-direction: column;
+`
+
+export const LabelForm = styled.label`
+    margin-top: 15px;
+`
+
+export const Input = styled.input`
+    margin-top: 10px;
+    width: 324px;
+    height: 45px;
+    background-color: #FFFFFF;
+    border: 1px solid #D7D7D7;
+    border-radius: 7px;
+`
+
+export const Select = styled.select`
+    margin-top: 10px;
+    width: 324px;
+    height: 45px;
+    background-color: #FFFFFF;
+    border: 1px solid #D7D7D7;
+    border-radius: 7px;
+`
+
+export const OptionsSelect = styled.option`
+
 `

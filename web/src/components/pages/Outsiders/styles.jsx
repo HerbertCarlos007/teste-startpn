@@ -184,6 +184,9 @@ export const ContainerUploadPhoto = styled.div`
     right: 20px;
     top: 60px;
     cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    display: flex;
 `
 
 export const IconUpload = styled.div`

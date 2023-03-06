@@ -7,7 +7,10 @@ import { SlOptionsVertical } from 'react-icons/sl'
 import { OutsidersService } from '../../services/outsidersService'
 import { HiOutlineTrash } from 'react-icons/hi'
 import { AiOutlinePlus } from 'react-icons/ai'
+import photoOutsider from '../../assets/group.png'
+import { BiCamera } from 'react-icons/bi'
 import { Modal } from '../Modal'
+import Fab from '@mui/material/Fab';
 import api from "../../services/api"
 
 export const MobileList = () => {
@@ -24,6 +27,11 @@ export const MobileList = () => {
     const [valueField, setValueField] = useState('')
 
     const [showCreationModalConfigurationOutsider, setShowCreationModalConfigurationOutsider] = useState(false)
+    const [showCreationModalNewOutsider, setShowCreationModalNewOutsider] = useState(false)
+
+    const handleCloseModalNewOutsider = () => {
+        setShowCreationModalNewOutsider(false)
+    }
 
     const handleCloseModalConfigurationOutsider = () => {
         setShowCreationModalConfigurationOutsider(false)
@@ -47,7 +55,7 @@ export const MobileList = () => {
 
     }
 
-    
+
     const getCustomFields = async () => {
         const response = await api.get('/custom-fields')
         setFields(response.data.customFields)
@@ -71,6 +79,7 @@ export const MobileList = () => {
 
     return (
         <C.Container>
+
             <C.ContainerOptions>
                 <C.Title>Terceiro</C.Title>
                 <C.ContainerConfigurationAndSearch>
@@ -143,19 +152,19 @@ export const MobileList = () => {
 
 
             <Modal show={showCreationModalConfigurationOutsider} onClose={handleCloseModalConfigurationOutsider}>
-                <C.ContainerModalConfiguration>
-                    <C.HeaderConfiguration>
-                        <C.LeftSectionHeader>
+                <C.ContainerModal>
+                    <C.HeaderModal>
+                        <C.LeftSectionModal>
                             <C.IconClose onClick={() => setShowCreationModalConfigurationOutsider(false)}>X</C.IconClose>
                             <C.TitleModal>Configuração</C.TitleModal>
-                        </C.LeftSectionHeader>
+                        </C.LeftSectionModal>
 
-                        <C.RightSectionHeader>
+                        <C.RightSectionModal>
                             <C.ButtonAction onClick={createCustomField}>Editar</C.ButtonAction>
-                        </C.RightSectionHeader>
-                    </C.HeaderConfiguration>
+                        </C.RightSectionModal>
+                    </C.HeaderModal>
                     <C.Line style={{ width: '350px', marginTop: '15px' }}></C.Line>
-                </C.ContainerModalConfiguration>
+                </C.ContainerModal>
 
                 <C.ContainerCustomersAndSuppliers style={{ width: '350px', marginTop: '20px' }}>
                     <C.TextCostumers
@@ -184,7 +193,7 @@ export const MobileList = () => {
                 </C.ContainerCustomersAndSuppliers>
                 <C.ContentForm>
 
-                {fields && fields.map((field, index) =>
+                    {fields && fields.map((field, index) =>
                         <C.ContainerFormConfiguration>
                             <C.ContainerInputsConfiguration>
                                 <C.LabelFormConfiguration style={{ marginRight: '160px' }}>{field.name}</C.LabelFormConfiguration>
@@ -223,6 +232,77 @@ export const MobileList = () => {
                 </C.ContentForm>
             </Modal>
 
+            <Fab
+                color="primary"
+                style={{ position: 'fixed', bottom: '20px', right: '20px' }}
+                onClick={() => setShowCreationModalNewOutsider(true)}
+            >
+                <AiOutlinePlus size={27} />
+            </Fab>
+
+            <Modal show={showCreationModalNewOutsider} onClose={handleCloseModalNewOutsider}>
+                <C.ContainerModal>
+                    <C.HeaderModal>
+                        <C.LeftSectionModal>
+                            <C.IconClose onClick={() => setShowCreationModalNewOutsider(false)}>X</C.IconClose>
+                            <C.TitleModal>Criar terceiro</C.TitleModal>
+                        </C.LeftSectionModal>
+
+                        <C.RightSectionModal>
+                            <C.ButtonAction >Adicionar</C.ButtonAction>
+                        </C.RightSectionModal>
+                    </C.HeaderModal>
+                    <C.Line style={{ width: '350px', marginTop: '15px' }}></C.Line>
+                </C.ContainerModal>
+
+                <C.ContainerPhotoOutsider>
+                    <C.PhotoOutsider src={photoOutsider} />
+                    <C.ContainerUploadPhoto>
+                        <input
+                            type='file'
+                            id='input-file'
+                            // onChange={uploadImage}
+                            style={{ display: 'none' }}
+                        />
+                        <label htmlFor='input-file'>
+                            <C.IconUpload as='span'>
+                                <BiCamera />
+                            </C.IconUpload>
+                        </label>
+                    </C.ContainerUploadPhoto>
+                </C.ContainerPhotoOutsider>
+
+                <C.ContainerForm>
+                    <C.ContainerInputs>
+                        <C.LabelForm>Nome do terceiro</C.LabelForm>
+                        <C.Input />
+                    </C.ContainerInputs>
+
+                    <C.ContainerInputs>
+                        <C.LabelForm>E-mail</C.LabelForm>
+                        <C.Input />
+                    </C.ContainerInputs>
+
+                    <C.ContainerInputs>
+                        <C.LabelForm>Telefone</C.LabelForm>
+                        <C.Input />
+                    </C.ContainerInputs>
+
+                    <C.ContainerInputs>
+                        <C.LabelForm>Endereço</C.LabelForm>
+                        <C.Input />
+                    </C.ContainerInputs>
+
+                    <C.ContainerInputs>
+                        <C.LabelForm>Nome do terceiro</C.LabelForm>
+                        <C.Select >
+                            <C.OptionsSelect >Selecione</C.OptionsSelect>
+                            <C.OptionsSelect >Cliente</C.OptionsSelect>
+                            <C.OptionsSelect >Fornecedor</C.OptionsSelect>
+                        </C.Select>
+                    </C.ContainerInputs>
+                </C.ContainerForm>
+            </Modal>
         </C.Container >
 
     )
