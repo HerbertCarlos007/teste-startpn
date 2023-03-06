@@ -89,7 +89,7 @@ export const Outsiders = () => {
             await api.post('/outsiders', formData, config)
 
             setCreationModalNewOutsider(false)
-            location.reload()
+            getOutsiders()
         } catch (error) {
 
         }
@@ -111,13 +111,14 @@ export const Outsiders = () => {
             name: valueField
         })
         setCreationModalConfiguration(false)
-        location.reload()
+        getCustomFields()
     }
 
     const deleteField = async (id) => {
         const response = await api.delete(`/custom-fields/${id}`)
         getCustomFields()
         setCreationModalConfiguration(false)
+        getCustomFields()
     }
 
     const deleteCustomField = async (position) => {
@@ -155,12 +156,6 @@ export const Outsiders = () => {
         setFile(event.target.files[0]);
 
     };
-
-   
-  function handlePhotoChange(event) {
-    const file = event.target.files[0];
-    setPhoto(URL.createObjectURL(file));
-  }
 
     return (
         <C.Container>
@@ -216,7 +211,7 @@ export const Outsiders = () => {
                 </C.ContainerOptions>
 
                 <C.ContentContainer>
-                    <Table outsiders={outsiders} />
+                    <Table outsiders={outsiders} getOutsiders={getOutsiders} />
                     <MobileList />
                 </C.ContentContainer>
             </C.ContainerAllContent>

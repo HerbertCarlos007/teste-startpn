@@ -8,7 +8,7 @@ import photo from '../../assets/photo.png'
 import api from "../../services/api";
 
 
-export const Table = ({ outsiders }) => {
+export const Table = ({ outsiders, getOutsiders }) => {
 
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -19,6 +19,10 @@ export const Table = ({ outsiders }) => {
     const [showCreationModal, setShowCreationModal] = useState(false)
     const [showCreationModalDeleteOutsider, setShowCreationModalDeleteOutsider] = useState(false)
     const [showCreationModalEditOutsider, setShowCreationModalEditOutsider] = useState(false)
+
+    useEffect(() => {
+        getOutsiders()
+    }, [])
 
     const handleCloseCreationModal = () => {
         setShowCreationModal(false)
@@ -78,7 +82,7 @@ export const Table = ({ outsiders }) => {
                 typeOutsider
             })
             setShowCreationModalEditOutsider(false)
-            location.reload()
+            getOutsiders()
         } catch (error) {
 
         }
@@ -87,7 +91,7 @@ export const Table = ({ outsiders }) => {
     const deleteOutsider = async (id) => {
         await api.delete(`/outsiders/${id}`)
         setShowCreationModalDeleteOutsider(false)
-        location.reload()
+        getOutsiders()
     }
 
     const hideExcessiveLongNames = (name) => {
