@@ -150,3 +150,135 @@ export const TextRow = styled.span`
 export const Teste = styled.div`
     overflow-y: scroll;
 `
+
+export const ContainerModalConfiguration = styled.div`
+    width: 350px;
+`
+
+export const HeaderConfiguration = styled.div`
+    display: flex;
+    justify-content: space-between;
+`
+
+export const LeftSectionHeader = styled.div`
+    width: 150px;
+    display: flex;
+    justify-content: space-around;
+`
+
+export const RightSectionHeader = styled.div`
+
+`
+
+export const IconClose = styled.span`
+    
+`
+
+export const TitleModal = styled.span`
+    
+`
+
+export const ButtonAction = styled.button`
+    width: 90px;
+    height: 36px;
+    font-weight: 500;
+    background-color: #476EE6;
+    border: 1px solid #476EE6;
+    border-radius: 50px;
+    color: #FFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+`
+
+export const TextFieldsForm = styled.span`
+    font-size: 17px;
+    font-weight: 600;
+    position: relative;
+    left: 10px;
+    top: 10px;
+`
+
+export const ContainerFormConfiguration = styled.div`
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+`
+export const ContentForm = styled.div`
+    
+`
+
+export const ContainerInputsConfiguration = styled.div`
+   display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+`
+
+export const LabelFormConfiguration = styled.label`
+    
+`
+
+export const ContainerBox = styled.div`
+     display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+`
+
+export const Box = styled.div`
+     background: #476EE6;
+    border-radius: 60px;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+`
+
+export const InputsConfiguration = styled.div`
+    height: 40px;
+    width: 200px;
+    background-color: #FFFFFF;
+    border: 1px solid #D7D7D7;
+    border-radius: 7px;
+    
+`
+
+export const IconTrash = styled.div`
+    font-size: 25px;
+    
+`
+
+export const ContainerCheckbox = styled.div`
+    margin-top: 10px;
+    margin-left: 20px;
+    
+`
+
+export const CheckboxConfiguration = styled.input`
+    
+`
+
+export const TextIsRequired = styled.span`
+    margin-left: 20px;
+    
+`
+
+export const IconPlus = styled.div`
+      display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #476EE6;
+    cursor: pointer;
+    margin-top: 20px;
+  
+`
+
+export const TextAddNewField = styled.span`
+      display: flex;
+    align-items: center;
+  
+`

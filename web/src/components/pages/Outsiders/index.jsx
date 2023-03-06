@@ -194,14 +194,14 @@ export const Outsiders = () => {
                             </C.TextSuppliers>
 
                         </C.ContainerCustomersAndSuppliers>
-                        <C.IconSearch ><AiOutlineSearch /></C.IconSearch>
+                        <C.IconSearch ><AiOutlineSearch color="#476EE6"/></C.IconSearch>
                         <C.Input
                             placeholder="Pesquisar"
                             value={searchedOutsiderValue}
                             onChange={handleSearchInputChange}
                         />
                         <C.ContainerGear onClick={handleCreationModalConfiguration}>
-                            <RxGear />
+                            <RxGear color="#476EE6"/>
                         </C.ContainerGear>
                     </C.LeftSection>
 

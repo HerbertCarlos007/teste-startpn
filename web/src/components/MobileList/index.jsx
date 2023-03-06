@@ -5,12 +5,20 @@ import { BsFillGearFill } from 'react-icons/bs'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { SlOptionsVertical } from 'react-icons/sl'
 import { OutsidersService } from '../../services/outsidersService'
-import { Row } from "react-bootstrap"
+import { HiOutlineTrash } from 'react-icons/hi'
+import { AiOutlinePlus } from 'react-icons/ai'
+import { Modal } from '../Modal'
 
 export const MobileList = () => {
 
     const [isSelected, setIsSelected] = useState(false)
     const [outsiders, setOutsiders] = useState([]);
+
+    const [showCreationModalConfigurationOutsider, setShowCreationModalConfigurationOutsider] = useState(false)
+
+    const handleCloseModalConfigurationOutsider = () => {
+        setShowCreationModalConfigurationOutsider(false)
+    }
 
     const getOutsiders = async (typeOutsider) => {
         const outsiderServices = new OutsidersService();
@@ -26,7 +34,7 @@ export const MobileList = () => {
             <C.ContainerOptions>
                 <C.Title>Terceiro</C.Title>
                 <C.ContainerConfigurationAndSearch>
-                    <C.IconConfiguration>
+                    <C.IconConfiguration onClick={() => setShowCreationModalConfigurationOutsider(true)}>
                         <BsFillGearFill size={27} color='#476EE6' />
                     </C.IconConfiguration>
                     <C.IconSearch>
@@ -92,6 +100,75 @@ export const MobileList = () => {
                     </C.ContainerList>
                 </>
             )}
+
+
+            <Modal show={showCreationModalConfigurationOutsider} onClose={handleCloseModalConfigurationOutsider}>
+                <C.ContainerModalConfiguration>
+                    <C.HeaderConfiguration>
+                        <C.LeftSectionHeader>
+                            <C.IconClose>X</C.IconClose>
+                            <C.TitleModal>Configuração</C.TitleModal>
+                        </C.LeftSectionHeader>
+
+                        <C.RightSectionHeader>
+                            <C.ButtonAction>Editar</C.ButtonAction>
+                        </C.RightSectionHeader>
+                    </C.HeaderConfiguration>
+                    <C.Line style={{ width: '350px', marginTop: '15px' }}></C.Line>
+                </C.ContainerModalConfiguration>
+
+                <C.ContainerCustomersAndSuppliers style={{ width: '350px', marginTop: '20px' }}>
+                    <C.TextCostumers
+                        onClick={() => getOutsiders('cliente')}
+                        style={{
+                            backgroundColor: isSelected ? '#476EE6' : '',
+                            color: isSelected ? 'white' : '',
+                            padding: '5px',
+                            borderRadius: '100px',
+                        }}
+                    >
+                        Clientes
+                    </C.TextCostumers>
+
+                    <C.TextSuppliers
+                        onClick={() => getOutsiders('fornecedor')}
+                        style={{
+                            backgroundColor: !isSelected ? '#476EE6' : '',
+                            color: !isSelected ? 'white' : '',
+                            padding: '5px',
+                            borderRadius: '100px',
+                        }}
+                    >
+                        Fornecedores
+                    </C.TextSuppliers>
+                </C.ContainerCustomersAndSuppliers>
+                <C.ContentForm>
+
+                    <C.TextFieldsForm>Campos do formulário</C.TextFieldsForm>
+
+                    <C.ContainerFormConfiguration>
+                        <C.ContainerInputsConfiguration>
+                            <C.LabelFormConfiguration>Nome do campo</C.LabelFormConfiguration>
+                            <C.ContainerBox>
+                                <C.Box>1</C.Box>
+                                <C.InputsConfiguration />
+                                <C.IconTrash ><HiOutlineTrash /></C.IconTrash>
+                            </C.ContainerBox>
+                        </C.ContainerInputsConfiguration>
+                        <C.ContainerCheckbox>
+                            <C.CheckboxConfiguration type='checkbox' />
+                            <C.TextIsRequired>O campo e obrigatorio?</C.TextIsRequired>
+                        </C.ContainerCheckbox>
+                    </C.ContainerFormConfiguration>
+
+
+                    <C.IconPlus>
+                        <AiOutlinePlus />
+                        <C.TextAddNewField >Adicionar novo campo</C.TextAddNewField>
+                    </C.IconPlus>
+                </C.ContentForm>
+            </Modal>
+
         </C.Container >
 
     )

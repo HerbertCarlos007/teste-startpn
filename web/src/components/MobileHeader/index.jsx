@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import * as C from './styles'
 import logo from '../../assets/logo.png'
 import perfil from '../../assets/perfil.png'
 import { BiMenuAltLeft } from 'react-icons/bi';
 
 export const MobileHeader = ({isVisible,setIsVisible}) => {
+
     return (
         <C.Container>
             <C.Content>
