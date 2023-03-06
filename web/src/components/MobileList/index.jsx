@@ -48,6 +48,11 @@ export const MobileList = () => {
         setShowCreationModalEditOutsider(false)
     }
 
+    const handleShowCreationModalEditOutsider = () => {
+        setShowCreationModalEditOutsider(true)
+        setShowCreationModalActions(false)
+    }
+
     const handleShowCreationModalDeleteOutsider = () => {
         setShowCreationModalDeleteOutsider(true)
         setShowCreationModalActions(false)
@@ -154,6 +159,23 @@ export const MobileList = () => {
         }
     }
 
+    const updateOutsider = async (id) => {
+        try {
+            await api.put(`/outsiders/${id}`, {
+                id,
+                name,
+                email,
+                telephone,
+                address,
+                typeOutsider
+            })
+            setShowCreationModalEditOutsider(false)
+            getOutsiders()
+        } catch (error) {
+
+        }
+    }
+
     const deleteOutsider = async (id) => {
         await api.delete(`/outsiders/${id}`)
         setShowCreationModalDeleteOutsider(false)
@@ -217,7 +239,7 @@ export const MobileList = () => {
                             </C.LeftSection>
 
                             <C.IconOptions>
-                                <SlOptionsVertical size={27} onClick={() => getEachOutsider(outsider.id)}/>
+                                <SlOptionsVertical size={27} onClick={() => getEachOutsider(outsider.id)} />
                             </C.IconOptions>
                         </C.UpSectionList>
                         <C.Line></C.Line>
@@ -404,7 +426,7 @@ export const MobileList = () => {
                 <C.Line style={{ width: '350px', marginTop: '15px' }}></C.Line>
 
                 <C.ContentActions>
-                    <C.TextActions >Editar terceiro</C.TextActions>
+                    <C.TextActions onClick={handleShowCreationModalEditOutsider}>Editar terceiro</C.TextActions>
                     <C.Line style={{ width: '350px', marginTop: '15px', }}></C.Line>
                     <C.TextActions onClick={handleShowCreationModalDeleteOutsider} style={{ color: '#EA0000' }}>Deletar terceiro</C.TextActions>
                     <C.Line style={{ width: '350px', marginTop: '15px' }}></C.Line>
@@ -434,16 +456,16 @@ export const MobileList = () => {
             </Modal>
 
 
-            {/* <Modal show={showCreationModalEditOutsider} onClose={handleCloseModalEditOutsider}>
+            <Modal show={showCreationModalEditOutsider} onClose={handleCloseModalEditOutsider}>
                 <C.ContainerModal>
                     <C.HeaderModal>
                         <C.LeftSectionModal>
-                            <C.IconClose onClick={() => setShowCreationModalNewOutsider(false)}>X</C.IconClose>
-                            <C.TitleModal>Criar terceiro</C.TitleModal>
+                            <C.IconClose onClick={() => setShowCreationModalEditOutsider(false)}>X</C.IconClose>
+                            <C.TitleModal>Editar terceiro</C.TitleModal>
                         </C.LeftSectionModal>
 
                         <C.RightSectionModal>
-                            <C.ButtonAction onClick={createNewOutsider}>Adicionar</C.ButtonAction>
+                            <C.ButtonAction onClick={() => updateOutsider(selectedId)}>Editar</C.ButtonAction>
                         </C.RightSectionModal>
                     </C.HeaderModal>
                     <C.Line style={{ width: '350px', marginTop: '15px' }}></C.Line>
@@ -469,34 +491,34 @@ export const MobileList = () => {
                 <C.ContainerForm>
                     <C.ContainerInputs>
                         <C.LabelForm>Nome do terceiro</C.LabelForm>
-                        <C.Input onChange={(e) => setName(e.target.value)} />
+                        <C.Input value={name} onChange={(e) => setName(e.target.value)} />
                     </C.ContainerInputs>
 
                     <C.ContainerInputs>
                         <C.LabelForm>E-mail</C.LabelForm>
-                        <C.Input onChange={(e) => setEmail(e.target.value)} />
+                        <C.Input value={email} onChange={(e) => setEmail(e.target.value)} />
                     </C.ContainerInputs>
 
                     <C.ContainerInputs>
                         <C.LabelForm>Telefone</C.LabelForm>
-                        <C.Input onChange={(e) => setTelephone(e.target.value)} />
+                        <C.Input value={telephone} onChange={(e) => setTelephone(e.target.value)} />
                     </C.ContainerInputs>
 
                     <C.ContainerInputs>
                         <C.LabelForm>Endereço</C.LabelForm>
-                        <C.Input onChange={(e) => setAddress(e.target.value)} />
+                        <C.Input value={address} onChange={(e) => setAddress(e.target.value)} />
                     </C.ContainerInputs>
 
                     <C.ContainerInputs>
                         <C.LabelForm>Nome do terceiro</C.LabelForm>
-                        <C.Select onChange={handleChangeSelect}>
+                        <C.Select value={typeOutsider} onChange={handleChangeSelect}>
                             <C.OptionsSelect >Selecione</C.OptionsSelect>
                             <C.OptionsSelect >Cliente</C.OptionsSelect>
                             <C.OptionsSelect >Fornecedor</C.OptionsSelect>
                         </C.Select>
                     </C.ContainerInputs>
                 </C.ContainerForm>
-            </Modal> */}
+            </Modal>
 
         </C.Container >
 
