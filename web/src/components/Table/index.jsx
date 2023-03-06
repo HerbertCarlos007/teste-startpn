@@ -6,6 +6,7 @@ import { GrFormClose } from 'react-icons/gr'
 import { BiCamera } from 'react-icons/bi'
 import photo from '../../assets/photo.png'
 import api from "../../services/api";
+import Swal from 'sweetalert2'
 
 
 export const Table = ({ outsiders, getOutsiders }) => {
@@ -19,6 +20,7 @@ export const Table = ({ outsiders, getOutsiders }) => {
     const [showCreationModal, setShowCreationModal] = useState(false)
     const [showCreationModalDeleteOutsider, setShowCreationModalDeleteOutsider] = useState(false)
     const [showCreationModalEditOutsider, setShowCreationModalEditOutsider] = useState(false)
+
 
     useEffect(() => {
         getOutsiders()
@@ -73,7 +75,7 @@ export const Table = ({ outsiders, getOutsiders }) => {
 
     const updateOutsider = async (id) => {
         try {
-            await api.put(`/outsiders/${id}`, {
+            const response = await api.put(`/outsiders/${id}`, {
                 id,
                 name,
                 email,
@@ -81,6 +83,16 @@ export const Table = ({ outsiders, getOutsiders }) => {
                 address,
                 typeOutsider
             })
+
+            if (response.status === 200) {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Terceiro atualizado com sucesso!',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
             setShowCreationModalEditOutsider(false)
             getOutsiders()
         } catch (error) {
@@ -89,7 +101,18 @@ export const Table = ({ outsiders, getOutsiders }) => {
     }
 
     const deleteOutsider = async (id) => {
-        await api.delete(`/outsiders/${id}`)
+        const response = await api.delete(`/outsiders/${id}`)
+
+        if (response.status === 200) {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Terceiro deletado com sucesso!',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
+
         setShowCreationModalDeleteOutsider(false)
         getOutsiders()
     }

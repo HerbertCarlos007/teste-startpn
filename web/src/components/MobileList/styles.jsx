@@ -102,6 +102,9 @@ export const Checkbox = styled.input`
 `
 
 export const ImagePerfil = styled.img`
+     width: 35px;
+    height: 35px;
+    border-radius: 50%;
 `
 
 export const IconOptions = styled.div`

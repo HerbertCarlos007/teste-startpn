@@ -12,6 +12,7 @@ import { BiCamera } from 'react-icons/bi'
 import { Modal } from '../Modal'
 import Fab from '@mui/material/Fab';
 import api from "../../services/api"
+import Swal from 'sweetalert2'
 
 export const MobileList = () => {
 
@@ -94,7 +95,6 @@ export const MobileList = () => {
         }
     }
 
-
     const addInput = (e) => {
         e.preventDefault()
         setNewFields([...newFields, ''])
@@ -104,7 +104,6 @@ export const MobileList = () => {
         setNewFields([...newFields.filter((_, index) => index !== position)])
 
     }
-
 
     const getCustomFields = async () => {
         const response = await api.get('/custom-fields')
@@ -116,12 +115,34 @@ export const MobileList = () => {
         const response = await api.post('/custom-fields', {
             name: valueField
         })
+
+        if (response.status === 201) {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Novo campo criado com sucesso!',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
+
         setShowCreationModalConfigurationOutsider(false)
         getCustomFields()
     }
 
     const deleteField = async (id) => {
         const response = await api.delete(`/custom-fields/${id}`)
+
+        if (response.status === 200) {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Campo deletado com sucesso!',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
+
         getCustomFields()
         setCreationModalConfiguration(false)
         getCustomFields()
@@ -150,7 +171,16 @@ export const MobileList = () => {
                 address,
                 typeOutsider,
             }))
-            await api.post('/outsiders', formData, config)
+            const response = await api.post('/outsiders', formData, config)
+            if (response.status === 201) {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Terceiro cadastrado com sucesso!',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
 
             setShowCreationModalNewOutsider(false)
             getOutsiders()
@@ -161,7 +191,7 @@ export const MobileList = () => {
 
     const updateOutsider = async (id) => {
         try {
-            await api.put(`/outsiders/${id}`, {
+            const response = await api.put(`/outsiders/${id}`, {
                 id,
                 name,
                 email,
@@ -169,6 +199,16 @@ export const MobileList = () => {
                 address,
                 typeOutsider
             })
+
+            if (response.status === 200) {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Terceiro atualizado com sucesso!',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
             setShowCreationModalEditOutsider(false)
             getOutsiders()
         } catch (error) {
@@ -177,7 +217,17 @@ export const MobileList = () => {
     }
 
     const deleteOutsider = async (id) => {
-        await api.delete(`/outsiders/${id}`)
+        const response = await api.delete(`/outsiders/${id}`)
+
+        if (response.status === 200) {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Terceiro deletado com sucesso!',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
         setShowCreationModalDeleteOutsider(false)
         getOutsiders()
     }

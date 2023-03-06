@@ -14,7 +14,7 @@ import { Header } from "../../Header";
 import { OutsidersService } from '../../../services/outsidersService'
 import { MobileHeader } from '../../MobileHeader/'
 import { MobileList } from '../../MobileList'
-
+import Swal from 'sweetalert2'
 import api from '../../../services/api'
 
 export const Outsiders = () => {
@@ -77,7 +77,7 @@ export const Outsiders = () => {
                     'content-type': 'multipart/form-data'
                 }
             };
-            
+
             formData.append('file', file);
             formData.append('outsiderData', JSON.stringify({
                 name,
@@ -86,8 +86,18 @@ export const Outsiders = () => {
                 address,
                 typeOutsider,
             }))
-            await api.post('/outsiders', formData, config)
+            const response = await api.post('/outsiders', formData, config)
 
+            if (response.status === 201) {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Terceiro cadastrado com sucesso!',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+            
             setCreationModalNewOutsider(false)
             getOutsiders()
         } catch (error) {
@@ -110,12 +120,32 @@ export const Outsiders = () => {
         const response = await api.post('/custom-fields', {
             name: valueField
         })
+
+        if (response.status === 201) {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Novo campo criado com sucesso!',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
         setCreationModalConfiguration(false)
         getCustomFields()
     }
 
     const deleteField = async (id) => {
         const response = await api.delete(`/custom-fields/${id}`)
+
+        if (response.status === 200) {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Campo deletado com sucesso!',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
         getCustomFields()
         setCreationModalConfiguration(false)
         getCustomFields()
@@ -194,14 +224,14 @@ export const Outsiders = () => {
                             </C.TextSuppliers>
 
                         </C.ContainerCustomersAndSuppliers>
-                        <C.IconSearch ><AiOutlineSearch color="#476EE6"/></C.IconSearch>
+                        <C.IconSearch ><AiOutlineSearch color="#476EE6" /></C.IconSearch>
                         <C.Input
                             placeholder="Pesquisar"
                             value={searchedOutsiderValue}
                             onChange={handleSearchInputChange}
                         />
                         <C.ContainerGear onClick={handleCreationModalConfiguration}>
-                            <RxGear color="#476EE6"/>
+                            <RxGear color="#476EE6" />
                         </C.ContainerGear>
                     </C.LeftSection>
 
