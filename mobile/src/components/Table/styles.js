@@ -169,6 +169,7 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: 10,
+        
 
     },
 
@@ -178,9 +179,8 @@ export const styles = StyleSheet.create({
         borderColor: '#FFFFFF',
         borderRadius: 70,
         padding: 5,
-        position: 'relative',
-        bottom: 35,
-        left: 35,
+        position: 'relative'
+       
     },
 
     containerForm: {

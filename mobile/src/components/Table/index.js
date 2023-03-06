@@ -14,6 +14,7 @@ import { ModalEditAndCreate } from '../ModalEditAndCreate'
 import api from '../../services/api';
 import { FAB } from 'react-native-elements';
 import { OutsidersService } from '../../services/outsidersService'
+import * as ImagePicker from 'expo-image-picker';
 
 export const Table = ({ outsiders, getOutsiders }) => {
 
@@ -27,6 +28,8 @@ export const Table = ({ outsiders, getOutsiders }) => {
     const [address, setAddress] = useState('')
     const [typeOutsider, setTypeOutsider] = useState('')
     const [selectedId, setSelectedId] = useState('')
+    const [file, setFile] = useState('')
+    const [photo, setPhoto] = useState(null);
 
     useEffect(() => {
         getOutsiders('cliente')
@@ -87,22 +90,52 @@ export const Table = ({ outsiders, getOutsiders }) => {
         }
     }
 
+
+
     const createNewOutsider = async (e) => {
         e.preventDefault()
         try {
-            await api.post('/outsiders', {
+            const formData = new FormData();
+            const config = {
+                headers: {
+                    'content-type': 'multipart/form-data'
+                }
+            };
+            formData.append('file', photo);
+            formData.append('outsiderData', JSON.stringify({
                 name,
                 email,
                 telephone,
                 address,
-                typeOutsider
-            })
+                typeOutsider,
+            }))
+            await api.post('/outsiders', formData, config)
             setShowModalNewOutsider(false)
             getOutsiders('cliente')
         } catch (error) {
             console.error(error);
         }
     }
+    
+    const handleSelectPhoto = async () => {
+        try {
+          const result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1,
+          });
+      
+          if (!result.cancelled) {
+            setPhoto(result.uri);
+          }
+
+          console.log(result.uri)
+        } catch (e) {
+          console.log(e);
+        }
+      };
+      
 
     const getEachOutsider = async (id) => {
         try {
@@ -162,7 +195,7 @@ export const Table = ({ outsiders, getOutsiders }) => {
                             <View style={styles.topSection}>
                                 <View style={styles.leftSide}>
                                     <Checkbox color='#476EE6' style={styles.checkbox} />
-                                    <Image source={perfil} />
+                                    <Image source={item.avatar} />
                                     <Text>{hideExcessiveLongNames(item.name)}</Text>
                                 </View>
 
@@ -363,9 +396,13 @@ export const Table = ({ outsiders, getOutsiders }) => {
                     <View style={styles.line}></View>
 
                     <View style={styles.uploadPhoto}>
-                        <Image source={group} />
+                        {photo ? (
+                            <Image source={{ uri: photo }} style={styles.photoPreview} />
+                        ) : (
+                            <Image source={group} />
+                        )}
                         <View style={styles.containerIconPhoto}>
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={handleSelectPhoto}>
                                 <MaterialIcons name="enhance-photo-translate" size={24} color="#fff" />
                             </TouchableOpacity>
                         </View>
