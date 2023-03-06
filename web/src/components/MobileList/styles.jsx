@@ -238,7 +238,7 @@ export const Box = styled.div`
     color: #fff;
 `
 
-export const InputsConfiguration = styled.div`
+export const InputsConfiguration = styled.input`
     height: 40px;
     width: 200px;
     background-color: #FFFFFF;

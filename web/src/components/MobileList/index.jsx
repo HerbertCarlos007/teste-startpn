@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import * as C from './styles'
 import perfil from '../../assets/perfil.png'
 import { BsFillGearFill } from 'react-icons/bs'
@@ -8,11 +8,20 @@ import { OutsidersService } from '../../services/outsidersService'
 import { HiOutlineTrash } from 'react-icons/hi'
 import { AiOutlinePlus } from 'react-icons/ai'
 import { Modal } from '../Modal'
+import api from "../../services/api"
 
 export const MobileList = () => {
 
+    useEffect(() => {
+        getOutsiders()
+        getCustomFields()
+    }, [])
+
     const [isSelected, setIsSelected] = useState(false)
     const [outsiders, setOutsiders] = useState([]);
+    const [newFields, setNewFields] = useState([])
+    const [fields, setFields] = useState([])
+    const [valueField, setValueField] = useState('')
 
     const [showCreationModalConfigurationOutsider, setShowCreationModalConfigurationOutsider] = useState(false)
 
@@ -28,6 +37,37 @@ export const MobileList = () => {
     };
 
 
+    const addInput = (e) => {
+        e.preventDefault()
+        setNewFields([...newFields, ''])
+    }
+
+    const deleteCustomField = async (position) => {
+        setNewFields([...newFields.filter((_, index) => index !== position)])
+
+    }
+
+    
+    const getCustomFields = async () => {
+        const response = await api.get('/custom-fields')
+        setFields(response.data.customFields)
+
+    }
+
+    const createCustomField = async () => {
+        const response = await api.post('/custom-fields', {
+            name: valueField
+        })
+        setShowCreationModalConfigurationOutsider(false)
+        getCustomFields()
+    }
+
+    const deleteField = async (id) => {
+        const response = await api.delete(`/custom-fields/${id}`)
+        getCustomFields()
+        setCreationModalConfiguration(false)
+        getCustomFields()
+    }
 
     return (
         <C.Container>
@@ -106,12 +146,12 @@ export const MobileList = () => {
                 <C.ContainerModalConfiguration>
                     <C.HeaderConfiguration>
                         <C.LeftSectionHeader>
-                            <C.IconClose>X</C.IconClose>
+                            <C.IconClose onClick={() => setShowCreationModalConfigurationOutsider(false)}>X</C.IconClose>
                             <C.TitleModal>Configuração</C.TitleModal>
                         </C.LeftSectionHeader>
 
                         <C.RightSectionHeader>
-                            <C.ButtonAction>Editar</C.ButtonAction>
+                            <C.ButtonAction onClick={createCustomField}>Editar</C.ButtonAction>
                         </C.RightSectionHeader>
                     </C.HeaderConfiguration>
                     <C.Line style={{ width: '350px', marginTop: '15px' }}></C.Line>
@@ -144,27 +184,41 @@ export const MobileList = () => {
                 </C.ContainerCustomersAndSuppliers>
                 <C.ContentForm>
 
+                {fields && fields.map((field, index) =>
+                        <C.ContainerFormConfiguration>
+                            <C.ContainerInputsConfiguration>
+                                <C.LabelFormConfiguration style={{ marginRight: '160px' }}>{field.name}</C.LabelFormConfiguration>
+                                <C.ContainerBox>
+                                    <C.Box>{index + 1}</C.Box>
+                                    <C.InputsConfiguration onChange={(e) => setValueField(e.target.value)} />
+                                    <C.IconTrash onClick={() => deleteField(field.id)}><HiOutlineTrash /></C.IconTrash>
+                                </C.ContainerBox>
+                            </C.ContainerInputsConfiguration>
+                            <C.ContainerCheckbox>
+                                <C.CheckboxConfiguration type='checkbox' />
+                                <C.TextIsRequired>O campo e obrigatorio?</C.TextIsRequired>
+                            </C.ContainerCheckbox>
+                        </C.ContainerFormConfiguration>)}
+
                     <C.TextFieldsForm>Campos do formulário</C.TextFieldsForm>
-
-                    <C.ContainerFormConfiguration>
-                        <C.ContainerInputsConfiguration>
-                            <C.LabelFormConfiguration>Nome do campo</C.LabelFormConfiguration>
-                            <C.ContainerBox>
-                                <C.Box>1</C.Box>
-                                <C.InputsConfiguration />
-                                <C.IconTrash ><HiOutlineTrash /></C.IconTrash>
-                            </C.ContainerBox>
-                        </C.ContainerInputsConfiguration>
-                        <C.ContainerCheckbox>
-                            <C.CheckboxConfiguration type='checkbox' />
-                            <C.TextIsRequired>O campo e obrigatorio?</C.TextIsRequired>
-                        </C.ContainerCheckbox>
-                    </C.ContainerFormConfiguration>
-
-
+                    {newFields && newFields.map((newField, index) =>
+                        <C.ContainerFormConfiguration>
+                            <C.ContainerInputsConfiguration>
+                                <C.LabelFormConfiguration>Nome do campo</C.LabelFormConfiguration>
+                                <C.ContainerBox>
+                                    <C.Box>{index + 1}</C.Box>
+                                    <C.InputsConfiguration onChange={(e) => setValueField(e.target.value)} />
+                                    <C.IconTrash onClick={() => deleteCustomField(index)}><HiOutlineTrash /></C.IconTrash>
+                                </C.ContainerBox>
+                            </C.ContainerInputsConfiguration>
+                            <C.ContainerCheckbox>
+                                <C.CheckboxConfiguration type='checkbox' />
+                                <C.TextIsRequired>O campo e obrigatorio?</C.TextIsRequired>
+                            </C.ContainerCheckbox>
+                        </C.ContainerFormConfiguration>)}
                     <C.IconPlus>
                         <AiOutlinePlus />
-                        <C.TextAddNewField >Adicionar novo campo</C.TextAddNewField>
+                        <C.TextAddNewField onClick={addInput}>Adicionar novo campo</C.TextAddNewField>
                     </C.IconPlus>
                 </C.ContentForm>
             </Modal>
