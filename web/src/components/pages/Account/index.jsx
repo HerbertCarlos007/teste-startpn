@@ -8,6 +8,7 @@ import api from '../../../services/api'
 export const Account = () => {
 
     const [user, setUser] = useState({})
+    const [isVisible, setIsVisible] = useState(true)
 
     useEffect(() => {
         getUser()
@@ -22,7 +23,7 @@ export const Account = () => {
     return (
         <C.Container>
             <C.SidebarContainer>
-                <SideBar />
+                <SideBar isVisible={isVisible} setIsVisible={setIsVisible}/>
             </C.SidebarContainer>
 
             <C.AllContainer>
