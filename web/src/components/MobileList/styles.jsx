@@ -176,7 +176,8 @@ export const IconClose = styled.span`
 `
 
 export const TitleModal = styled.span`
-    
+    font-size: 18px;
+    font-weight: 500;
 `
 
 export const ButtonAction = styled.button`
@@ -351,4 +352,32 @@ export const Select = styled.select`
 
 export const OptionsSelect = styled.option`
 
+`
+
+export const ContentActions = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+`
+
+export const TextActions = styled.span`
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: 600;
+`
+
+export const ContentDeleteOutsider = styled.div`
+    width: 250px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 50px;
+`
+
+export const TextToDelete = styled.span`
+    font-size: 18px;
+    font-weight: 400;
+    text-align: center;
 `
