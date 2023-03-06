@@ -24,6 +24,7 @@ export const NewPassword = () => {
             const response = await api.put(`/recover-password/${id}`, {
                password, confirmPassword
             })
+            navigate('/')
         } catch (error) {
             
         }

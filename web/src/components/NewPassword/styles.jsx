@@ -8,6 +8,7 @@ export const Container = styled.div`
     align-items: center;
     display: flex;
     overflow-y: hidden;
+    position: relative;
 `
 
 export const Content = styled.div` 
@@ -17,7 +18,7 @@ export const Content = styled.div`
     border: 1px solid #D7D7D7;
     border-radius: 20px;
     display: flex;
-
+    position: relative;
     @media only screen and (max-width: 574px) {
        border: 0;
     }
@@ -50,9 +51,11 @@ export const RightSection = styled.div`
     display: flex;
     flex-direction: column;
     margin-top: 100px;
+    margin-right: 70px;
 
     @media only screen and (max-width: 574px) {
        align-items: center;
+       margin-right: 0;
     }
 
 `
@@ -104,6 +107,8 @@ export const ContainerForm = styled.div`
     justify-content: center;
     align-items: center;
     margin-top: 20px;
+    position: relative;
+    
 `
 
 export const ContainerInput = styled.div`
