@@ -6,15 +6,17 @@ class OutsidersController {
         const { file } = req
         const { outsiderData } = req.body
         const parsedOutsiderData = JSON.parse(outsiderData)
-        if (!file) {
-            return res.status(400).json({ error: 'Nenhum arquivo foi enviado.' })
-        }
         const uploadImagesService = new UploadImagesService()
-        await uploadImagesService.execute(file)
+        
+        if (file) {
+            await uploadImagesService.execute(file)
+        }
+        
         const outsiders = await Outsiders.create({
-        avatar: `https://teste-startpn.s3.amazonaws.com/${file.filename}`,
-        ...parsedOutsiderData
+            avatar: file ? `https://teste-startpn.s3.amazonaws.com/${file.filename}` : null,
+            ...parsedOutsiderData
         })
+        
         return res.status(201).json(outsiders)
     }
 
