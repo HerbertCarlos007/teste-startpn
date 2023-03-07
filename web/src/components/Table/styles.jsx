@@ -20,6 +20,8 @@ export const HeaderTable = styled.div`
         width: 890px;
     }
 
+    
+
     @media only screen and (max-width: 574px) {
         display: none;
     }
@@ -37,6 +39,8 @@ export const ContentHeaderTable = styled.div`
         align-items: center;
         padding-left: 20px;
     }
+
+    
 `
 
 export const CheckboxHeader = styled.input`

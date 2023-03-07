@@ -3,7 +3,7 @@ import * as C from './styles'
 import api from '../../../services/api'
 import { Table } from '../../Table'
 import { SideBar } from '../../Sidebar'
-import {SidebarMobile} from '../../SidebarMobile'
+import { SidebarMobile } from '../../SidebarMobile'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { RxGear } from 'react-icons/rx'
 import { GrFormClose } from 'react-icons/gr'
@@ -164,7 +164,11 @@ export const Outsiders = () => {
     };
 
     const searchOutsiders = () => {
-        if (!searchedOutsiderValue) return;
+        if (!searchedOutsiderValue) {
+            setOutsiders(outsiders);
+            getOutsiders('cliente')
+            return;
+        }
         const searchedOutsiders = outsiders.filter((availableOutsider) => {
             const searchParts = searchedOutsiderValue.split(' ');
             for (const searchedPart of searchParts) {
@@ -179,8 +183,8 @@ export const Outsiders = () => {
     };
 
     const handleSearchInputChange = (e) => {
-        setSearchedOutsiderValue(e.target.value)
-    }
+        setSearchedOutsiderValue(e.target.value);
+    };
 
     const uploadImage = async (event) => {
         setFile(event.target.files[0]);
@@ -193,8 +197,8 @@ export const Outsiders = () => {
                 <SideBar isVisible={isVisible} setIsVisible={setIsVisible} />
             </C.SidebarContainer>
 
-            <SidebarMobile isVisible={isVisible} setIsVisible={setIsVisible}/>
-            
+            <SidebarMobile isVisible={isVisible} setIsVisible={setIsVisible} />
+
 
             <C.ContainerAllContent>
                 <Header title='Terceiros' />
