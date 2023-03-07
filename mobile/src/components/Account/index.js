@@ -5,15 +5,18 @@ import photo from '../../../assets/photo.png'
 import { MaterialIcons } from '@expo/vector-icons'
 import { AntDesign } from '@expo/vector-icons'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native'
 import api from '../../services/api'
 
 export const Account = () => {
 
     const [user, setUser] = useState({})
-
+    
     useEffect(() => {
         getUser()
     }, [])
+
+    const navigation = useNavigation()
 
     const getUser = async () => {
         try {
@@ -30,7 +33,7 @@ export const Account = () => {
     return (
         <View style={styles.container}>
             <View style={styles.topSection}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('outsiders')}>
                     <View style={styles.containerIconIconArrow}>
                         <AntDesign name="arrowleft" size={24} color="#476EE6" style={styles.iconArrow} />
                     </View>
@@ -66,8 +69,7 @@ export const Account = () => {
                     <Text style={styles.labelForm}>senha</Text>
                     <TextInput 
                     style={styles.input} 
-                    secureTextEntry={true}
-                    value={user.password}/>
+                    secureTextEntry={true}/>
                 </View>
 
                 <TouchableOpacity>

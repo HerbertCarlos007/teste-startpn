@@ -230,5 +230,41 @@ export const styles = StyleSheet.create({
         color: '#FFFFFF'
     },
 
+    containerSearch: {
+        backgroundColor: '#FFFFFF',
+        width: '100%',
+        height: 145,
+        justifyContent: 'center',
+        padding: 25
+    },
+
+    contentSearch: {
+        flexDirection: 'row',
+        width: 350,
+        justifyContent: 'space-between',
+        alignItems: 'center'
+        
+    },
+
+    inputSearch: {
+        width: 286,
+        height: 65,
+        backgroundColor: '#FFFFFF',
+        borderWidth: 1,
+        borderColor: '#E8E8E8',
+        borderRadius: 20,
+        paddingLeft: 10
+    },
+
+    iconSearch: {
+        width: 35,
+        height: 35,
+        borderWidth: 1,
+        borderColor: '#476EE6',
+        borderRadius: 20,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+    }
     
 })

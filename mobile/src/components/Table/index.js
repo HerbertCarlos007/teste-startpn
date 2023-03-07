@@ -34,6 +34,10 @@ export const Table = ({ outsiders, getOutsiders }) => {
 
     useEffect(() => {
         getOutsiders('cliente')
+        
+    }, [])
+    
+    useEffect(() => {
         getCustomFields()
     }, [])
 

@@ -10,7 +10,8 @@ export const Logout = () => {
 
     const logout = () => {
         AsyncStorage.removeItem('token')
-        navigation.navigate('home')    
+        navigation.navigate('home')
+            
     }
 
     return (

@@ -18,6 +18,7 @@ export const Outsiders = () => {
     const [newFields, setNewFields] = useState([])
     const [fields, setFields] = useState([])
     const [valueField, setValueField] = useState('')
+    const [isSearching, setIsSearching] = useState(false)
 
     useEffect(() => {
         getOutsiders('cliente')
@@ -36,6 +37,8 @@ export const Outsiders = () => {
     const handleChangeCustomField = (value) => {
         setValueField(value)
     }
+
+
 
     const getOutsiders = async (typeOutsider) => {
         const outsiderServices = new OutsidersService();
@@ -75,29 +78,57 @@ export const Outsiders = () => {
 
 
     return (
+
         <>
-            <Header />
-            <View style={styles.container}>
-                <View style={styles.topSection}>
-                    <View style={styles.leftSide}>
-                        <Text style={styles.title}>Terceiros</Text>
+            {isSearching ? <View style={styles.containerSearch}>
+                <View style={styles.contentSearch}>
+                    <View style={styles.iconSearch} >
+                        <AntDesign
+                            name="arrowleft"
+                            size={24} color="#476EE6"
+                            style={styles.iconArrow}
+                            onPress={() => setIsSearching(false)}
+                        />
                     </View>
+                    <TextInput style={styles.inputSearch} placeholder='Pesquisar'>
 
-                    <View style={styles.righSide}>
-                        <TouchableOpacity onPress={handleOpenModalConfiguration}>
-                            <View style={styles.containerActions}>
-                                <EvilIcons name="gear" size={24} color="#476EE6" />
-                            </View>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity>
-                            <View style={styles.containerActions}>
-                                <AntDesign name="search1" size={24} color="#476EE6" />
-                            </View>
-                        </TouchableOpacity>
-
-                    </View>
+                    </TextInput>
                 </View>
+            </View> :
+                <Header />
+            }
+
+
+
+            <View style={styles.container}>
+
+                {isSearching ? '' :
+                    <View style={styles.topSection}>
+                        <View style={styles.leftSide}>
+                            <Text style={styles.title}>Terceiros</Text>
+                        </View>
+
+                        <View style={styles.righSide}>
+                            <TouchableOpacity onPress={handleOpenModalConfiguration}>
+                                <View style={styles.containerActions}>
+                                    <EvilIcons name="gear" size={24} color="#476EE6" />
+                                </View>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity>
+                                <View style={styles.containerActions} >
+                                    <AntDesign
+                                        name="search1"
+                                        size={24}
+                                        color="#476EE6"
+                                        onPress={() => setIsSearching(true)}
+                                    />
+                                </View>
+                            </TouchableOpacity>
+
+                        </View>
+                    </View>
+                }
 
                 <View style={styles.containerSwitchOutsider}>
                     <TouchableOpacity onPress={() => { setIsSelected(true); getOutsiders('cliente'); }}>
@@ -159,7 +190,7 @@ export const Outsiders = () => {
                                     <View style={styles.ContainerIndex} >
                                         <Text style={styles.textIndex}>1</Text>
                                     </View>
-                                    <TextInput style={styles.input} onChangeText={handleChangeCustomField}/>
+                                    <TextInput style={styles.input} onChangeText={handleChangeCustomField} />
                                     <TouchableOpacity style={styles.buttonTrash} onPress={() => deleteField(field.id)}>
                                         <EvilIcons name="trash" size={37} color="black" />
                                     </TouchableOpacity>
@@ -182,7 +213,7 @@ export const Outsiders = () => {
                                     <View style={styles.ContainerIndex}>
                                         <Text style={styles.textIndex}>1</Text>
                                     </View>
-                                    <TextInput style={styles.input} onChangeText={handleChangeCustomField}/>
+                                    <TextInput style={styles.input} onChangeText={handleChangeCustomField} />
                                     <TouchableOpacity style={styles.buttonTrash} onPress={() => deleteCustomField(index)}>
                                         <EvilIcons name="trash" size={37} color="black" />
                                     </TouchableOpacity>

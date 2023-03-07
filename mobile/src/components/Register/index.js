@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, Image, TextInput, TouchableOpacity, } from 'react-native'
 import Checkbox from 'expo-checkbox';
 import { styles } from './styles'
 import logo from '../../../assets/logo.png'
