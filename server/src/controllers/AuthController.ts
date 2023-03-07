@@ -19,7 +19,7 @@ class AuthController {
         const isValuePassword = await compare(password, String(user.password))
 
         if (!isValuePassword) {
-            return res.json({ error: "Senha invalida" })
+            return res.status(401).json({ error: "Senha invalida" })
         }
 
         const token = sign({ id: user.id }, String(process.env.SECRET), { expiresIn: '1d' })
