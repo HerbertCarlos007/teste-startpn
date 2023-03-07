@@ -6,13 +6,14 @@ import backgroundImage from '../../assets/background.png'
 import steveJobsImage from '../../assets/stevejobs.png'
 import logo from '../../assets/logo.png'
 import api from '../../services/api'
+import Swal from "sweetalert2";
 
 export const NewPassword = () => {
 
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const { id } = useParams()
-    
+
     const navigate = useNavigate()
 
     const navigateToLogin = () => {
@@ -22,11 +23,21 @@ export const NewPassword = () => {
     const handleNewPassword = async () => {
         try {
             const response = await api.put(`/recover-password/${id}`, {
-               password, confirmPassword
+                password, confirmPassword
             })
+
+            if (response.status === 200) {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: "Senha alterada com sucesso",
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
             navigate('/')
         } catch (error) {
-            
+
         }
     }
 

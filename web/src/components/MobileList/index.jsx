@@ -17,7 +17,7 @@ import Swal from 'sweetalert2'
 export const MobileList = () => {
 
     useEffect(() => {
-        getOutsiders()
+        getOutsiders('cliente')
         getCustomFields()
     }, [])
 
@@ -183,7 +183,7 @@ export const MobileList = () => {
             }
 
             setShowCreationModalNewOutsider(false)
-            getOutsiders()
+            getOutsiders('cliente')
         } catch (error) {
 
         }
@@ -210,7 +210,7 @@ export const MobileList = () => {
                 })
             }
             setShowCreationModalEditOutsider(false)
-            getOutsiders()
+            getOutsiders('cliente')
         } catch (error) {
 
         }
@@ -229,7 +229,7 @@ export const MobileList = () => {
             })
         }
         setShowCreationModalDeleteOutsider(false)
-        getOutsiders()
+        getOutsiders('cliente')
     }
 
     const uploadImage = async (event) => {

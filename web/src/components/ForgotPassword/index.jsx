@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import * as C from './styles'
 import logo from '../../assets/logo.png'
 import api from '../../services/api'
+import Swal from 'sweetalert2'
+import {ResendEmail} from '../ResendEmail'
 
 export const ForgotPassword = ({ setFormState }) => {
 
@@ -14,6 +16,16 @@ export const ForgotPassword = ({ setFormState }) => {
             const response = await api.post('/forgot-password', {
                 email
             })
+
+            if (response.status === 200) {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: `Foi enviado um email para ${email}!`,
+                    showConfirmButton: false,
+                    timer: 2200
+                })
+            }
             setFormState('resendEmail')
         } catch (error) {
             

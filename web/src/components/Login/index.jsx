@@ -4,6 +4,7 @@ import * as C from './styles'
 import api from "../../services/api";
 import logo from '../../assets/logo.png'
 import { GrHide } from 'react-icons/gr'
+import Swal from "sweetalert2";
 
 export const Login = ({ setFormState }) => {
 
@@ -14,13 +15,24 @@ export const Login = ({ setFormState }) => {
     const navigate = useNavigate()
 
     const handleClickLogin = async () => {
-        const response = await api.post('/auth', {
-            email, password
-        })
-        if (response.status === 200) {
-            localStorage.setItem('token', response.data.token)
-            localStorage.setItem('id', response.data.user.id)
-            navigate('/outsiders')
+        try {
+            const response = await api.post('/auth', {
+                email, password
+            })
+            
+            if (response.status === 200) {
+                localStorage.setItem('token', response.data.token)
+                localStorage.setItem('id', response.data.user.id)
+                navigate('/outsiders')
+            }
+        } catch (error) {
+            if (error.response && error.response.status === 401) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Senha ou e-mail invalidos',
+                    text: 'Verifique seu email e senha e tente novamente'
+                })
+            }
         }
     }
 

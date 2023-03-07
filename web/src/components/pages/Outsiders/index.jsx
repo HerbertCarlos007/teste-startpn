@@ -99,7 +99,7 @@ export const Outsiders = () => {
             }
             
             setCreationModalNewOutsider(false)
-            getOutsiders()
+            getOutsiders('cliente')
         } catch (error) {
 
         }

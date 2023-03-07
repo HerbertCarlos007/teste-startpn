@@ -3,6 +3,7 @@ import * as C from './styles'
 import logo from '../../assets/logo.png'
 import api from '../../services/api'
 import { GrHide } from 'react-icons/gr'
+import Swal from "sweetalert2";
 
 
 export const Register = ({ setFormState }) => {
@@ -14,12 +15,21 @@ export const Register = ({ setFormState }) => {
     const [typeInputPassword, setTypeInputPassword] = useState('password')
     const [typeInputConfirmPassword, setTypeInputConfirmPassword] = useState('password')
 
+
     const handleClickRegister = async () => {
-        await api.post('/register', {
+        const response = await api.post('/register', {
             name, email, password, confirPassoword
-        }).then(
-            setFormState('login')
-        )
+        })
+        if (response.status === 200) {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: `Usuário cadastrado com sucesso`,
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
+        setFormState('login')
     }
 
     const toggleTypeInputPassword = () => {

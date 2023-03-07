@@ -23,7 +23,7 @@ export const Table = ({ outsiders, getOutsiders }) => {
 
 
     useEffect(() => {
-        getOutsiders()
+        getOutsiders('cliente')
     }, [])
 
     const handleCloseCreationModal = () => {
@@ -94,7 +94,7 @@ export const Table = ({ outsiders, getOutsiders }) => {
                 })
             }
             setShowCreationModalEditOutsider(false)
-            getOutsiders()
+            getOutsiders('cliente')
         } catch (error) {
 
         }
@@ -114,7 +114,7 @@ export const Table = ({ outsiders, getOutsiders }) => {
         }
 
         setShowCreationModalDeleteOutsider(false)
-        getOutsiders()
+        getOutsiders('cliente')
     }
 
     const hideExcessiveLongNames = (name) => {
