@@ -20,10 +20,17 @@ export const Outsiders = () => {
     const [valueField, setValueField] = useState('')
     const [isSearching, setIsSearching] = useState(false)
 
+    const [searchedOutsiderValue, setSearchedOutsiderValue] = useState('');
+
     useEffect(() => {
         getOutsiders('cliente')
         getCustomFields()
     }, [])
+
+    useEffect(() => {
+        searchOutsiders()
+    }, [searchedOutsiderValue])
+
 
     const handleOpenModalConfiguration = () => {
         setShowModalConfiguration(true)
@@ -76,6 +83,33 @@ export const Outsiders = () => {
         getCustomFields()
     }
 
+    const searchOutsiders = () => {
+        if (!searchedOutsiderValue) return;
+        const searchedOutsiders = outsiders.filter((availableOutsider) => {
+            const searchParts = searchedOutsiderValue.split(' ');
+            for (const searchedPart of searchParts) {
+                if (!searchedPart) continue;
+                if (!availableOutsider.name.toUpperCase().includes(searchedPart.toUpperCase())) {
+                    return false;
+                }
+            }
+            return true;
+        });
+        setOutsiders(searchedOutsiders);
+    };
+
+
+    const handleSearchInputChange = (searchedValue) => {
+        setSearchedOutsiderValue(searchedValue);
+      }
+
+      const handleSearching = () => {
+        setIsSearching(false)
+        setSearchedOutsiderValue("");
+        searchOutsiders("");
+        getOutsiders('cliente')
+      }
+
 
     return (
 
@@ -87,10 +121,14 @@ export const Outsiders = () => {
                             name="arrowleft"
                             size={24} color="#476EE6"
                             style={styles.iconArrow}
-                            onPress={() => setIsSearching(false)}
+                            onPress={handleSearching}
                         />
                     </View>
-                    <TextInput style={styles.inputSearch} placeholder='Pesquisar'>
+                    <TextInput 
+                    style={styles.inputSearch} 
+                    placeholder='Pesquisar' 
+                    value={searchedOutsiderValue} 
+                    onChangeText={handleSearchInputChange}>
 
                     </TextInput>
                 </View>
@@ -144,7 +182,7 @@ export const Outsiders = () => {
                     </TouchableOpacity>
                 </View>
 
-                <Table outsiders={outsiders} getOutsiders={getOutsiders} />
+                <Table outsiders={outsiders} getOutsiders={getOutsiders} setOutsiders={setOutsiders} />
             </View>
 
             <ModalEditAndCreate visibleModal={showModalConfiguration}>

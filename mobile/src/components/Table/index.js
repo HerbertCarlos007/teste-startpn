@@ -34,13 +34,11 @@ export const Table = ({ outsiders, getOutsiders }) => {
 
     useEffect(() => {
         getOutsiders('cliente')
-        
-    }, [])
-    
-    useEffect(() => {
         getCustomFields()
+
     }, [])
 
+   
     const handleName = (value) => {
         setName(value)
     }
@@ -96,8 +94,6 @@ export const Table = ({ outsiders, getOutsiders }) => {
         }
     }
 
-
-
     const createNewOutsider = async (e) => {
         e.preventDefault()
         try {
@@ -133,15 +129,14 @@ export const Table = ({ outsiders, getOutsiders }) => {
             });
 
             if (!result.cancelled) {
-                setPhoto(result.uri);
+                setPhoto(result.assets);
             }
 
-            console.log(result.uri)
+            console.log(result.assets)
         } catch (e) {
             console.log(e);
         }
     };
-
 
     const getEachOutsider = async (id) => {
         try {
@@ -307,7 +302,7 @@ export const Table = ({ outsiders, getOutsiders }) => {
                     </View>
                     <View style={styles.line}></View>
                     <View style={styles.containerInstructions}>
-                        <Text style={styles.textDeleteOutsider}>Tem certeza que deseja excluir o {'\n'} cliente Mateus santos ?</Text>
+                        <Text style={styles.textDeleteOutsider}>Tem certeza que deseja excluir o {name}?</Text>
                     </View>
                 </View>
             </ModalComponent>
