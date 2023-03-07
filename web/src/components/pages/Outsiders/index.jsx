@@ -3,6 +3,7 @@ import * as C from './styles'
 import api from '../../../services/api'
 import { Table } from '../../Table'
 import { SideBar } from '../../Sidebar'
+import {SidebarMobile} from '../../SidebarMobile'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { RxGear } from 'react-icons/rx'
 import { GrFormClose } from 'react-icons/gr'
@@ -32,7 +33,7 @@ export const Outsiders = () => {
     const [showCreationModalNewOutsider, setCreationModalNewOutsider] = useState(false)
     const [showCreationModalConfiguration, setCreationModalConfiguration] = useState(false)
     const [isSelected, setIsSelected] = useState(false)
-    const [isVisible, setIsVisible] = useState(true)
+    const [isVisible, setIsVisible] = useState(false)
     const [file, setFile] = useState('')
     const [photo, setPhoto] = useState(null);
 
@@ -97,7 +98,7 @@ export const Outsiders = () => {
                     timer: 1500
                 })
             }
-            
+
             setCreationModalNewOutsider(false)
             getOutsiders('cliente')
         } catch (error) {
@@ -191,6 +192,9 @@ export const Outsiders = () => {
             <C.SidebarContainer>
                 <SideBar isVisible={isVisible} setIsVisible={setIsVisible} />
             </C.SidebarContainer>
+
+            <SidebarMobile isVisible={isVisible} setIsVisible={setIsVisible}/>
+            
 
             <C.ContainerAllContent>
                 <Header title='Terceiros' />

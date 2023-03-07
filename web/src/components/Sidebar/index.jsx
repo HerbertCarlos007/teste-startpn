@@ -28,7 +28,7 @@ export const SideBar = ({ isVisible, setIsVisible }) => {
 
     return (
         <>
-            {isVisible ?
+            <C.Container>
                 <Sidebar backgroundColor='#fff'
                     style=
                     {{
@@ -40,15 +40,14 @@ export const SideBar = ({ isVisible, setIsVisible }) => {
                     <C.Logo src={logo} />
                     <Menu style={{ marginTop: '60px' }}>
                         <MenuItem icon={<GrGroup />} onClick={navigateToOutsiders}>Terceiros</MenuItem>
-                        <MenuItem icon={<BsChatSquareText />} onClick={() =>setIsVisible(false)}> Exemplo </MenuItem>
+                        <MenuItem icon={<BsChatSquareText />} onClick={() => setIsVisible(false)}> Exemplo </MenuItem>
                         <MenuItem icon={<BsChatSquareText />}> Exemplo </MenuItem>
                         <MenuItem icon={<RxGear />}> Exemplo </MenuItem>
                         <MenuItem icon={<VscAccount />} onClick={navigateToAccount}> Minha conta </MenuItem>
                         <MenuItem icon={<RxExit />} style={{ marginTop: '150px' }} onClick={logout}> Sair </MenuItem>
                     </Menu>
-                </Sidebar> : ''
-            }
+                </Sidebar>
+            </C.Container>
         </>
-
     );
 }

@@ -6,3 +6,10 @@ export const Logo = styled.img`
 
     
 `
+
+export const Container = styled.div`
+    height: 100%;
+    @media only screen and (max-width: 574px) {
+        display: none;
+    }
+`

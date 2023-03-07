@@ -79,8 +79,6 @@ export const ContainerList = styled.div`
     border: 1px solid #D7D7D7;
     border-radius: 10px;    
     margin-top: 20px;
-   
-
 `
 
 export const UpSectionList = styled.div`

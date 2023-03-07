@@ -239,7 +239,6 @@ export const MobileList = () => {
 
     return (
         <C.Container>
-
             <C.ContainerOptions>
                 <C.Title>Terceiro</C.Title>
                 <C.ContainerConfigurationAndSearch>
@@ -280,7 +279,7 @@ export const MobileList = () => {
 
             {outsiders.map((outsider) =>
                 <>
-                    <C.ContainerList>
+                    <C.ContainerList >
                         <C.UpSectionList>
                             <C.LeftSection>
                                 <C.Checkbox type='checkbox' />
